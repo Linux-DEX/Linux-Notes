@@ -1,0 +1,182 @@
+#+TITLE: BlackArch 
+#+DESCRIPTION: BlackArch Learning
+#+AUTHOR: Linux-DEX
+#+OPTION: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#what-is-blackarch-linux][What is BlackArch Linux?]]
+- [[#installing-on-top-of-archlinux][Installing on top of ArchLinux.]]
+  - [[#method-1][Method 1]]
+  - [[#method-2][Method 2]]
+- [[#installing-tools-from-blackarch][Installing tools from BlackArch]]
+- [[#installing-package-from-source][Installing package from source]]
+- [[#basic-blackman-usage][Basic Blackman usage]]
+
+* What is BlackArch Linux?
+BlackArch is a complete linux distribution for penetration testers and security researchers. It is derived from *ArchLinux* and users can install BlackArch components individually or in groups directly on top of it.
+
+* Installing on top of ArchLinux.
+** Method 1
+1. Add the BlackArch Repository:
+Open the */etc/pacman.conf* file in a text editor. 
+#+begin_example
+$ sudo vim /etc/pacman.conf
+#+end_example
+
++ Add the following lines at the end of the file:
+#+begin_example
+[blackarch]
+SigLevel = Optional TrustAll
+Server = https://blackarch.org/blackarch/$repo/os/$arch
+#+end_example
+
+/Save the changes and exit the text editor./
+
+2. Import the BlackArch Keyring:
+You need to import the BlackArch keyring to verify the integrity of packages from the Blackarch repository. Run the following commands.
+#+begin_example
+$ sudo pacman -Syy
+$ sudo pacman -S blackarch-keyring
+#+end_example
+
+3. Update Pacman Database:
+After adding the BlackArch repository and importing the keyring, update your Pacman database.
+#+begin_example
+$ sudo pacman -Sy
+#+end_example
+
+4. Install BlackArch Packages:
+Now you can install Blackarch packages using Pacman. For example, to intall a package called *blackarch-package-name*, you can use:
+#+begin_example
+$ sudo pacman -S blackarch-package-name
+#+end_example
+
+** Method 2
+1. Download BlackArch script 
+#+begin_example
+$ curl -O https://blackarch.org/strap.sh
+#+end_example
+
+2. Verify the SHA1 sum
+#+begin_example
+$ echo 5ea40d49ecd14c2e024deecf90605426db97ea0c strap.sh | sha1sum -c
+#+end_example
+
+3. Set execute bit
+#+begin_example
+$ chmod +x strap.sh
+#+end_example
+
+4. Run strap.sh
+#+begin_example
+$ sudo ./strap.sh
+#+end_example
+
+5. Update the repositories or update the system
+#+begin_example
+$ sudo pacman -Syu
+#+end_example
+
+* Installing tools from BlackArch
+
++ To List all of the available tools, run
+#+begin_example
+$ sudo pacman -Sgg | grep blackarch | cut -d' ' -f2 | sort -u
+#+end_example
+
++ To intall all of the tools, run
+#+begin_example
+$ pacman -S blackarch
+#+end_example
+
++ To install a category of tools, run
+#+begin_example
+$ sudo pacman -S blackarch-<category>
+#+end_example
+
++ To see the blackarch categories, run
+#+begin_example
+$ sudo pacman -Sg | grep blackarch
+#+end_example
+
++ To search for a specific package, run
+#+begin_example
+$ pacman -Ss <package-name>
+#+end_example
+
++ It may be necessary to overwrite certain package when installing blackarch tools. If you experience "failed to commit transaction" errors, use the --needed and --overwrite switches 
+#+begin_example
+$ sudo pacman -Syyu --needed --overwrite='*' <wanted-package>
+#+end_example
+
+* Installing package from source
+As part of an alternative method of installation, you can build the BlackArch package from source. To build the entire repo, you can use the =Blackman= tool.
+
++ First, you have to install Blackman. If the BlackArch package repository is setup on you machine, you can install Blackman.
+#+begin_example
+$ pacman -S blackman
+#+end_example
+
++ you can build and install Blackman from source:
+#+begin_example
+$ mkdir blackman
+$ cd blackman
+$ wget https://raw2.github.com/BlackArch/blackarch/master/packages/blackman/PKGBUILD
+$ makepkg -s
+#+end_example
+
++ Or you can install Blackman from the AUR:
+#+begin_example
+$ <AUR helper> -S blackman
+#+end_example
+
+* Basic Blackman usage
++ Download, compile and install package:
+#+begin_example
+$ sudo blackman -i package
+#+end_example
+
++ Download, compile and install whole category:
+#+begin_example
+$ sudo blackman -g group
+#+end_example
+ 
++ Download, compile and install all of the BlackArch tools:
+#+begin_example
+$ sudo blackman -a
+#+end_example
+
++ To list the blackarch categories:
+#+begin_example
+$ blackman -l
+#+end_example
+
++ To list category tools:
+#+begin_example
+$ blackman -p category
+#+end_example
+
++ To update all installed BlackArch tools to their latest version, use teh '-u' option:
+#+begin_example
+$ sudo blackman -u
+#+end_example
+
++ To remove a package installed from the Blackarch repository, use the '-r' option followed by the package name:
+#+begin_example
+$ sudo blackman -r package-name
+#+end_example 
+
++ To synchronize the BlackArch package database and update it, you can use the '-Syy' option:
+#+begin_example
+$ sudo blackman -Syy
+#+end_example
+
++ To search for a package in the BlackArch repository, you can use the *blackman* command with the '-Ss' option:
+#+begin_example
+$ sudo blackman -Ss package-name
+#+end_example
+
+
+
+
+

@@ -1,0 +1,15 @@
+#+TITLE: NMAP NOTE
+#+DESCRIPTION: LINUX 
+#+AUTHOR: Linux-DEX
+#+OPTION: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+
+* Introduction
+Nmap -> Network Mapper.
+- It is used to scan IP addresses and ports in a network and to detect installed application.
+- to find the help type 
+          nmap --help
+
+          
