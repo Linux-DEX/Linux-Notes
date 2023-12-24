@@ -1,7 +1,7 @@
 #+TITLE: LINUX NOTE
 #+DESCRIPTION: LINUX TUTORIAL
 #+AUTHOR: Linux-DEX
-#+OPTION: toc:4
+#+OPTIONS: toc:4
 
 * TABLE OF CONTENT :toc:
 - [[#linux-file-system][LINUX FILE SYSTEM]]
@@ -179,6 +179,12 @@
   - [[#yay][yay]]
 - [[#apache-service][Apache Service]]
 - [[#enable-ssh][Enable SSH]]
+- [[#auto-mount-drives-in-linux-on-boot][Auto Mount Drives in Linux on Boot]]
+  - [[#step1][Step1:]]
+  - [[#step2][Step2:]]
+  - [[#step3][Step3:]]
+  - [[#step4][Step4:]]
+  - [[#step5][Step5:]]
 
 * LINUX FILE SYSTEM
 Linux file system contains
@@ -262,13 +268,13 @@ Variable data files are saved contain MySQL, log file , etc..
 + This allows the possibility of running the client and the server either on the same machine or different ones.
 + A client and a server can also communicate over the internet through an encrypted network session.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/x11.png]]
+  [[./img/x11.png]]
 
 ** Wayland
 + Wayland is *a communication protocol that specifies the communication between a display server and its clients, as well as a C library implementation of that protocol.*
 + A display server using the wayland protocol is called a wayland compositor, because it additionally performs the task of a compositing window manager.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/wayland.png]]
+  [[./img/wayland.png]]
 
 * Kernal 
 + Kernel is the main component of a linux operating system(OS) and is the core interface between a computer's hardware and it's process.
@@ -317,14 +323,14 @@ Variable data files are saved contain MySQL, log file , etc..
 + It also *lets you easily an entry on the fly, or drop down into the command interface*. In addition, if you are using the menu interface and something goes wrong, GRUB automatically puts you into the command interface so you can attempt to recover and boot menually.
 + GRUB offers several advantages over other boot loaders. *It can boot multiple operating systems, allowing users to select with OS they would like to boot at startup.*. It also supports a variety of file systems, making it compatible with a wide range of storage devices.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/grub.png]]
+  [[./img/grub.png]]
 
 *** systemd-boot
 + systemd-boot is *a free and open-source boot manager created by obsoleting the gummiboot project and merging it into systemd in May 2015*.
 + systemd-boot previously called *gummiboot*, is an easy-to-configure UEFI boot manager. It provied a textual menu to select the boot entry and an editor for the kernel command line. 
 + It is uncomplicated and uses simple text file which only contain a few lines.
   
-  [[/media/xander/Backup/code/Hacker/Linux/img/systemd-boot.png]]
+  [[./img/systemd-boot.png]]
 
 *** rEFInd Boot Manager
 *** LILO (Linux Loader)
@@ -346,28 +352,28 @@ let us use our account and password to execute system commands with root privile
 print effective user name
 
 #+begin_example
-> whoami
+$ whoami
 #+end_example
 
 ** man
 An interface to the system reference manuals
 
 #+begin_example
-> man du
+$ man du
 #+end_example
 
 ** clear
 Clear teh terminal screen.
 
 #+begin_example
-> clear
+$ clear
 #+end_example
 
 ** pwd
 Print the current folder path.
 
 #+begin_example
-> pwd
+$ pwd
 #+end_example
 
 ** ls
@@ -1732,7 +1738,7 @@ Then the system will reboot
 
 *select the kernel you want in your system.*
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/kernelswitch.jpeg]]
+  [[./img/kernelswitch.jpeg]]
 
 * xrandr - (manage displays)
 Primitive command line interface to RandR extension
@@ -2140,5 +2146,41 @@ $ sudo systemctl enable sshd
 $ sudo systemctl status sshd
 #+end_example
 
+* Auto Mount Drives in Linux on Boot
+** Step1:
+Make a directory with the name Backup in a /media directory.
+#+begin_example
+$ sudo mkdir /media/Backup
+#+end_example
 
- 
+** Step2: 
+Then collect the information of disk which you want to mount.
+
++ To find the mounted path of the disk e.g. /dev/sdb1
+#+begin_example
+$ sudo fdisk -l
+#+end_example
+
++ To collect the UUID information of disk
+#+begin_example
+$ sudo blkid
+#+end_example
+
+** Step3: 
+Edit the fstab folder, and it is very sensitive.
+#+begin_example
+$ sudo vim /etc/fstab
+#+end_example
+
++ Edit the file and add the information you collected in this file.
+
+** Step4:
+At the end the file should look like this.
+[[./img/fstab.png]]
+
+** Step5:
+to make shore the mount is proper run this command, this command will mount the disk form the fstab folder.
+#+begin_example
+$ sudo mount -a
+#+end_example
+
