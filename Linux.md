@@ -1,1141 +1,1095 @@
-#+TITLE: LINUX NOTE
-#+DESCRIPTION: LINUX TUTORIAL
-#+AUTHOR: Linux-DEX
-#+OPTION: toc:4
-
-* TABLE OF CONTENT :toc:
-- [[#linux-file-system][LINUX FILE SYSTEM]]
-  - [[#directory-structure][Directory Structure]]
-  - [[#linux-file-system-features][Linux File System features]]
-- [[#types-of-linux-file-system][TYPES OF LINUX FILE SYSTEM]]
-  - [[#ext-ext2-ext3--ext4-file-system][Ext, Ext2, Ext3 & Ext4 file system]]
-  - [[#jfs-file-system][JFS file system]]
-  - [[#reiserfs-file-system][ReiserFS file system]]
-  - [[#xfs-file-system][XFS file system]]
-  - [[#btrfs-file-system][BTRFS file system]]
-  - [[#swap-file-system][swap file system]]
-- [[#display-server-protocols][Display server protocols]]
-  - [[#x11][X11]]
-  - [[#wayland][Wayland]]
-- [[#kernal][Kernal]]
-  - [[#types-of-kernel][Types of Kernel]]
-- [[#bootloader][Bootloader]]
-  - [[#tpyes-of-bootloader][Tpyes of Bootloader]]
-- [[#linux-commands][LINUX COMMANDS]]
-  - [[#sudo][sudo]]
-  - [[#whoami][whoami]]
-  - [[#man][man]]
-  - [[#clear][clear]]
-  - [[#pwd][pwd]]
-  - [[#ls][ls]]
-  - [[#cd][cd]]
-  - [[#mkdir][mkdir]]
-  - [[#touch][touch]]
-  - [[#rmdir][rmdir]]
-  - [[#rm][rm]]
-  - [[#open][open]]
-  - [[#mv][mv]]
-  - [[#cp][cp]]
-  - [[#head][head]]
-  - [[#tail][tail]]
-  - [[#date][date]]
-  - [[#redirecting-standard-output][redirecting standard output]]
-  - [[#cat][cat]]
-  - [[#less][less]]
-  - [[#more][more]]
-  - [[#echo][echo]]
-  - [[#wc][wc]]
-  - [[#piping---][piping [ | ]]]
-  - [[#sort][sort]]
-  - [[#uniq][uniq]]
-  - [[#expansion][expansion]]
-  - [[#diff][diff]]
-  - [[#find][find]]
-  - [[#grep][grep]]
-  - [[#du][du]]
-  - [[#df][df]]
-  - [[#history][history]]
-  - [[#ps][ps]]
-  - [[#top][top]]
-  - [[#htop][htop]]
-  - [[#kill][kill]]
-  - [[#killall][killall]]
-  - [[#job-bg--fg][job, bg & fg]]
-  - [[#sleep][sleep]]
-  - [[#gzip][gzip]]
-  - [[#gunzip][gunzip]]
-  - [[#zip--unzip][zip & unzip]]
-  - [[#tar][tar]]
-  - [[#alias][alias]]
-  - [[#xargs][xargs]]
-  - [[#ln][ln]]
-  - [[#who][who]]
-  - [[#su][su]]
-  - [[#passwd][passwd]]
-  - [[#chown][chown]]
-  - [[#chmod][chmod]]
-  - [[#wget][wget]]
-  - [[#curl][curl]]
-  - [[#lf][lf]]
-  - [[#gdu][gdu]]
-  - [[#neofetch][neofetch]]
-  - [[#lshw][lshw]]
-  - [[#lscpu][lscpu]]
-  - [[#lsblk][lsblk]]
-  - [[#lsusb][lsusb]]
-  - [[#ifconfig][ifconfig]]
-  - [[#free][free]]
-  - [[#lspci][lspci]]
-  - [[#lsscsi][lsscsi]]
-  - [[#hdparm][hdparm]]
-  - [[#fdisk][fdisk]]
-  - [[#dmidecode][dmidecode]]
-  - [[#ip][ip]]
-  - [[#hostname][hostname]]
-  - [[#locate][locate]]
-  - [[#bpytop][bpytop]]
-  - [[#fzf][fzf]]
-  - [[#ripgrep][ripgrep]]
-  - [[#z-oxide][z oxide]]
-  - [[#bat][bat]]
-  - [[#exa][exa]]
-  - [[#speedtest][speedtest]]
-  - [[#route][route]]
-  - [[#uname][uname]]
-  - [[#nice][nice]]
-  - [[#renice][renice]]
-  - [[#tree][tree]]
-  - [[#arp][arp]]
-  - [[#cut][cut]]
-  - [[#time][time]]
-  - [[#xdg-open][xdg-open]]
-- [[#ranger-file-manager][RANGER (File Manager)]]
-- [[#changing-default-shell][Changing default shell]]
-  - [[#list-the-shell-in-system][list the shell in system]]
-  - [[#select-the-path-from-the-option-given][select the path from the option given]]
-- [[#network-manager-to-connect-to-wifi][NETWORK MANAGER (to connect to wifi)]]
-  - [[#connect-to-wifi][Connect to wifi]]
-  - [[#delete-the-network][Delete the network]]
-  - [[#disconnect][Disconnect]]
-  - [[#check-wifi-connection][Check wifi connection]]
-  - [[#check-available-wifi][Check available wifi]]
-  - [[#turn-on-wifi][Turn on wifi]]
-  - [[#turn-off-wifi][Turn off wifi]]
-  - [[#show-password][Show password]]
-- [[#bluetooth-manager][BLUETOOTH MANAGER]]
-  - [[#check-bluetooth-status][Check bluetooth status]]
-  - [[#enable-service][Enable service]]
-  - [[#start-bluetooth][Start bluetooth]]
-  - [[#scan][Scan]]
-  - [[#discoverable-to-other-devices][Discoverable to other devices]]
-  - [[#pair-device][Pair device]]
-  - [[#connect-device][Connect device]]
-  - [[#list-pair-device][List pair device]]
-  - [[#list-devices-within-bluetooth-range][List devices within bluetooth range]]
-  - [[#option][option]]
-- [[#vim--neovim][VIM / NEOVIM]]
-  - [[#global][Global]]
-  - [[#cursor-movement][Cursor Movement]]
-  - [[#insert-mode---insertingappending-text][INSERT MODE - inserting/appending text]]
-  - [[#editing][EDITING]]
-  - [[#marking-text-visual-mode][MARKING TEXT (Visual mode)]]
-  - [[#visual-commands][VISUAL COMMANDS]]
-  - [[#registers][REGISTERS]]
-  - [[#marks--positions][MARKS & POSITIONS]]
-  - [[#macros][MACROS]]
-  - [[#cut--paste][CUT & PASTE]]
-  - [[#indent-text][INDENT TEXT]]
-  - [[#search--replace][SEARCH & REPLACE]]
-  - [[#search-in-multiple-files][SEARCH IN MULTIPLE FILES]]
-  - [[#tabs][TABS]]
-  - [[#working-with-multiple-files][WORKING WITH MULTIPLE FILES]]
-  - [[#diff-1][Diff]]
-- [[#switch-kernels-on-arch-linux][Switch Kernels on Arch Linux]]
-  - [[#steps-to-switch-kernels][Steps to switch kernels]]
-- [[#xrandr---manage-displays][xrandr - (manage displays)]]
-- [[#pacman---arch-package-manager][pacman - (Arch package manager)]]
-  - [[#update-the-package-database][Update the package database:]]
-  - [[#upgrade-installed-package][Upgrade installed package:]]
-  - [[#install-a-package][Install a package:]]
-  - [[#remove-a-package][Remove a package:]]
-  - [[#remove-a-package-and-it-dependencies][Remove a package and it dependencies:]]
-  - [[#remove-a-package-its-dependencies-and-all-package-that-depend-on-it][Remove a package, its dependencies and all package that depend on it.]]
-  - [[#search-for-a-package][Search for a package:]]
-  - [[#show-information-about-a-package][Show information about a package:]]
-  - [[#list-installed-package][List installed package]]
-  - [[#list-orphaned-package][List orphaned package]]
-  - [[#clean-package-caches][Clean package caches:]]
-  - [[#clean-all-uninstalled-package-from-cache][Clean All Uninstalled package from Cache:]]
-  - [[#list-explicity-installed-package][List explicity-installed package]]
-  - [[#identify-orphaned-packages][Identify Orphaned packages:]]
-  - [[#remove-orphaned-packages][Remove Orphaned Packages:]]
-- [[#pactree---display-tree-dependencies][pactree - (display tree dependencies)]]
-  - [[#syntax][Syntax]]
-  - [[#display-reverse-dependencies][Display reverse dependencies]]
-  - [[#display-dependencies][Display dependencies]]
-  - [[#example][example]]
-- [[#aur-helper][AUR Helper]]
-  - [[#paru][paru]]
-  - [[#yay][yay]]
-- [[#apache-service][Apache Service]]
-- [[#enable-ssh][Enable SSH]]
-
-* LINUX FILE SYSTEM
+# LINUX FILE SYSTEM
 Linux file system contains
 - The root directory (/).
 - A specific data storage format (EXT3, EXT4, BTRFS, XFS & so on).
 - A partition or logical volume having a particular file system.
 
-** Directory Structure
-***  /
+## Directory Structure
+###  /
 Root file system
 
-*** /boot
+### /boot
 Include the static kernel and bootloader configuration and executable file needed to start a linux.
 
-*** /bin
+### /bin
 Executable file
 
-*** /dev
+### /dev
 Include the device file for all hardware devices connected to the system there aren't device drivers, instead they are files that indicate all devices on the system and provided access to there devices.
 
-*** /etc
+### /etc
 Include the local system configuration file for the host system.
 
-*** /lib
+### /lib
 Include shared library files that are needed to start the system.
 
-*** /home
+### /home
 Home directory storage is available for user file all users have subdirectory inside /home
 
-*** /mnt
+### /mnt
 Temporary mount point for basic file system.
 
-*** /media
+### /media
 Mounting external removable media devices like USB thumb drives that might be linked to the host.
 
-*** /opt
+### /opt
 Vendor supplied application program that must be placed.
 
-*** /root
+### /root
 Its the home directry for a root user.
 
-*** /tmp
+### /tmp
 temporary directory used by the OS and several program for storing temprory file.
 
-*** /sbin
+### /sbin
 These are system binary file they are executable utilized for system administration.
 
-*** /usr
+### /usr
 They are read only and shareable files, including executable libraries and binaries, man files and several documentation types.
 
-*** /var
+### /var
 Variable data files are saved contain MySQL, log file , etc..
 
 
-** Linux File System features
+## Linux File System features
 + Specifying paths
 + Partition, directories & drives.
 + Case sensitivity.
 + File extensions.
 + Hidden Files.
 
-* TYPES OF LINUX FILE SYSTEM
-** Ext, Ext2, Ext3 & Ext4 file system
+# TYPES OF LINUX FILE SYSTEM
+## Ext, Ext2, Ext3 & Ext4 file system
 + Extended file system
-+ The ext4 file system is *a scalable extension of the ext3 file system,* which was the default file system of Red Hat Enterprise Linux 5.
++ The ext4 file system is **a scalable extension of the ext3 file system,** which was the default file system of Red Hat Enterprise Linux 5.
 + Ext4 is the default file system of Red Hat Enterprice Linux 6, and can support file and file systems up to 16 terabytes in size.
 
-** JFS file system
+## JFS file system
 + Journaled file system
 + stability is needed with few resources.
 + handy file system when CPU power is limited.
 
-** ReiserFS file system
-** XFS file system
-** BTRFS file system
-** swap file system
+## ReiserFS file system
+## XFS file system
+## BTRFS file system
+## swap file system
 
-* Display server protocols 
-** X11
-+ By design, X11 is *network-transparent*.
+# Display server protocols 
+## X11
++ By design, X11 is **network-transparent**.
 + This allows the possibility of running the client and the server either on the same machine or different ones.
 + A client and a server can also communicate over the internet through an encrypted network session.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/x11.png]]
+  ![x11](./img/x11.png)
 
-** Wayland
-+ Wayland is *a communication protocol that specifies the communication between a display server and its clients, as well as a C library implementation of that protocol.*
+## Wayland
++ Wayland is **a communication protocol that specifies the communication between a display server and its clients, as well as a C library implementation of that protocol.**
 + A display server using the wayland protocol is called a wayland compositor, because it additionally performs the task of a compositing window manager.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/wayland.png]]
+![wayland](./img/wayland.png)
 
-* Kernal 
+# Kernel 
 + Kernel is the main component of a linux operating system(OS) and is the core interface between a computer's hardware and it's process.
 + It communicates between the 2, managing resources as efficiently as possible.
 
-** Types of Kernel
-*** Stable
+## Types of Kernel
+### Stable
 + Vanilla Linux kernel and modules, with a few patches applied.
 + The stable kernel is also the default kernel in most linux distributions, and it is supported by the community and the kernel developers.
 
-[[https://www.kernel.org][stable-kernel website]]
+[stable kernel website](https://www.kernel.org)
 
-*** Hardened
+### Hardened
 + A security-focused Linux kernel applying a set of hardening patches to mitigate kernel and userspace exploits. It also enable more upstream kernel hardening features the linux.
 + The term kernel hardening refers to a strategy of using specific kernel configuration options to limit or prevent certain types of cyber attacks.
 
-[[https://githum.com/anthraxx/linux-hardened][hardened kernel github]]
+[hardened kernel github](https://githum.com/anthraxx/linux-hardened)
 
-*** Longterm
+### Longterm
 + Long-term support(LTS) linux kernel and modules.
 + Longterm(LTS) are usually several "longterm maintenance" kernel releases provided for the purpose of backporting bugfixes for older kernel trees.
 + Only important bugfixes are applied to such kernels and they don't usually see very frequent releases, especially for older trees.
 
-[[https://www.kernel.org][longterm kernel website]]
+[long term kernel website](https://www.kernel.org)
 
-*** Zen Kernel
+### Zen Kernel
 + Result of a collaborative effort of kernel hackers to provide the best linux kernel possible for everyday systems.
-+ Zen-kernel is a series of patches and improvements that were made to the original linux kernel to imporve the performance and reactivity of the system.
++ Zen-kernel is a series of patches and improvements that were made to the original linux kernel to improve the performance and reactivity of the system.
 
-  [[https://github.com/zen-kernel/zen-kernel][zen kernel github]]
+[zen kernel github](https://github.com/zen-kernel/zen-kernel)
  
-*** Realtime kernel 
+### Realtime kernel 
 + Maintained by a small group of core developers led by Ingo Molnar. 
 + This patch allows nearly all of the kernel to be preempted, with the exception of a few very small regions of code.
 + This is done by replacing more kernel spinlocks with mutexes that support priorty inheritance, as well as moving all interrupt and software interrupts to kernel threads.
 
-* Bootloader
-+ Boot Loader is *a software program that is responsible for "actually loading" the operating system once the boot manager has finished its work*. And by loading operating system we mean "loading the kernel of the operating system". 
-+ For Linux, the two most common boot loaders are known as *LILO(linux LOader) and LOADLIN(LOAD LINux).
+# Bootloader
++ Boot Loader is **a software program that is responsible for "actually loading" the operating system once the boot manager has finished its work**. And by loading operating system we mean "loading the kernel of the operating system". 
++ For Linux, the two most common boot loaders are known as **LILO(linux LOader) and LOADLIN(LOAD LINux)**.
 + An alternative boot loader, called GRUB(GRand Unified Bootloader), is used with Red Hat Linux.
 
-** Tpyes of Bootloader
-*** GNU GRUB
+## Types of Bootloader
+### GNU GRUB
 + GNU GRUB (short for GNU GRand Unified Bootloader, commonly referred to as GRUB) is a boot loader package from the GNU project.
-+ GRUB is the program of linux systems that *loads and manages the boot process*.
-+ It also *lets you easily an entry on the fly, or drop down into the command interface*. In addition, if you are using the menu interface and something goes wrong, GRUB automatically puts you into the command interface so you can attempt to recover and boot menually.
-+ GRUB offers several advantages over other boot loaders. *It can boot multiple operating systems, allowing users to select with OS they would like to boot at startup.*. It also supports a variety of file systems, making it compatible with a wide range of storage devices.
++ GRUB is the program of linux systems that **loads and manages the boot process**.
++ It also **lets you easily an entry on the fly, or drop down into the command interface**. In addition, if you are using the menu interface and something goes wrong, GRUB automatically puts you into the command interface so you can attempt to recover and boot menually.
++ GRUB offers several advantages over other boot loaders. **It can boot multiple operating systems, allowing users to select with OS they would like to boot at startup.**. It also supports a variety of file systems, making it compatible with a wide range of storage devices.
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/grub.png]]
+![grub image](./img/grub.png)
 
-*** systemd-boot
-+ systemd-boot is *a free and open-source boot manager created by obsoleting the gummiboot project and merging it into systemd in May 2015*.
-+ systemd-boot previously called *gummiboot*, is an easy-to-configure UEFI boot manager. It provied a textual menu to select the boot entry and an editor for the kernel command line. 
+### systemd-boot
++ systemd-boot is **a free and open-source boot manager created by obsoleting the gummiboot project and merging it into systemd in May 2015**.
++ systemd-boot previously called **gummiboot**, is an easy-to-configure UEFI boot manager. It provied a textual menu to select the boot entry and an editor for the kernel command line. 
 + It is uncomplicated and uses simple text file which only contain a few lines.
-  
-  [[/media/xander/Backup/code/Hacker/Linux/img/systemd-boot.png]]
 
-*** rEFInd Boot Manager
-*** LILO (Linux Loader)
-*** BURG - New Boot Loader
-*** Syslinux
+  ![systemd boot image](./img/systemd-boot.png)
 
-* LINUX COMMANDS
-** sudo
+### rEFInd Boot Manager
+### LILO (Linux Loader)
+### BURG - New Boot Loader
+### Syslinux
+
+# LINUX COMMANDS
+## sudo
 let us use our account and password to execute system commands with root privileges.
-*** syntax
-> sudo [option] [command]
+### syntax
+```bash
+$ sudo [option] [command]
+```
 
-| option  | function    |
-|---------+-------------|
-| -v      | version     |
-| -l      | information |
+| option | function    |
+| ------ | ----------- |
+| -v     | version     |
+| -l     | information |
 
-** whoami
+## whoami
 print effective user name
 
-#+begin_example
-> whoami
-#+end_example
+```bash
+$ whoami
+```
 
-** man
+## man
 An interface to the system reference manuals
 
-#+begin_example
-> man du
-#+end_example
+```bash
+$ man du
+```
 
-** clear
-Clear teh terminal screen.
+## clear
+Clear the terminal screen.
 
-#+begin_example
-> clear
-#+end_example
+```bash
+$ clear
+```
 
-** pwd
+## pwd
 Print the current folder path.
 
-#+begin_example
-> pwd
-#+end_example
+```bash
+$ pwd
+```
 
-** ls
+## ls
 list directory contents
 
-*** Syntax
-ls [option] [folder]
+### Syntax
+```bash
+$ ls [option] [folder]
+```
 
-| option  | description                  |
-|---------+------------------------------|
-| /path   | list the content of the path |
-| -l      | long format                  |
-| -a      | all file including .file     |
-| -h      | human readable               |
-| -r      | reverse                      |
-| -s      | size                         |
+| option | description                  |
+| ------ | ---------------------------- |
+| /path  | list the content of the path |
+| -l     | long format                  |
+| -a     | all file including .file     |
+| -h     | human readable               |
+| -r     | reverse                      |
+| -s     | size                         |
 
-** cd
+## cd
 change directory
 
-*** Syntax
-cd [directory]
+### Syntax
+```bash
+$ cd [directory]
+```
 
-| > cd Desktop    | move to desktop                                 |
-| > cd..          | travel back by one directory                    |
-| > cd or cd~     | go to home directory                            |
-| > cd ../../OTHERS | go to OTHERS folder by passing parent directory |
+| Command         | Description                                     |
+| --------------- | ----------------------------------------------- |
+| cd Desktop      | move to desktop                                 |
+| cd..            | travel back by one directory                    |
+| cd or cd~       | go to home directory                            |
+| cd ../../OTHERS | go to OTHERS folder by passing parent directory |
 
-** mkdir
+## mkdir
 Make directories
 
 | Command                       | Description                                 |
-|-------------------------------+---------------------------------------------|
-| > mkdir coding                | make a directory by name coding             |
-| > mkdir winter summer         | make multiple folder winter and summer      |
-| > mkdir summer/seeds          | make seed directory inside summer directory |
-| > mkdir -p summer/seeds/lettuce | make parent directory as needed             |
+| ----------------------------- | ------------------------------------------- |
+| mkdir coding                  | make a directory by name coding             |
+| mkdir winter summer           | make multiple folder winter and summer      |
+| mkdir summer/seeds            | make seed directory inside summer directory |
+| mkdir -p summer/seeds/lettuce | make parent directory as needed             |
 
-** touch
+## touch
 Change file timestamp or create empty file.
 
-| Command                     | Description         |
-|-----------------------------+---------------------|
-| > touch note.txt            | empty note file     |
-| > touch note1.txt note2.txt | multiple file       |
+| Command                   | Description     |
+| ------------------------- | --------------- |
+| touch note.txt            | empty note file |
+| touch note1.txt note2.txt | multiple file   |
 
-** rmdir
+## rmdir
 remove directory if it is empty.
 
-> rmdir coding
+```bash
+$ rmdir coding
+```
 
-** rm
+## rm
 Remove file or directories
 
-*** Syntax
-rm [option] [file]
+### Syntax
+```bash
+$ rm [option] [file]
+```
 
-| option       | Description                                       |
-|--------------+---------------------------------------------------|
-| -v           | explain what is being done                        |
-| -r , -R      | remove directories and their contents recursively |
-| -i           | prompt before every removal                       |
-| -f           | force                                             |
+| option  | Description                                       |
+| ------- | ------------------------------------------------- |
+| -v      | explain what is being done                        |
+| -r , -R | remove directories and their contents recursively |
+| -i      | prompt before every removal                       |
+| -f      | force                                             |
 
-** open
+## open
 Open file in its default application.
 
-> open .                    // open current directory
-> open index.html           // open index.html file
+```bash
+$ open .                    // open current directory
+$ open index.html           // open index.html file
+```
 
-** mv
+## mv
 Move (rename) files
 
+| Command                   | Description                                        |
+| ------------------------- | -------------------------------------------------- |
+| mv jornal.txt journal.txt | rename file, renamed 'jornal.txt' -> 'journal.txt' |
+| mv journal.txt stuff/     | it will move journal.txt into stuff folder         |
+| mv cake cookie pie stuff/ | move multiple file in stuff folder                 |
 
-| Command                     | Description                                        |
-|-----------------------------+----------------------------------------------------|
-| > mv jornal.txt journal.txt | rename file, renamed 'jornal.txt' -> 'journal.txt' |
-| > mv journal.txt stuff/     | it will move journal.txt into stuff folder         |
-| > mv cake cookie pie stuff/ | move multiple file in stuff folder                 |
+| option | Description |
+| ------ | ----------- |
+| -v     | verbore     |
+| -f     | force       |
 
-
-| option       | Description         |
-|--------------+---------------------|
-| -v           | verbore             |
-| -f           | force               |
-
-
-** cp
+## cp
 Copy files and directoies.
 
-| Command                          | Description                                                             |
-|----------------------------------+-------------------------------------------------------------------------|
-| > cp note.txt book.txt           | it make book.txt file and copy content of note.txt to book file         |
-| > cp note.txt Documents/book.txt | it copy the content of note.txt to book.txt in a directory of Documents |
+| Command                        | Description                                                             |
+| ------------------------------ | ----------------------------------------------------------------------- |
+| cp note.txt book.txt           | it make book.txt file and copy content of note.txt to book file         |
+| cp note.txt Documents/book.txt | it copy the content of note.txt to book.txt in a directory of Documents |
 
+| option | Description                |
+| ------ | -------------------------- |
+| -r     | copy directory recursively |
 
-| option       | Description                |
-|--------------+----------------------------|
-| -r           | copy directory recursively |
-
-
-** head
+## head
 Output the first part of files
 
-| Command               | Description                          |
-|-----------------------+--------------------------------------|
-| > head note.txt       | print first part of the note.txt     |
-| > head note.txt -n 20 | print first 20 line of note.txt file |
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| head note.txt       | print first part of the note.txt     |
+| head note.txt -n 20 | print first 20 line of note.txt file |
 
-** tail
+## tail
 Output the last part of files
 
-| Command               | Description                         |
-|-----------------------+-------------------------------------|
-| > tail note.txt       | print last part of the note.txt     |
-| > tail note.txt -n 20 | print last 20 line of note.txt file |
+| Command             | Description                         |
+| ------------------- | ----------------------------------- |
+| tail note.txt       | print last part of the note.txt     |
+| tail note.txt -n 20 | print last 20 line of note.txt file |
 
-** date
+## date
 Print or set the system date and time
 
-> date
+```bash
+$ date
+```
 
-** redirecting standard output
+## redirecting standard output
 
-| Command             | Description                                                        |
-|---------------------+--------------------------------------------------------------------|
-| >                   | redirect                                                           |
-| > date > today.txt  | redirect the output of date to today.txt file it override the file |
-| >>                  | redirect and append                                                |
-| > date >> today.txt | it append to the today.txt file                                    |
+| Command           | Description                                                        |
+| ----------------- | ------------------------------------------------------------------ |
+| >                 | redirect                                                           |
+| date > today.txt  | redirect the output of date to today.txt file it override the file |
+| >>                | redirect and append                                                |
+| date >> today.txt | it append to the today.txt file                                    |
+| 2>                | to redirect an error we need to use                                |
+| 2>&1              | to redirect both error and output                                  |
 
-** cat
+## cat
 Concatenate file and print on the standard output
 
 print the content of note.txt
-#+begin_example
-> cat note.txt
-#+end_example
+```bash
+$ cat note.txt
+```
 
 Print content of multiple file
-#+begin_example
-> cat note1.txt note2.txt
-#+end_example
+```bash
+$ cat note1.txt note2.txt
+```
 
 Number all output line
-#+begin_example
-> cat -n note.txt
-#+end_example
+```bash
+$ cat -n note.txt
+```
 
-** less
+## less
 Show content stored inside a file in nice and interactive UI
-#+begin_example
-> less note.txt
-#+end_example
+```bash
+$ less note.txt
+```
 
-** more
+## more
 Display content of a file in a terminal.
-#+begin_example
-> more note.txt
-#+end_example
+```bash
+$ more note.txt
+```
 
-** echo
-Display the line of text.
-#+begin_example
-> echo "hello"
-#+end_example
+## echo
++ Display the line of text.
+```bash
+$ echo "hello"
+```
 
-redirect to config.txt
-#+begin_example
-> echo "the centent line" > config.txt
-#+end_example
++ redirect to config.txt
+```bash
+$ echo "the centent line" > config.txt
+```
 
-append
-#+begin_example
-> echo "next line" >> config.txt
-#+end_example
++ append
+```bash
+$ echo "next line" >> config.txt
+```
 
-** wc
+## wc
 Print new line, word & byte counts for each file.
-#+begin_example
-> wc note.txt
-#+end_example
+```bash
+$ wc note.txt
+```
 
-| Option       | Description     |
-|--------------+-----------------|
-| -w           | word count      |
-| -l           | newline count   |
-| -m           | character count |
-| -c           | byte count      |
+| Option | Description     |
+| ------ | --------------- |
+| -w     | word count      |
+| -l     | newline count   |
+| -m     | character count |
+| -c     | byte count      |
 
-** piping [ | ]
+## piping ( | ) 
 It is used to combin two or more command together. the output of the first command will be input for second command.
 
 print the number of line of ls output
-#+begin_example
-> ls -l | wc
-#+end_example
+```bash
+$ ls -l | wc
+```
 
 Print the number of line in the text.txt and note.txt file combine
-#+begin_example
-> cat text.txt note.txt | wc -l
-#+end_example
+```bash
+$ cat text.txt note.txt | wc -l
+```
 
-** sort
+## sort
 Sort line of text files
 
-*** syntax
-> sort [option] [file]
+### syntax
+```bash
+$ sort [option] [file]
+```
 
-| Option   | Description  |
-|----------+--------------|
-| -f       | ignore case  |
-| -n       | numeric sort |
-| -r       | reverse      |
-| -u       | unique       |
+| Option | Description  |
+| ------ | ------------ |
+| -f     | ignore case  |
+| -n     | numeric sort |
+| -r     | reverse      |
+| -u     | unique       |
 
-** uniq
+## uniq
 Report or omit repeated lines.
-#+begin_example
-> uniq sname.txt
+```bash
+$ uniq sname.txt
 
-> sort sname.txt | uniq
-#+end_example
+$ sort sname.txt | uniq
+```
 
+| Option | Description                 |
+| ------ | --------------------------- |
+| -d     | only print duplication line |
+| -u     | only print unique line      |
+| -c     | number of occurrences       |
 
-| Option   | Description                 |
-|----------+-----------------------------|
-| -d       | only print duplication line |
-| -u       | only print unique line      |
-| -c       | number of occurrences       |
+```bash
+$ sort sname.txt | uniq -d
+```
 
-#+begin_example
-> sort sname.txt | uniq -d
-#+end_example
+## expansion
++ /home/xander
+```bash
+$ echo ~            
+```
 
-** expansion
-/home/xander
-#+begin_example
-> echo ~            
-#+end_example
++ path set in the system
+```bash
+$ echo $PATH
+```
 
-path set in the system
-#+begin_example
-> echo $PATH
-#+end_example
++ print user name
+```bash
+$ echo $USER
+```
 
-print user name
-#+begin_example
-> echo $USER
-#+end_example
++ display every file and folder in the current directory
+```bash
+$ echo *
+```
 
-display every file and folder in the current directory
-#+begin_example
-> echo *
-#+end_example
++ all the .txt file in current directory
+```bash
+$ echo *.txt
+```
 
-all the .txt file in current directory
-#+begin_example
-> echo *.txt
-#+end_example
++ list all the file with .txt
+```bash
+$ ls -l *.txt
+```
 
-list all the file with .txt
-#+begin_example
-> ls -l *.txt
-#+end_example
-
-? -> anycharacter
-#+begin_example
++ ? -> anycharacter
+```bash
 echo *.???
-#+end_example
+```
 
-remove any file with any name with only two letter extention
-#+begin_example
-> rm *.??
-#+end_example
++ remove any file with any name with only two letter extention
+```bash
+$ rm *.??
+```
 
-#+begin_example
-> echo {a, b, c}
+```bash
+$ echo {a, b, c}
 
 o/p
 a b c
 
-> echo {a,b,c}.txt
+$ echo {a,b,c}.txt
 o/p
 a.txt b.txt c.txt
-#+end_example
+```
 
 print all file and diretory with first letter 'f'
-#+begin_example
-> echo f*
-#+end_example
+```bash
+$ echo f*
+```
 
-** diff
+## diff
 Compase file line by line.
-#+begin_example
-> diff note.txt book.txt
-#+end_example
+```bash
+$ diff note.txt book.txt
+```
 
-** find
+## find
 find the files in a directory hierarchy.
 
-find the file name with extension .js in current directory
-#+begin_example
-find . -name '*.js'
-#+end_example
++ find the file name with extension .js in current directory
+```bash
+$ find . -name '*.js'
+```
 
-find the file in /home/xander directory
-#+begin_example
-> find /home/xander -name '*.txt'
-#+end_example
++ find the file in /home/xander directory
+```bash
+$ find /home/xander -name '*.txt'
+```
 
-find the directory
-#+begin_example
-> find . -type d -name '*d+'
-#+end_example
++ find the directory
+```bash
+$ find . -type d -name '*d+'
+```
 
-case insensitive
-#+begin_example
-> find . -type d -iname '*d+'
-#+end_example
++ case insensitive
+```bash
+$ find . -type d -iname '*d+'
+```
 
-find the file which start with E or F
-#+begin_example
-> find . -name 'E*' -or -name 'F*'
-#+end_example
++ find the file which start with E or F
+```bash
+$ find . -name 'E*' -or -name 'F*'
+```
 
-find the file whose size greater than 100k
-#+begin_example
-> find -type f -size -100k
-#+end_example
++ find the file whose size greater than 100k
+```bash
+$ find -type f -size -100k
+```
 
-100k < file < 1M
-#+begin_example
-> find . -type f -size +100k -size -1M
-#+end_example
++ 100k < file < 1M
+```bash
+$ find . -type f -size +100k -size -1M
+```
 
-find edited more than 3 days ago
-#+begin_example
-> find . -type f -mtime +3
-#+end_example
++ find edited more than 3 days ago
+```bash
+$ find . -type f -mtime +3
+```
 
 \; terminating
-execute command on each result of search
-#+begin_example
-> find . -type f -exec cat {}\;
-#+end_example
++ execute command on each result of search
+```bash
+$ find . -type f -exec cat {}\;
+```
 
-** grep
+## grep
 Print lines that match patterns
 
-*** Syntax
+### Syntax
 grep [option] pattern [file]
 grep [option] -e patterns [file]
 grep [option] -f pattern_file [file]
 
-#+begin_example
-> grep display style.css
-#+end_example
+```bash
+$ grep display style.css
+```
 
-| Option   | Description  |
-| ........ | ............ |
-| -n       | line number  |
-| -c       | context      |
-| -r       | recursively  |
+| Option | Description |
+| ------ | ----------- |
+| -n     | line number |
+| -c     | context     |
+| -r     | recursively |
 
-#+begin_example
-> grep -rE -o "[regEx expression]"
-#+end_example
+```bash
+$ grep -rE -o "[regEx expression]"
+```
 
-** du
+## du
 Estimate file space usage
 
-> du                     // space usege of all file
+```bash
+$ du                     // space usege of all file
 
-> du index.html         // space usage of index file
+$ du index.html         // space usage of index file
+```
 
 | Option | description    |
-|--------+----------------|
+| ------ | -------------- |
 | -m     | MB             |
 | -g     | GB             |
 | -h     | human readable |
 
-> du -h | sort -h        // space usage & sort in human readable
+```bash
+$ du -h | sort -h        // space usage & sort in human readable
+```
 
-** df
+## df
 report file system space usege or disk usage
 
-> df         // show all file
+```bash
+$ df         // show all file
  
-> df Documents/    // show Documents file
+$ df Documents/    // show Documents file
+```
 
-
-** history
+## history
 Show & manipulate command history.
 
-> history
+```bash
+$ history
+```
 
-** ps
+## ps
 Report a snapshot of the current process
 
-> ps
+```bash
+$ ps
 
-> ps ax            // all the process
+$ ps ax            // all the process
  
-> ps axww         // wrap around
+$ ps axww         // wrap around
+```
 
-** top
+## top
 display linux process
 
-> top
+```bash
+$ top
+```
 
-** htop
+## htop
 interative process viewer
 
-> htop
+```bash
+$ htop
+```
 
-** kill
+## kill
 Terminate a process
 
-> kill -l          // list signal name
+```bash
+$ kill -l          // list signal name
 
-> kill [pid]      // process id -> pid
+$ kill [pid]      // process id -> pid
 
-> kill -9 [pid]  
+$ kill -9 [pid]  
+```
 
-** killall 
+## killall 
 kill process by name.
 
-> killall -9 node
+```bash
+$ killall -9 node
 
-> killall [processname]
+$ killall [processname]
+```
 
-** job, bg & fg
+## job, bg & fg
 jobs -> print currently running jobs.
 bg -> send file to background.
 fg -> bring jobs to foreground.
 
-> jobs
+```bash
+$ jobs
 
-> fg 2
+$ fg 2
  
-> bg 1
+$ bg 1
+```
 
-where 2 & 1 are jobs number.
+> [!NOTE]
+> where 2 & 1 are jobs number.
 
-** sleep
+## sleep
 Delay for a specifield amount of time.
 
-> sleep 4         // 4 is in seconds
+```bash
+$ sleep 4         // 4 is in seconds
+```
 
-** gzip
+## gzip
 Compress files
 
-> gzip [filename]       // compress & replace the file, with .gz
+```bash
+$ gzip [filename]       // compress & replace the file, with .gz
 
-> gzip -k profiet.txt  
+$ gzip -k profiet.txt  
+```
 
 | Option | Description                                         |
-|--------+-----------------------------------------------------|
+| ------ | --------------------------------------------------- |
 | -k     | keep input file during compression                  |
 | -d     | decompress                                          |
 | -v     | display name and percentage reduction for each file |
 
-** gunzip
+## gunzip
 expand file
 
-> gunzip project.txt.gz
+```bash
+$ gunzip project.txt.gz
+```
 
-** zip & unzip
+## zip & unzip
 zip - package & compress(archive) files.
 unzip - list, test & extract compressed file in a zip archive
 
-** tar
+## tar
 An archiving utility.
 
-> tar -cf archive.tar index.htm style.css
+```bash
+$ tar -cf archive.tar index.htm style.css
 
-> tar -tf archive.tar     // to view content of file
+$ tar -tf archive.tar     // to view content of file
 
-> tar -xf archive.tar    // to extract the tar file
+$ tar -xf archive.tar    // to extract the tar file
 
-> tar -xf archive.tar  -c [directory]   // to extract in other location.
+$ tar -xf archive.tar  -c [directory]   // to extract in other location.
 
-> tar -czf archive.tar.gy file1 file2       // compressed archive
+$ tar -czf archive.tar.gy file1 file2       // compressed archive
 
-> tar -xf archive.tar.gz  
+$ tar -xf archive.tar.gz  
+```
 
 | Option | Description |
-|--------+-------------|
+| ------ | ----------- |
 | -c     | to create   |
 | -f     | file        |
 | -z     | zip         |
 
-
-** alias
+## alias
 Create a function.
 
-*** Syntax
-alias [name]=[defination]
+### Syntax
+```bash
+$ alias [name]=[defination]
+```
 
-> alias ll='ls -la'
+```bash
+$ alias ll='ls -la'
+```
 
-** xargs
+## xargs
 Buid & execute command line from standard input
 
-> cat deadPlayers.txt | xargs rm   // the o/p of cat command will be argument of rm
+```bash
+$ cat deadPlayers.txt | xargs rm   // the o/p of cat command will be argument of rm
 
-> find . -size +1M | xargs ls -lh
+$ find . -size +1M | xargs ls -lh
+```
 
-** ln
+## ln
 Make a links between files
 
-*** hard link
-A hard link *always points a filename to data on a storage device.*
+### hard link
+A hard link **always points a filename to data on a storage device.**
 
-> ln original.txt hardlink.txt
+```bash
+$ ln original.txt hardlink.txt
+```
 
-*** symbolic link
-A soft link *always points a filename to another filename, which then points to information on a storage device.*
+### symbolic link
+A soft link **always points a filename to another filename, which then points to information on a storage device.**
 
-> ln -s original.txt symlink.txt
+```bash
+$ ln -s original.txt symlink.txt
+```
 
-** who
+## who
 displays the user logged in to the system.
 
-> who
+```bash
+$ who
+```
 
-** su
+## su
 Switch user
 
-> su [username]
+```bash
+$ su [username]
+```
 
-** passwd
+## passwd
 password
 
-> passwd
+```bash
+$ passwd
+```
 
-** chown
+## chown
 Change file owner & group
 
-*** syntax
-chown [owner] [file]
+### syntax
+```bash
+$ chown [owner] [file]
+```
 
-> sudo chown xander /project
+```bash
+$ sudo chown xander /project
+```
 
-*** syntax
-chown [owner]:[group] [file]
+### syntax
+```bash
+$ chown [owner]:[group] [file]
+```
 
-** chmod
+## chmod
 Change file mode bits
 
-> chmod g+w file.txt
+```bash
+$ chmod g+w file.txt
 
-> chmod a-w file.txt   // remove write permittion from all
+$ chmod a-w file.txt   // remove write permittion from all
+```
 
 | number | file mode |
-|--------+-----------|
-|      0 | _ _ _     |
-|      1 | _ _ x     |
-|      2 | _ w _     |
-|      3 | _ w x     |
-|      4 | r _ _     |
-|      5 | r _ x     |
-|      6 | r w _     |
-|      7 | r w x     |
+| ------ | --------- |
+| 0      | _ _ _     |
+| 1      | _ _ x     |
+| 2      | _ w _     |
+| 3      | _ w x     |
+| 4      | r _ _     |
+| 5      | r _ x     |
+| 6      | r w _     |
+| 7      | r w x     |
 
-> chmod 711 file.txt
+```bash
+$ chmod 711 file.txt
 
-> chmod a=r file.txt  // it set all read only   
+$ chmod a=r file.txt  // it set all read only   
+```
 
-u - Owner , g - Group , o - Others , a - All(owner, groups, others)
+> [!NOTE]
+> u - Owner , g - Group , o - Others , a - All(owner, groups, others)
 
-** wget
+## wget
 download the resource
-*** Syntax
-wget [option] [url]
 
-save at specific location
+### Syntax
+```bash
+$ wget [option] [url]
+```
 
-wget -p [path] [url]
+### Example
++ save at specific location
+```bash
+$ wget -p [path] [url]
+```
 
-** curl
+## curl
 Download the resources.
-*** syntax
-curl [option] [url]
 
-to download the file to your local system
+### syntax
+```bash
+$ curl [option] [url]
+```
 
-> curl [url]>[local-file]
+### Example
++ to download the file to your local system
+```bash
+$ curl [url]>[local-file]
+```
 
-** lf
+## lf
 Terminal file manager.
 
-> lf
+```bash
+$ lf
+```
 
-** gdu
+## gdu
 disk usage
 
-> gdu
+```bash
+$ gdu
+```
 
-** neofetch
-
+## neofetch
 System general information.
 
-> neofetch
+```bash
+$ neofetch
+```
 
-** lshw
+## lshw
 Fetch important hardware information, such as memory, cpu, disk, etc..
 
-> sudo lshw
+```bash
+$ sudo lshw
+```
 
-short summary
++ short summary
+```bash
+$ lshw short
+```
 
-> lshw short
-
-** lscpu
+## lscpu
 CPU information
 
-> lscpu
+```bash
+$ lscpu
+```
 
-** lsblk
+## lsblk
 Block device information
 
-> lsblk
+```bash
+$ lsblk
 
-> lsblk -a      // all information
+$ lsblk -a      // all information
+```
 
-** lsusb
+## lsusb
 USB device information
 
-> lsusb
+```bash
+$ lsusb
+```
 
-** ifconfig
+## ifconfig
 Information about all active network interface.
 
-> ifconfig
+```bash
+$ ifconfig
+```
 
 | Optoin | Description             |
-|--------+-------------------------|
+| ------ | ----------------------- |
 | -s     | shortlist               |
 | -v     | verbose                 |
 | -a     | every network interface |
 
-** free 
+## free 
 View amount of memory available on system.
+```bash
+$ free
+```
 
-> free
-
-** lspci
+## lspci
  Check PCI device
 
-> lspci
+```bash
+$ lspci
+```
 
-** lsscsi
+## lsscsi
 Check SCSI device
 
-> lsscsi
+```bash
+$ lsscsi
+```
 
-** hdparm
+## hdparm
 Check SATA devices
 
-> sudo hdparm /dev/sda1
+```bash
+$ sudo hdparm /dev/sda1
+```
 
-** fdisk
+## fdisk
 File system information
 
-> sudo fdisk -l
+```bash
+$ sudo fdisk -l
+```
 
-** dmidecode
+## dmidecode
 Hardware components info
 
-> sudo dmidecode -t memory    // memory
+```bash
+$ sudo dmidecode -t memory    // memory
 
-> sudo dmidecode -t system   // system
+$ sudo dmidecode -t system   // system
 
-> sudo dmidecode -t bios    // bios
+$ sudo dmidecode -t bios    // bios
 
-> sudo dmidecode -t processor  // processor
+$ sudo dmidecode -t processor  // processor
+```
 
-** ip 
+## ip 
 show / manipulate routing, networking devices, interface and tunnels
 
-*** Syntax
-ip [Option] OBJECT {COMMAND | help}
+### Syntax
+```bash
+$ ip [Option] OBJECT {COMMAND | help}
+```
 
-*** example
+### example
+```bash
+$ ip a 
+```
 
-> ip a 
-
-** hostname
+## hostname
 display hostname
 
-> hostname
+```bash
+$ hostname
+```
 
-to display ip address
++ to display ip address
+```bash
+$ hostname -I
+```
 
-> hostname -I
-
-** locate
+## locate
 search for file & directories.
 
-*** Syntax
-locate [option] [pattern]
+### Syntax
+```bash
+$ locate [option] [pattern]
+```
 
-> locate .bashrc
+### example
+```bash
+$ locate .bashrc
+```
 
-** bpytop
+## bpytop
 Better interactive process view
 
-> bpytop
+```bash
+$ bpytop
+```
 
-** fzf
+## fzf
 find the file location
 
-> fzf
+```bash
+$ fzf
+```
 
-** ripgrep
+## ripgrep
 recursively searches for regex pattern
 
-> rg port /etc/ssh/sshd_config
+```bash
+$ rg port /etc/ssh/sshd_config
 
-> rg hello
+$ rg hello
+```
 
-** z oxide
+## z oxide
 navigate to directories
 
-> z config
+```bash
+$ z config
 
-> z etc ssh        // command get bact to /etc/ssh
+$ z etc ssh        // command get bact to /etc/ssh
 
-> zi ssh           // interactive searches with fzf
+$ zi ssh           // interactive searches with fzf
+```
 
-** bat
+## bat
 Rust alternative for cat command
 
-> bat
+```bash
+$ bat
+```
 
-** exa
+## exa
 Rust alternative for ls command
 
-> exa
+```bash
+$ exa
+```
 
-** speedtest
+## speedtest
 Test the internet speed up and down
 
-> speedtest
+```bash
+$ speedtest
+```
 
-** route
+## route
 The route command is the interface used to access the linux kernel's routing tables.
 
-> route [option]
+```bash
+$ route [option]
+```
 
 | key | Description                          |
-|-----+--------------------------------------|
+| --- | ------------------------------------ |
 | -v  | verbose                              |
 | -n  | don't resolve names                  |
 | -e  | display forwarding information base  |
 | -C  | display routing cache instead of FIB |
 
-** uname
-uname prints the *kernel* name
+## uname
+uname prints the **kernel** name
 
-> uname [option1] [option2]
+```bash
+$ uname [option1] [option2]
+```
 
-> uname
+```bash
+$ uname
+```
 
 | Option | Desription                           |
-|--------+--------------------------------------|
+| ------ | ------------------------------------ |
 | -a     | Prints all system information        |
 | -s     | prints kernel name                   |
 | -n     | prints network node hostname         |
@@ -1146,32 +1100,40 @@ uname prints the *kernel* name
 | -i     | print hardware platform type         |
 | -o     | print the operating system name      |
 
-** nice
+## nice
 run a program with modified scheduling priority
 
-*** Syntax
-nice [OPTION] [COMMAND [ARG]...]
+### Syntax
+```bash
+$ nice [OPTION] [COMMAND [ARG]...]
+```
 
-> nice -n nice_value command
+```bash
+$ nice -n nice_value command
+```
 
-** renice
+## renice
 alter priority of running processes
 
-*** Syntax
-renice [--priority|--relative] priority [-g|-p|-u] identifier...
+### Syntax
+```bash
+$ renice [--priority|--relative] priority [-g|-p|-u] identifier...
+```
 
-> sudo renice -n nice_value -p process_id
+```bash
+$ sudo renice -n nice_value -p process_id
+```
 
-** tree
+## tree
 List the content of the directories in a tree like format.
 
-*** Syntax
-#+begin_example
+### Syntax
+```bash
 $ tree [option] [directory]
-#+end_example
+```
 
 | keys     | description                                                     |
-|----------+-----------------------------------------------------------------|
+| -------- | --------------------------------------------------------------- |
 | -a       | All files are listed including hidden file                      |
 | -L level | Descend only level directories deep                             |
 | -d       | Display directories only, not files                             |
@@ -1180,75 +1142,448 @@ $ tree [option] [directory]
 | -p       | print a grand total of file and/or directory size after listing |
 
 + display the directory tree of the current directory
-#+begin_example
-tree
-#+end_example 
+```bash
+$ tree
+```
  
 + display the tree for a specific directory:
-#+begin_example
+```bash
 $ tree /path/to/directory
-#+end_example 
+```
 
 + display the tree with a specific depth:
-#+begin_example
+```bash
 $ tree -L 2
-#+end_example
+```
 
 + Display the tree for a specific directory and save it to a file:
-#+begin_example
+```bash
 $ tree /path/to/directory > tree_structure.txt
-#+end_example
+```
 
-** arp
+## arp
 Manipulate the system ARP cache.
 
-*** example
+### example
 this command with show the ip address link with the MAC address of the system
-#+begin_example
+```bash
 $ arp -a 
-#+end_example
+```
 
-** cut
+## cut
 remove sections from each line of files
 
-*** Syntax
-#+begin_example
-$ cut OPTION [FILE]
-#+end_example
+### Syntax
+```bash
+$ cut [OPTION] [FILE]
+```
 
-** time
+## time
 measure how long a command or block takes
 
-*** Syntax
-#+begin_example
+### Syntax
+```bash
 $ time command
-#+end_example
+```
 
-*** Example
-#+begin_example
+### Example
+```bash
 $ time python main.py
-#+end_example
+```
 
-** xdg-open
+## xdg-open
 open a file or URL in the user's preferred application
 
-*** Syntax
-#+begin_example
+### Syntax
+```bash
 $ xdg-open {file| url}
-#+end_example
+```
 
-*** example
-#+begin_example
+### example
+```bash
 $ xdg-open index.html
-#+end_example
+```
 
-* RANGER (File Manager)
+## sensors
+print sensors information
+
+### Syntax
+```bash
+$ sensors [ options ] [ chips ]
+$ sensors -s [ chips ]
+$ sensors --bus-list
+```
+
+### example
+```bash
+$ sensors
+```
+
+## iwconfig
+configure a wireless network interface
+
+### example
+```bash
+$ iwconfig
+
+$ iwconfig wlp3s0
+```
+
+## wavemon
+A wireless network monitor
+
+```bash
+$ wavemon
+```
+
+## getfacl
+Get file access control lists
+```bash
+$ getfacl <file_name>
+```
+
+## shred
+overwrite a file to hide its contents, and optionally delete it
+
+### Syntax
+```bash
+$ shred [OPTION] file
+```
+
+### Example
++ shred the file
+```bash
+$ shred <file_name>
+```
+
++ shred and remove the file
+```bash
+$ shred --remove <file_name>
+```
+
+## file
+Determine file type
+
+```bash
+$ file <file_name>
+```
+
+## netstat
+Print network connections, routing tables, interface statistics, masquerade connections, and multicast member-ships
+
+### Syntax
+```bash
+$ netstat [options]
+```
+
+| options | Description                                     | 
+| ------- | ----------------------------------------------- |
+| a       | display all connections                         |
+| l       | display listening ports                         |
+| n       | active connections                              |
+| p       | display PID and program name for connections    |
+| s       | display network statistics                      |
+| r       | display routing table                           |
+| tulpn   | show listening sockets with process information |
+| 4       | display only IPv4 connections                   |
+| 6       | display only IPv6 connections                   |
+
+## sed
+Stream editor for filtering and transforming text
+
+### Syntax
+```bash
+$ sed [options] 'command' <file_name>
+```
+
+### example
++ Search and replace
+```bash
+$ sed 's/pattern/replacement/g' filename
+```
+
++ In-place editing (replace in the same file):
+```bash
+$ sed -i 's/pattern/replacement/g' filename
+```
+
++ Print specific lines:
+```bash
+$ sed -n '2,5p' filename
+```
+ 
++ delete line matching a pattern
+```bash
+$ sed '/pattern/d' filename
+```
+
++ Insert text before or after a line:
+```bash
+$ sed '/pattern/i\text_to_insert' filename
+$ sed '/pattern/a\text_to_insert' filename
+```
+
++ substitute using capture groups
+```bash
+$ sed 's/\(pattern1\)\(pattern2\)/\2\1/g' filename
+```
+
++ printing line number
+```bash
+$ sed -n '10,20p' filename
+```
+
++ Delete empty lines
+```bash
+$ sed '/^$/d' filename
+```
+
+## ping
+Send ICMP ECHO_REQUEST to network hosts
+
+### Syntax
+```bash
+$ ping <host_name or IP_address>
+```
+
+### Example
++ Specifying number of packets:
+```bash
+$ ping -c <count> <host_name or IP_address>
+```
+
++ Setting time interval between packets
+```bash
+$ ping -i <interval> <host_name or IP_address>
+```
+
++ Continuous ping
+```bash
+$ ping -t <host_name or IP_address>
+```
+
++ IPv6 ping
+```bash
+$ ping6 <host_name or IP_address>
+```
+
++ Timeout Setting
+```bash
+$ ping -W <timeout> <hostname_or_IP_address>
+```
+
++ Numeric output
+```bash
+$ ping -n <hostname_or_IP_address>
+```
+
++ Verbose output
+```bash
+$ ping -v <hostname_or_IP_address>
+```
+
+## seq
+Print a sequence of numbers.
+
+### Syntax
+```bash
+$ seq [OPTION] last
+
+$ seq [OPTION] first last
+
+$ seq [OPTION] first increment last
+```
+
+### Example
++ Generate number from 1 to 10
+```bash
+$ seq 10
+```
+
++ Generate numbers from 5 to 15
+```bash
+$ seq 5 15
+```
+
++ Generate even number from 2 to 20
+```bash
+$ seq 2 2 20
+```
+
+## fold
+Wrap each input line to fit in specified width.
+
+### Syntax
+```bash
+$ fold [OPTION] [FILE]
+```
+
+### Example
++ Wrap lines in a file to fit within a width of 80 columns.
+```bash
+$ fold -w 80 file.txt
+```
+
++ Wrap lines in a file to fit within a width of 70 columns, breaking only at spaces.
+```bash
+$ fold -w 70 -s file.txt
+```
+
+## readlink
+Print resolved symbolic links or canonical file names.
+
+### Syntax
+```bash
+$ readlink [OPTION] file
+```
+
+### Example
++ Print the target of a symbolic link
+```bash
+$ readlink <path_to_symlink>
+```
+
++ Print the canconicalized absolute pathname of a file
+```bash
+$ readlink -f <path_to_file>
+```
+
++ Print the canconicalized absolute pathname of an existing file
+```bash
+$ readlink -e <path-to-file>
+```
+
++ Print the target of a symbolic link quietly
+```bash
+$ readlink -q <path-to-symlink>
+```
+
+## sum
+Checksum add count the blocks in a file
+
+### Syntax
+```bash
+$ sum [OPTION] [FILE]
+```
+
+### Example
++ Calculate the checksum of a single file using the default system V sum algorithm
+```bash
+$ sum filename
+```
+
++ Calculate the checksum of multiple files
+```bash
+$ sum file1 file2 file3
+```
+
++ calculate the checksum of a file using a specific algorithm
+```bash
+$ sum -a 256 filename
+```
+
++ Calculate the checksum of a file and suppress error messages about missing files
+```bash
+$ sum -s filename
+```
+
+## pr
+Convert text files from printing.
+
+### Syntax
+```bash
+$ pr [OPTION] [FILE]
+```
+
+### Example
++ Print the file with pagination
+```bash
+$ pr filename
+```
+
++ Double-space the output of a file
+```bash
+$ pr -d filename
+```
+
++ Set custom page length and width
+```bash
+$ pr -l 50 -w 80 filename
+```
+
++ Add a custom header to the output
+```bash
+$ pr -h "custom header" filename
+```
+
++ Use form feeds to separate pages
+```bash
+$ pr -F filename
+```
+
+## dircolors
+Color setup for ls
+
+## split
+Split a file into pieces
+
+### Syntax
+```bash
+$ split [OPTION] [FILE [PREFIX]]
+```
+
+### Example
++ Split a file into smaller file with a specified number of lines
+```bash
+$ split -l 100 file.txt
+```
+
++ Split a file into smaller files with a specified number of bytes
+```bash
+$ split -b 1M file.txt
+```
+
++ Split the file into smaller files with a custom prefix
+```bash
+$ split -l 500 file.txt output_prefix
+```
+
+## dirname
+Strip last component from file name.
+
+### Syntax
+```bash
+$ dirname [OPTION] NAME
+```
+
+### Example
++ Extract the directory portion of a file path
+```bash
+$ dirname <path-to-file.txt>
+```
+
++ Extract the directory portion of multiple file paths
+```bash
+$ dirname <path-to-file1.txt> <path-to-file2.txt>
+```
+
++ Extract the directory portion of a relative path
+```bash
+$ dirname <directory-file.txt>
+```
+
+## od
+Dump files in octal and other formats
+
+# RANGER (File Manager)
 Terminal file manager
 
-> ranger
+```bash
+$ ranger
+```
 
 | Keys    | Description                |
-|---------+----------------------------|
+| ------- | -------------------------- |
 | h j k l | back , down , up , forward |
 | gg      | go to the top              |
 | i       | preview file               |
@@ -1262,120 +1597,121 @@ Terminal file manager
 | z       | changing settings          |
 | dD      | delete file                |
 
-* Changing default shell
-** list the shell in system
+# Changing default shell
+## list the shell in system
 
-> chsh -l
+```bash
+$ chsh -l
+```
 
-** select the path from the option given
+## select the path from the option given
 
-> chsh -s /bin/fish
+```bash
+$ chsh -s /bin/fish
+```
 
+# NETWORK MANAGER (to connect to wifi)
 
-* NETWORK MANAGER (to connect to wifi)
-
-** Connect to wifi
-#+begin_example
+## Connect to wifi
+```bash
 $ nmcli dev wifi connect "<ssid>" password "<password>"
-#+end_example
+```
 
-** Delete the network
-#+begin_example
+## Delete the network
+```bash
 $ nmcli con delete "<ssid>"
-#+end_example
+```
 
-** Disconnect
-#+begin_example
+## Disconnect
+```bash
 $ nmcli con down <wifi-name>
-#+end_example
+```
 
-** Check wifi connection
-#+begin_example
+## Check wifi connection
+```bash
 $ nmcli con
-#+end_example
+```
 
-** Check available wifi
-#+begin_example
+## Check available wifi
+```bash
 $ nmcli d wifi list
-#+end_example
+```
 
-** Turn on wifi
-#+begin_example
+## Turn on wifi
+```bash
 $ nmcli r wifi on
-#+end_example
+```
 
-** Turn off wifi
-#+begin_example
+## Turn off wifi
+```bash
 $ nmcli r wifi off
-#+end_example
+```
 
-** Show password
-#+begin_example
+## Show password
+```bash
 $ nmcli device wifi show-password
-#+end_example
+```
 
-* BLUETOOTH MANAGER
-** Check bluetooth status
-#+begin_example
+# BLUETOOTH MANAGER
+## Check bluetooth status
+```bash
 $ sudo systemctl status bluetooth
-#+end_example
+```
 
-** Enable service
-#+begin_example
+## Enable service
+```bash
 $ sudo systemctl enable bluetooth
-#+end_example
+```
 
-** Start bluetooth
-#+begin_example
+## Start bluetooth
+```bash
 $ sudo systemctl start bluetooth
-#+end_example
+```
 
-** Scan
-#+begin_example
+## Scan
+```bash
 $ bluetoothctl scan on
-#+end_example
+```
 
-** Discoverable to other devices
-#+begin_example
+## Discoverable to other devices
+```bash
 $ bluetoothctl discoverable on 
-#+end_example
+```
 
-** Pair device
-#+begin_example
+## Pair device
+```bash
 $ bluetoothctl pair <device-id>
-#+end_example
+```
 
-** Connect device
-#+begin_example
+## Connect device
+```bash
 $ bluetoothctl connect <device-id>
-#+end_example
+```
 
-** List pair device
-#+begin_example
+## List pair device
+```bash
 $ bluetoothctl paired-devices
-#+end_example
+```
 
-** List devices within bluetooth range
-#+begin_example
+## List devices within bluetooth range
+```bash
 $ bluetooth devices
 
 $ bluetoothctl <option> <device-id>
-#+end_example
+```
+
+## option
+### trust
+### remove
+### block
+### untrust
+### disconnect
 
 
-** option
-*** trust
-*** remove
-*** block
-*** untrust
-*** disconnect
-
-
-* VIM / NEOVIM
-** Global
-
+# VIM / NEOVIM
+## Global
 | Command         | description            |
-|-----------------+------------------------|
+| --------------- | ---------------------- |
 | :h[elp] keyword | open help for keyword  |
 | :sav[eas] file  | save file as           |
 | :clo[se]        | close current pane     |
@@ -1387,12 +1723,11 @@ $ bluetoothctl <option> <device-id>
 | :x              | save & exit            |
 | ZZ              | save & exit            |
 | ZQ              | exit without saving    |
-| :qa             | close all files       |
+| :qa             | close all files        |
 
-** Cursor Movement
-
+## Cursor Movement
 | Command   | Description                                                           |
-|-----------+-----------------------------------------------------------------------|
+| --------- | --------------------------------------------------------------------- |
 | h         | move cursor left                                                      |
 | j         | move cursor down                                                      |
 | k         | move cursor up                                                        |
@@ -1438,10 +1773,9 @@ $ bluetoothctl <option> <device-id>
 | ctrl + d  | move cursor & screen down 1/2 page                                    |
 | ctrl + u  | move cursor & screen up 1/2 page                                      |
  
-** INSERT MODE - inserting/appending text
-
+## INSERT MODE - inserting/appending text
 | Command         | Description                                                                |
-|-----------------+----------------------------------------------------------------------------|
+| --------------- | -------------------------------------------------------------------------- |
 | i               | insert before the cursor                                                   |
 | I               | insert at the beginning of the line                                        |
 | a               | insert (append) after the cursor                                           |
@@ -1460,10 +1794,9 @@ $ bluetoothctl <option> <device-id>
 | ctrl + ox       | Temporarily enter normal mode to issue one normal-mode command x           |
 | Esc or ctrl + c | exit insert mode                                                           |
 
-** EDITING
- 
+## EDITING
 | Command  | Description                                                  |
-|----------+--------------------------------------------------------------|
+| -------- | ------------------------------------------------------------ |
 | r        | replace a single character                                   |
 | R        | replace more than one character, until ~ESC~ is pressed      |
 | J        | join line below to the current one with one space in between |
@@ -1484,10 +1817,9 @@ $ bluetoothctl <option> <device-id>
 | ctrl + r | redo                                                         |
 | .        | repeat last command                                          |
 
-** MARKING TEXT (Visual mode)
- 
+## MARKING TEXT (Visual mode)
 | Command        | Description                                     |
-|----------------+-------------------------------------------------|
+| -------------- | ----------------------------------------------- |
 | v              | start visual mode, mark lines, then do  command |
 | V              | start linewise visual mode                      |
 | o              | move to other end of marked area                |
@@ -1502,10 +1834,9 @@ $ bluetoothctl <option> <device-id>
 | it             | inner block with <> tags                        |
 | Esc or ctrl +c | exit visual mode                                |
 
-** VISUAL COMMANDS
-
+## VISUAL COMMANDS
 | Command | Description                     |
-|---------+---------------------------------|
+| ------- | ------------------------------- |
 | >       | shift text right                |
 | <       | shift text left                 |
 | y       | yank (copy) marked text         |
@@ -1514,20 +1845,18 @@ $ bluetoothctl <option> <device-id>
 | u       | change marked text to lowercase |
 | U       | change marked text to uppercase |
 
-** REGISTERS
-
+## REGISTERS
 | Command      | Description                              |
-|--------------+------------------------------------------|
+| ------------ | ---------------------------------------- |
 | :reg[isters] | show registers content                   |
 | "xy          | yank into register x                     |
 | "xp          | paste contents of register x             |
 | "+y          | yank into the system clipboard register  |
 | "+p          | paste from the system clipboard register |
 
-** MARKS & POSITIONS
-
+## MARKS & POSITIONS
 | Command  | Description                                        |
-|----------+----------------------------------------------------|
+| -------- | -------------------------------------------------- |
 | :marks   | list of marks                                      |
 | ma       | set current position for mark A                    |
 | `a       | jump to position of mark A                         |
@@ -1544,19 +1873,17 @@ $ bluetoothctl <option> <device-id>
 | g;       | go to older position in change list                |
 | ctrl + ] | jump to the tag under cursor                       |
 
-** MACROS
-
+## MACROS
 | Command | Description          |
-|---------+----------------------|
+| ------- | -------------------- |
 | qa      | record macro a       |
 | q       | stop recording macro |
 | @a      | run macro a          |
 | @@      | rerun last run macro |
 
-** CUT & PASTE
-
+## CUT & PASTE
 | Command         | Description                                                                                    |
-|-----------------+------------------------------------------------------------------------------------------------|
+| --------------- | ---------------------------------------------------------------------------------------------- |
 | yy              | yank (copy) a line                                                                             |
 | 2yy             | yank (copy) 2 lines                                                                            |
 | yw              | yank (copy) the characters of the word from the cursor position to the start of the next word  |
@@ -1578,10 +1905,9 @@ $ bluetoothctl <option> <device-id>
 | d$ or D         | delete (cut) to the end of the line                                                            |
 | x               | delete (cut) character                                                                         |
 
-** INDENT TEXT
-
+## INDENT TEXT
 | Command | Description                                       |
-|---------+---------------------------------------------------|
+| ------- | ------------------------------------------------- |
 | >>      | indent (move right) line one shiftwidth           |
 | <<      | de-indent (move left) line one shiftwidth         |
 | >%      | indent a block with () or {} (cursor on brace)    |
@@ -1594,10 +1920,9 @@ $ bluetoothctl <option> <device-id>
 | gg=G    | re-indent entire buffer                           |
 | ]p      | paste and adjust indent to current line           |
 
-** SEARCH & REPLACE
-
+## SEARCH & REPLACE
 | Command        | Description                                                          |
-|----------------+----------------------------------------------------------------------|
+| -------------- | -------------------------------------------------------------------- |
 | /pattern       | search for pattern                                                   |
 | ?pattern       | search backward for pattern                                          |
 | \vpattern      | non-alphanumeric characters are interpreted as special regex symbols |
@@ -1610,20 +1935,18 @@ $ bluetoothctl <option> <device-id>
 | :s/old/new/g 5 | replace all old with new in next 5 lines                             |
 | :s/old/new     | replace only first match of old with new                             |
 
-** SEARCH IN MULTIPLE FILES
-
+## SEARCH IN MULTIPLE FILES
 | Command                       | Description                                  |
-|-------------------------------+----------------------------------------------|
+| ----------------------------- | -------------------------------------------- |
 | :vim[grep]/pattern/{`{file}`} | search for pattern in multiple files         |
 | :cn[text]                     | jump to the next match                       |
 | :cp[revious]                  | jump to the previous match                   |
 | :cope[n]                      | open a window containing the list of matches |
 | :ccl[ose]                     | close the quickfix window                    |
 
-** TABS
-
+## TABS
 | Command                              | Description                                           |
-|--------------------------------------+-------------------------------------------------------|
+| ------------------------------------ | ----------------------------------------------------- |
 | :tabnew or :tabnew {page.words.file} | open a file in a new tab                              |
 | ctrl + wT                            | move the currrent split window into its own tab       |
 | gt or :tabn[ext]                     | move to the next tab                                  |
@@ -1633,10 +1956,9 @@ $ bluetoothctl <option> <device-id>
 | :tabo[nly]                           | close all tabs except for the current one             |
 | :tabdo                               | command - run the command on all tabs                 |
 
-** WORKING WITH MULTIPLE FILES
-
+## WORKING WITH MULTIPLE FILES
 | Command            | Description                                                                      |
-|--------------------+----------------------------------------------------------------------------------|
+| ------------------ | -------------------------------------------------------------------------------- |
 | :e[dit] file       | edit a file in a new buffer                                                      |
 | :bn[ext]           | go to the next buffer                                                            |
 | :bp[revious]       | go to the previous buffer                                                        |
@@ -1663,10 +1985,9 @@ $ bluetoothctl <option> <device-id>
 | ctrl + wJ          | make current window full width at the very bottom (bottommost horizontal window) |
 | ctrl + wK          | make current window full width at the very top (topmost horizontal window)       |
 
-** Diff
-
+## Diff
 | Command          | Description                                 |
-|------------------+---------------------------------------------|
+| ---------------- | ------------------------------------------- |
 | zf               | manually define a fold up to motion         |
 | zd               | delete fold under the cursor                |
 | za               | toggle fold under the cursor                |
@@ -1683,462 +2004,499 @@ $ bluetoothctl <option> <device-id>
 | :dif[fupdate]    | update differences                          |
 | :diffo[ff]       | switch off diff mode for current window     |
 
-* Switch Kernels on Arch Linux
-
+# Switch Kernels on Arch Linux
 + Check the kernel version by this command
-> uname -r
+```bash
+$ uname -r
+```
 
-** Steps to switch kernels
-*** Step 1: Install the kernel of your choice
+## Steps to switch kernels
+### Step 1: Install the kernel of your choice
 There are 4 types of kernel you can choose from.
 
-#+begin_example
-> sudo pacman -S linux
+```bash
+$ sudo pacman -S linux
 
-> sudo pacman -S linux-lts
+$ sudo pacman -S linux-lts
 
-> sudo pacman -S linux-hardened
+$ sudo pacman -S linux-hardened
 
-> sudo pacman -S linux-zen
-#+end_example
+$ sudo pacman -S linux-zen
+```
 
-*** Step 2: Tweak the grub configuration file to add more kernel options
+### Step 2: Tweak the grub configuration file to add more kernel options
 Follow this two steps
 + Disable grub submenu so that all the available kernel versions are shown on the main screen.
 + Configure grub to recall the last kernel entry you booted and use it as the default entry to boot from the next time.
 
 make change in the grub file
-> sudo nvim /etc/default/grub
+```bash
+$ sudo nvim /etc/default/grub
+```
 
 add this line of code in the this file
-#+begin_example
+```bash
 GRUB_DISABLE_SUBMENU=y
 GRUB_DEFAULT=saved
 GRUB_SAVEDEFAULT=true
-#+end_example
+```
 
-+ the first and optional line is used to *disable the GRUB submenu*. 
-+ The second line is used to *save the last kernel entry*.
-+ last line ensure the GRUB will use as a *default the last saved entry*.
++ the first and optional line is used to **disable the GRUB submenu**. 
++ The second line is used to **save the last kernel entry**.
++ last line ensure the GRUB will use as a **default the last saved entry**.
 
 save and exit the configuration file.
 
-*** Step 3: Re-generate the GRUB configuration file
+### Step 3: Re-generate the GRUB configuration file
 To make the change effective you need to re-generate the configuration file.
 
-> sudo grub-mkconfig -o /boot/grub/grub.cfg
+```bash
+$ sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 Then the system will reboot
 
-*select the kernel you want in your system.*
+**select the kernel you want in your system.**
 
-  [[/media/xander/Backup/code/Hacker/Linux/img/kernelswitch.jpeg]]
+![kernel switch](./img/kernelswitch.jpeg)
 
-* xrandr - (manage displays)
+# xrandr - (manage displays)
 Primitive command line interface to RandR extension
 
 Xrandr is used to set the size, orientation and/or reflection of the outputs for a screen. It can also set the screen size.
 
-+ Use the *xrandr* command to list the available displays and their current status. The output will show the name of your connected displays. The display name willl be like *VGA-1*, *HDMI-1* or *DP-1*.
-#+begin_example
++ Use the **xrandr** command to list the available displays and their current status. The output will show the name of your connected displays. The display name willl be like **VGA-1**, **HDMI-1** or **DP-1**.
+```bash
 $ xrandr
-#+end_example
+```
 
-+ Use the *xrandr --output* command to set up the extended display. Replace *HDMI-1* with the actual name of your display.
-#+begin_example
++ Use the **xrandr --output** command to set up the extended display. Replace **HDMI-1** with the actual name of your display.
+```bash
 $ xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --output <primary-display> --mode 1920x1080 --pos 1920x0 --rotate normal
-#+end_example
+```
 
-    - --output HDMI-1 : Specifies the output display
-    - --mode 1920x1080 : Specifies the resolution of the display.
-    - --pos 0x0 : Specifies the position of the display. Adjust the values according to your desired layout.
-    - --rotate normal : Specifies the rotation of the display. Use *normal, left, right or inverted* as needed.
-    - --output <primary-display> : Specifies the primary display
-    - --mode 1920x1080 : Specifies the resolution of the primary display.
-    - --pos 1920x0 : Specifies the position of the primary display. Adjust the values based on you desired layout.
+   - --output HDMI-1 : Specifies the output display
+   - --mode 1920x1080 : Specifies the resolution of the display.
+   - --pos 0x0 : Specifies the position of the display. Adjust the values according to your desired layout.
+   - --rotate normal : Specifies the rotation of the display. Use **normal, left, right or inverted** as needed.
+   - --output < primary-display > : Specifies the primary display
+   - --mode 1920x1080 : Specifies the resolution of the primary display.
+   - --pos 1920x0 : Specifies the position of the primary display. Adjust the values based on you desired layout.
 
 + Set the desired resolution for the second display using the '--mode' option.
-#+begin_example
+```bash
 $ xrandr --output HDMI-1 --mode 1920x1080 --right-of <primary-display>
-#+end_example
+```
 
-    - --output HDMI-1 : Specifies the output display
-    - --mode 1920x1080 : Specifies the resolution of the display
+   - --output HDMI-1 : Specifies the output display
+   - --mode 1920x1080 : Specifies the resolution of the display
 
 + Specify the resolution for both display.
-#+begin_example
+```bash
 $ xrandr --output <primary-display> --mode <primary-resolution> --output HDMI-1 --mode 1920x1080 --right-of <primary-display>
-#+end_example
+```
 
-    - <primary-display> : Replace with the name of the primary display.
-    - <primary-resolution> : Replace with the resolution of your primary display.
+   - < primary-display > : Replace with the name of the primary display.
+   - < primary-resolution > : Replace with the resolution of your primary display.
 
-+ Duplicate the screen with a *--same-as* 
-#+begin_example
++ Duplicate the screen with a **--same-as** 
+```bash
 $ xrandr --output HDMI-1 --mode 1920x1080 --same-as <primary-display>
-#+end_example
+```
 
-    - --output HDMI-1 : Specifies the output display
-    - --mode 1920x1080 : Specifies the resolution of the display
-    - --same-as <primary-display> : Specifies that the display should be duplicated to the primary display.
+   - --output HDMI-1 : Specifies the output display
+   - --mode 1920x1080 : Specifies the resolution of the display
+   - --same-as < primary-display > : Specifies that the display should be duplicated to the primary display.
 
-+ Speify the resolution for both display, using is *--same-as*
-#+begin_example
++ Specify the resolution for both display, using is **--same-as**
+```bash
 $ xrandr --output <primary-display> --mode <primary-resolution> --output HDMI-1 --mode 1920x1080 --same-as <primary-display>
-#+end_example  
+```
 
 + Extend the screen with automatic resolution detection
-#+begin_example
+```bash
 $ xrandr --output HDMI-1 --auto --right-of <primary-display>
-#+end_example
+```
 
-    - --auto : Tells xrandr to automatically detect and use the preferred/native resolution of the display.
+   - --auto : Tells xrandr to automatically detect and use the preferred/native resolution of the display.
 
 + Duplicate the screen with automatic resolution detection.
-#+begin_example
+```bash
 $ xrandr --output HDMI-1 --auto --same-as <primary-display>
-#+end_example
+```
 
-* pacman - (Arch package manager)
+# pacman - (Arch package manager)
 
-** Update the package database:
-#+begin_example
+## Update the package database:
+```bash
 $ sudo pacman -Sy
-#+end_example
+```
 
 + -S    : Synchronize the package database.
 + -y    : Download a fresh copy of the master package database from the servers.
 
-** Upgrade installed package:
-#+begin_example
+## Upgrade installed package:
+```bash
 $ sudo pacman -Syu
-#+end_example
+```
 
 + -u    : Upgrade all installed package to their latest version.
 
-** Install a package:
-#+begin_example
+## Install a package:
+```bash
 $ sudo pacman -S <package-name>
-#+end_example
-
+```
 + -S    : Install a package.
 
-** Remove a package:
-#+begin_example
+## Remove a package:
+```bash
 $ sudo pacman -R <package-name>
-#+end_example
-
+```
 + -R    : Remove a package
 
-** Remove a package and it dependencies:
-#+begin_example
+## Remove a package and it dependencies:
+```bash
 $ sudo pacman -Rs <package-name>
-#+end_example
-
+```
 + -Rs   : Remove a package and its dependencies, if they are not required by other installed package.
 
-** Remove a package, its dependencies and all package that depend on it.
-#+begin_example
+## Remove a package, its dependencies and all package that depend on it.
+```bash
 $ sudo pacman -Rns <package-name>
-#+end_example
-
+```
 + -Rns   : Remove a package, its dependencies, and all packages that depend on it.
 
-** Search for a package:
-#+begin_example
+## Search for a package:
+```bash
 $ pacman -Ss <search-term>
-#+end_example
+```
 
 + -Ss  : Search for a package in the package database.
 
-** Show information about a package:
-#+begin_example
+## Show information about a package:
+```bash
 $ pacman -Qi <package-name>
-#+end_example
-
+```
 + -Qi   : Display detailed information about a package
 
-** List installed package
-#+begin_example
+## List installed package
+```bash
 $ pacman -Q
-#+end_example
+```
 
-** List orphaned package
-#+begin_example
+## List orphaned package
+```bash
 $ pacman -Qdt
-#+end_example
+```
 
-** Clean package caches:
-#+begin_example
+## Clean package caches:
+```bash
 $ sudo pacman -Sc
-#+end_example
+```
 
-** Clean All Uninstalled package from Cache:
-#+begin_example
+## Clean All Uninstalled package from Cache:
+```bash
 $ sudo pacman -Scc
-#+end_example
+```
 
-** List explicity-installed package
-#+begin_example
+## List explicity-installed package
+```bash
 $ pacman -Qe
-#+end_example
+```
 
-** Identify Orphaned packages:
-#+begin_example
+## Identify Orphaned packages:
+```bash
 $ pacman -Qdtq
-#+end_example
+```
 
-** Remove Orphaned Packages:
-#+begin_example
+## Remove Orphaned Packages:
+```bash
 $ sudo pacman -Rns $(pacman -Qdtq)
-#+end_example
+```
 
-* pactree - (display tree dependencies)
+# pactree - (display tree dependencies)
 
-** Syntax
-#+begin_example
+## Syntax
+```bash
 $ pactree [option] <package-name>
-#+end_example
+```
 
-** Display reverse dependencies
-#+begin_example
+## Display reverse dependencies
+```bash
 $ pactree -r <package-name>
-#+end_example
+```
 
-** Display dependencies
-#+begin_example
+## Display dependencies
+```bash
 $ pacman <package-name>
-#+end_example
+```
 
-** example
-#+begin_example
+## example
+```bash
 $ pactree firefox
-#+end_example
+```
 
-#+begin_example
+```bash
 $ pactree -r firefox
-#+end_example
+```
 
-* AUR Helper
-** paru
+# AUR Helper
+## paru
 AUR helper and pacman wrapper
 
-*** Syntax
-#+begin_example
+### Syntax
+```bash
 $ paru <operation> [options] [targets]
 
 $ paru <search terms>
 
 $ paru
-#+end_example
+```
 
 + Search for Packages:
-#+begin_example
+```bash
 $ paru -Ss package-name
-#+end_example
+```
 
 + Install a package from AUR:
-#+begin_example
+```bash
 $ paru -S package-name
-#+end_example
+```
 
 + Remove a Package intalled from AUR:
-#+begin_example
+```bash
 $ paru -R package-name
-#+end_example
+```
 
 + Upgrade AUR packages:
-#+begin_example
+```bash
 $ paru -Syu
-#+end_example
+```
 
 + Update Package information:
-#+begin_example
+```bash
 $ paru -Sy
-#+end_example
+```
 
 + List installed AUR package:
-#+begin_example
+```bash
 $ paru -Q
-#+end_example
+```
 
 + Show information about a package:
-#+begin_example
+```bash
 $ paru -Si package-name
-#+end_example
+```
 
 + check for AUR Pacakge Update:
-#+begin_example
+```bash
 $ paru -Qua
-#+end_example
+```
 
 + Clean up orphaned packages:
-#+begin_example
+```bash
 $ paru -Rns $(paru -Qdtq)
-#+end_example
+```
 
 + install AUR Package Without Confirmation:
-#+begin_example
+```bash
 $ paru -S --noconfirm package-name
-#+end_example
+```
 
 + Remove Unneeded Dependencies:
-#+begin_example
+```bash
 $ paru -Rns $(paru -Qdtq)
-#+end_example
+```
 
-+ Update *paru* itself:
-#+begin_example
++ Update **paru** itself:
+```bash
 $ paru -S paru
-#+end_example
+```
 
-** yay
+## yay
 AUR helper written in go
 
-*** Syntax
-#+begin_example
+### Syntax
+```bash
 $ yay <operation> [option] [targets]
 
 $ yay <search terms>
 
 $ yay
-#+end_example
+```
 
 + Search for package:
-#+begin_example
+```bash
 $ yay -Ss package-name
-#+end_example
+```
 
 + Install a package from AUR:
-#+begin_example
+```bash
 $ yay -S package-name
-#+end_example
+```
 
 + Remove a Package Installed from AUR:
-#+begin_example
+```bash
 $ yay -R package-name
-#+end_example
+```
 
 + Upgrade AUR package:
-#+begin_example
+```bash
 $ yay -Syu
-#+end_example
+```
 
 + Update Package Information:
-#+begin_example
+```bash
 $ yay -Sy
-#+end_example
+```
 
 + List intalled AUR Package:
-#+begin_example
+```bash
 $ yay -Q
-#+end_example
+```
 
 + Show information about a Package:
-#+begin_example
+```bash
 $ yay -Si package-name
-#+end_example
+```
 
 + Check for AUR Package Updates:
-#+begin_example
+```bash
 $ yay -Qua
-#+end_example
+```
 
 + Clean up orphaned packages:
-#+begin_example
+```bash
 $ yay -Rns $(yay -Qdtq)
-#+end_example
+```
 
 + Install AUR package without Confirmation:
-#+begin_example
+```bash
 $ yay -S --noconfirm package-name
-#+end_example
+```
 
 + Remove Unneeded Dependencies:
-#+begin_example
+```bash
 $ yay -Rns $(yay -Qdtq)
-#+end_example
+```
 
-+ Update *yay* itself:
-#+begin_example
++ Update **yay** itself:
+```bash
 $ yay -S yay
-#+end_example
+```
 
-* Apache Service
+# Apache Service
 httpd - Apache Hypertext Transfer Protocol Server
 
 + Install Apache:
-#+begin_example
+```bash
 $ sudo pacman -S apache
-#+end_example
+```
 
 + Start Apache
-#+begin_example
+```bash
 $ sudo systemctl start httpd
-#+end_example
+```
 
 + Stop Apache:
-#+begin_example
+```bash
 $ sudo systemctl stop httpd
-#+end_example
+```
 
 + Restart Apache:
-#+begin_example
+```bash
 $ sudo systemctl restart httpd
-#+end_example
+```
 
 + Enable Apache to start on boot:
-#+begin_example
+```bash
 $ sudo systemctl enable httpd
-#+end_example
+```
 
 + Disable Apache from starting on boot:
-#+begin_example
+```bash
 $ sudo systemctl disable httpd
-#+end_example
+```
 
 + Check Apache status:
-#+begin_example
+```bash
 $ sudo systemctl status httpd
-#+end_example
+```
 
 + Reload Apache configuration without restarting:
-#+begin_example
+```bash
 $ sudo systemctl reload httpd
-#+end_example
+```
 
 + Test Apache configuration for syntax errors:
-#+begin_example
+```bash
 $ sudo apachectl configtest
-#+end_example
+```
 
 + Open the Apache configuration file in a text editor
-#+begin_example
+```bash
 $ sudo nvim /etc/httpd/conf/httpd.conf
-#+end_example
+```
 
-* Enable SSH
+# Enable SSH
 OpenSSH daemon
 
 + Install OpenSSH:
-#+begin_example
+```bash
 $ sudo pacman -S openssh
-#+end_example
+```
 
 + Start the SSH service:
-#+begin_example
+```bash
 $ sudo systemctl start sshd
-#+end_example
+```
 
 + Enable SSH to start on boot:
-#+begin_example
+```bash
 $ sudo systemctl enable sshd
-#+end_example
+```
 
 + Check the status of the SSH service:
-#+begin_example
+```bash
 $ sudo systemctl status sshd
-#+end_example
+```
+
+# Auto Mount Drives in Linux on Boot
+## Step1:
+Make a directory with the name Backup in a /media directory.
+```bash
+$ sudo mkdir /media/Backup
+```
+
+## Step2: 
+Then collect the information of disk which you want to mount.
+
++ To find the mounted path of the disk e.g. /dev/sdb1
+```bash
+$ sudo fdisk -l
+```
+
++ To collect the UUID information of disk
+```bash
+$ sudo blkid
+```
+
+## Step3: 
+Edit the fstab folder, and it is very sensitive.
+```bash
+$ sudo vim /etc/fstab
+```
+
++ Edit the file and add the information you collected in this file.
+
+## Step4:
+At the end the file should look like this.
+![fstab](./img/fstab.png)
+
+## Step5:
+to make shore the mount is proper run this command, this command will mount the disk form the fstab folder.
+```bash
+$ sudo mount -a
+```
 
 
- 
