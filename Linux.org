@@ -17,7 +17,7 @@
 - [[#display-server-protocols][Display server protocols]]
   - [[#x11][X11]]
   - [[#wayland][Wayland]]
-- [[#kernal][Kernal]]
+- [[#kernel][Kernel]]
   - [[#types-of-kernel][Types of Kernel]]
 - [[#bootloader][Bootloader]]
   - [[#tpyes-of-bootloader][Tpyes of Bootloader]]
@@ -109,6 +109,9 @@
   - [[#cut][cut]]
   - [[#time][time]]
   - [[#xdg-open][xdg-open]]
+  - [[#sensors][sensors]]
+  - [[#iwconfig][iwconfig]]
+  - [[#wavemon][wavemon]]
 - [[#ranger-file-manager][RANGER (File Manager)]]
 - [[#changing-default-shell][Changing default shell]]
   - [[#list-the-shell-in-system][list the shell in system]]
@@ -276,7 +279,7 @@ Variable data files are saved contain MySQL, log file , etc..
 
   [[./img/wayland.png]]
 
-* Kernal 
+* Kernel 
 + Kernel is the main component of a linux operating system(OS) and is the core interface between a computer's hardware and it's process.
 + It communicates between the 2, managing resources as efficiently as possible.
 
@@ -1248,6 +1251,38 @@ $ xdg-open {file| url}
 $ xdg-open index.html
 #+end_example
 
+** sensors
+print sensors information
+
+*** Syntax
+#+begin_example
+$ sensors [ options ] [ chips ]
+$ sensors -s [ chips ]
+$ sensors --bus-list
+#+end_example
+
+*** example
+#+begin_example
+$ sensors
+#+end_example
+
+** iwconfig
+configure a wireless network interface
+
+*** example
+#+begin_example
+$ iwconfig
+
+$ iwconfig wlp3s0
+#+end_example
+
+** wavemon
+A wireless network monitor
+
+#+begin_example
+$ wavemon
+#+end_example
+
 * RANGER (File Manager)
 Terminal file manager
 
@@ -2183,4 +2218,5 @@ to make shore the mount is proper run this command, this command will mount the 
 #+begin_example
 $ sudo mount -a
 #+end_example
+
 

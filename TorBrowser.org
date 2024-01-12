@@ -1,0 +1,62 @@
+#+TITLE: LINUX NOTE
+#+DESCRIPTION: How to use tor 
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#install-tor-or-tor-browser][Install tor or tor-browser]]
+- [[#install-proxychains][Install proxychains]]
+- [[#tor-services][Tor services]]
+- [[#running-the-firefox-with-the-tor-network][Running the firefox with the tor network]]
+
+* Install tor or tor-browser
+#+begin_example
+$ sudo pacman -S tor
+
+$ sudo pacman -S tor-browser
+#+end_example
+
+
+* Install proxychains
+#+begin_example
+$ sudo pacman -S proxychains-ng
+#+end_example
+
+* Tor services
+
++ To check the tor service
+#+begin_example
+$ sudo systemctl status tor
+#+end_example
+
++ To start the tor service
+#+begin_example
+$ sudo systemctl start tor
+#+end_example
+
++ To stop the tor service
+#+begin_example
+$ sudo systemctl stop tor
+#+end_example
+
+* Running the firefox with the tor network
+
++ *STEP-1* : Start the tor service
+#+begin_example
+$ sudo systemctl start tor
+#+end_example
+
++ *STEP-2*: Run the firefox with the proxychain
+#+begin_example
+$ proxychains firefox
+#+end_example
+
+NOTE: /If you want to run tor with firefox directly run tor-browser./
+
+
+
+
+
+
+
+
