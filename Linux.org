@@ -45,7 +45,7 @@
   - [[#more][more]]
   - [[#echo][echo]]
   - [[#wc][wc]]
-  - [[#piping---][piping [ | ]]]
+  - [[#piping---][piping ( | )]]
   - [[#sort][sort]]
   - [[#uniq][uniq]]
   - [[#expansion][expansion]]
@@ -112,6 +112,12 @@
   - [[#sensors][sensors]]
   - [[#iwconfig][iwconfig]]
   - [[#wavemon][wavemon]]
+  - [[#getfacl][getfacl]]
+  - [[#shred][shred]]
+  - [[#file][file]]
+  - [[#netstat][netstat]]
+  - [[#sed][sed]]
+  - [[#ping][ping]]
 - [[#ranger-file-manager][RANGER (File Manager)]]
 - [[#changing-default-shell][Changing default shell]]
   - [[#list-the-shell-in-system][list the shell in system]]
@@ -344,7 +350,9 @@ Variable data files are saved contain MySQL, log file , etc..
 ** sudo
 let us use our account and password to execute system commands with root privileges.
 *** syntax
-> sudo [option] [command]
+#+begin_example
+$ sudo [option] [command]
+#+end_example
 
 | option  | function    |
 |---------+-------------|
@@ -383,7 +391,9 @@ $ pwd
 list directory contents
 
 *** Syntax
-ls [option] [folder]
+#+begin_example
+$ ls [option] [folder]
+#+end_example
 
 | option  | description                  |
 |---------+------------------------------|
@@ -398,41 +408,47 @@ ls [option] [folder]
 change directory
 
 *** Syntax
-cd [directory]
+#+begin_example
+$ cd [directory]
+#+end_example
 
-| > cd Desktop    | move to desktop                                 |
-| > cd..          | travel back by one directory                    |
-| > cd or cd~     | go to home directory                            |
-| > cd ../../OTHERS | go to OTHERS folder by passing parent directory |
+| cd Desktop      | move to desktop                                 |
+| cd..            | travel back by one directory                    |
+| cd or cd~       | go to home directory                            |
+| cd ../../OTHERS | go to OTHERS folder by passing parent directory |
 
 ** mkdir
 Make directories
 
 | Command                       | Description                                 |
 |-------------------------------+---------------------------------------------|
-| > mkdir coding                | make a directory by name coding             |
-| > mkdir winter summer         | make multiple folder winter and summer      |
-| > mkdir summer/seeds          | make seed directory inside summer directory |
-| > mkdir -p summer/seeds/lettuce | make parent directory as needed             |
+| mkdir coding                  | make a directory by name coding             |
+| mkdir winter summer           | make multiple folder winter and summer      |
+| mkdir summer/seeds            | make seed directory inside summer directory |
+| mkdir -p summer/seeds/lettuce | make parent directory as needed             |
 
 ** touch
 Change file timestamp or create empty file.
 
-| Command                     | Description         |
-|-----------------------------+---------------------|
-| > touch note.txt            | empty note file     |
-| > touch note1.txt note2.txt | multiple file       |
+| Command                   | Description     |
+|---------------------------+-----------------|
+| touch note.txt            | empty note file |
+| touch note1.txt note2.txt | multiple file   |
 
 ** rmdir
 remove directory if it is empty.
 
-> rmdir coding
+#+begin_example
+$ rmdir coding
+#+end_example
 
 ** rm
 Remove file or directories
 
 *** Syntax
-rm [option] [file]
+#+begin_example
+$ rm [option] [file]
+#+end_example
 
 | option       | Description                                       |
 |--------------+---------------------------------------------------|
@@ -444,18 +460,20 @@ rm [option] [file]
 ** open
 Open file in its default application.
 
-> open .                    // open current directory
-> open index.html           // open index.html file
+#+begin_example
+$ open .                    // open current directory
+$ open index.html           // open index.html file
+#+end_example
 
 ** mv
 Move (rename) files
 
 
-| Command                     | Description                                        |
-|-----------------------------+----------------------------------------------------|
-| > mv jornal.txt journal.txt | rename file, renamed 'jornal.txt' -> 'journal.txt' |
-| > mv journal.txt stuff/     | it will move journal.txt into stuff folder         |
-| > mv cake cookie pie stuff/ | move multiple file in stuff folder                 |
+| Command                   | Description                                        |
+|---------------------------+----------------------------------------------------|
+| mv jornal.txt journal.txt | rename file, renamed 'jornal.txt' -> 'journal.txt' |
+| mv journal.txt stuff/     | it will move journal.txt into stuff folder         |
+| mv cake cookie pie stuff/ | move multiple file in stuff folder                 |
 
 
 | option       | Description         |
@@ -467,10 +485,10 @@ Move (rename) files
 ** cp
 Copy files and directoies.
 
-| Command                          | Description                                                             |
-|----------------------------------+-------------------------------------------------------------------------|
-| > cp note.txt book.txt           | it make book.txt file and copy content of note.txt to book file         |
-| > cp note.txt Documents/book.txt | it copy the content of note.txt to book.txt in a directory of Documents |
+| Command                        | Description                                                             |
+|--------------------------------+-------------------------------------------------------------------------|
+| cp note.txt book.txt           | it make book.txt file and copy content of note.txt to book file         |
+| cp note.txt Documents/book.txt | it copy the content of note.txt to book.txt in a directory of Documents |
 
 
 | option       | Description                |
@@ -481,83 +499,87 @@ Copy files and directoies.
 ** head
 Output the first part of files
 
-| Command               | Description                          |
-|-----------------------+--------------------------------------|
-| > head note.txt       | print first part of the note.txt     |
-| > head note.txt -n 20 | print first 20 line of note.txt file |
+| Command             | Description                          |
+|---------------------+--------------------------------------|
+| head note.txt       | print first part of the note.txt     |
+| head note.txt -n 20 | print first 20 line of note.txt file |
 
 ** tail
 Output the last part of files
 
-| Command               | Description                         |
-|-----------------------+-------------------------------------|
-| > tail note.txt       | print last part of the note.txt     |
-| > tail note.txt -n 20 | print last 20 line of note.txt file |
+| Command             | Description                         |
+|---------------------+-------------------------------------|
+| tail note.txt       | print last part of the note.txt     |
+| tail note.txt -n 20 | print last 20 line of note.txt file |
 
 ** date
 Print or set the system date and time
 
-> date
+#+begin_example
+$ date
+#+end_example
 
 ** redirecting standard output
 
-| Command             | Description                                                        |
-|---------------------+--------------------------------------------------------------------|
-| >                   | redirect                                                           |
-| > date > today.txt  | redirect the output of date to today.txt file it override the file |
-| >>                  | redirect and append                                                |
-| > date >> today.txt | it append to the today.txt file                                    |
+| Command           | Description                                                        |
+|-------------------+--------------------------------------------------------------------|
+| >                 | redirect                                                           |
+| date > today.txt  | redirect the output of date to today.txt file it override the file |
+| >>                | redirect and append                                                |
+| date >> today.txt | it append to the today.txt file                                    |
+| 2>                | to redirect an error we need to use                                |
+| 2>&1              | to redirect both error and output                                 |
 
 ** cat
 Concatenate file and print on the standard output
 
 print the content of note.txt
 #+begin_example
-> cat note.txt
+$ cat note.txt
 #+end_example
 
 Print content of multiple file
 #+begin_example
-> cat note1.txt note2.txt
+$ cat note1.txt note2.txt
 #+end_example
 
 Number all output line
 #+begin_example
-> cat -n note.txt
+$ cat -n note.txt
 #+end_example
 
 ** less
 Show content stored inside a file in nice and interactive UI
 #+begin_example
-> less note.txt
+$ less note.txt
 #+end_example
 
 ** more
 Display content of a file in a terminal.
 #+begin_example
-> more note.txt
+$ more note.txt
 #+end_example
 
 ** echo
 Display the line of text.
 #+begin_example
-> echo "hello"
+$ echo "hello"
 #+end_example
 
 redirect to config.txt
 #+begin_example
-> echo "the centent line" > config.txt
+$ echo "the centent line" > config.txt
 #+end_example
 
 append
 #+begin_example
-> echo "next line" >> config.txt
+$ echo "next line" >> config.txt
 #+end_example
 
 ** wc
 Print new line, word & byte counts for each file.
 #+begin_example
-> wc note.txt
+$ wc note.txt
 #+end_example
 
 | Option       | Description     |
@@ -567,24 +589,26 @@ Print new line, word & byte counts for each file.
 | -m           | character count |
 | -c           | byte count      |
 
-** piping [ | ]
+** piping ( | ) 
 It is used to combin two or more command together. the output of the first command will be input for second command.
 
 print the number of line of ls output
 #+begin_example
-> ls -l | wc
+$ ls -l | wc
 #+end_example
 
 Print the number of line in the text.txt and note.txt file combine
 #+begin_example
-> cat text.txt note.txt | wc -l
+$ cat text.txt note.txt | wc -l
 #+end_example
 
 ** sort
 Sort line of text files
 
 *** syntax
-> sort [option] [file]
+#+begin_example
+$ sort [option] [file]
+#+end_example
 
 | Option   | Description  |
 |----------+--------------|
@@ -596,9 +620,9 @@ Sort line of text files
 ** uniq
 Report or omit repeated lines.
 #+begin_example
-> uniq sname.txt
+$ uniq sname.txt
 
-> sort sname.txt | uniq
+$ sort sname.txt | uniq
 #+end_example
 
 
@@ -609,119 +633,119 @@ Report or omit repeated lines.
 | -c       | number of occurrences       |
 
 #+begin_example
-> sort sname.txt | uniq -d
+$ sort sname.txt | uniq -d
 #+end_example
 
 ** expansion
-/home/xander
++ /home/xander
 #+begin_example
-> echo ~            
+$ echo ~            
 #+end_example
 
-path set in the system
++ path set in the system
 #+begin_example
-> echo $PATH
+$ echo $PATH
 #+end_example
 
-print user name
++ print user name
 #+begin_example
-> echo $USER
+$ echo $USER
 #+end_example
 
-display every file and folder in the current directory
++ display every file and folder in the current directory
 #+begin_example
-> echo *
+$ echo *
 #+end_example
 
-all the .txt file in current directory
++ all the .txt file in current directory
 #+begin_example
-> echo *.txt
+$ echo *.txt
 #+end_example
 
-list all the file with .txt
++ list all the file with .txt
 #+begin_example
-> ls -l *.txt
+$ ls -l *.txt
 #+end_example
 
-? -> anycharacter
++ ? -> anycharacter
 #+begin_example
 echo *.???
 #+end_example
 
-remove any file with any name with only two letter extention
++ remove any file with any name with only two letter extention
 #+begin_example
-> rm *.??
+$ rm *.??
 #+end_example
 
 #+begin_example
-> echo {a, b, c}
+$ echo {a, b, c}
 
 o/p
 a b c
 
-> echo {a,b,c}.txt
+$ echo {a,b,c}.txt
 o/p
 a.txt b.txt c.txt
 #+end_example
 
 print all file and diretory with first letter 'f'
 #+begin_example
-> echo f*
+$ echo f*
 #+end_example
 
 ** diff
 Compase file line by line.
 #+begin_example
-> diff note.txt book.txt
+$ diff note.txt book.txt
 #+end_example
 
 ** find
 find the files in a directory hierarchy.
 
-find the file name with extension .js in current directory
++ find the file name with extension .js in current directory
 #+begin_example
-find . -name '*.js'
+$ find . -name '*.js'
 #+end_example
 
-find the file in /home/xander directory
++ find the file in /home/xander directory
 #+begin_example
-> find /home/xander -name '*.txt'
+$ find /home/xander -name '*.txt'
 #+end_example
 
-find the directory
++ find the directory
 #+begin_example
-> find . -type d -name '*d+'
+$ find . -type d -name '*d+'
 #+end_example
 
-case insensitive
++ case insensitive
 #+begin_example
-> find . -type d -iname '*d+'
+$ find . -type d -iname '*d+'
 #+end_example
 
-find the file which start with E or F
++ find the file which start with E or F
 #+begin_example
-> find . -name 'E*' -or -name 'F*'
+$ find . -name 'E*' -or -name 'F*'
 #+end_example
 
-find the file whose size greater than 100k
++ find the file whose size greater than 100k
 #+begin_example
-> find -type f -size -100k
+$ find -type f -size -100k
 #+end_example
 
-100k < file < 1M
++ 100k < file < 1M
 #+begin_example
-> find . -type f -size +100k -size -1M
+$ find . -type f -size +100k -size -1M
 #+end_example
 
-find edited more than 3 days ago
++ find edited more than 3 days ago
 #+begin_example
-> find . -type f -mtime +3
+$ find . -type f -mtime +3
 #+end_example
 
 \; terminating
-execute command on each result of search
++ execute command on each result of search
 #+begin_example
-> find . -type f -exec cat {}\;
+$ find . -type f -exec cat {}\;
 #+end_example
 
 ** grep
@@ -733,7 +757,7 @@ grep [option] -e patterns [file]
 grep [option] -f pattern_file [file]
 
 #+begin_example
-> grep display style.css
+$ grep display style.css
 #+end_example
 
 | Option   | Description  |
@@ -743,15 +767,17 @@ grep [option] -f pattern_file [file]
 | -r       | recursively  |
 
 #+begin_example
-> grep -rE -o "[regEx expression]"
+$ grep -rE -o "[regEx expression]"
 #+end_example
 
 ** du
 Estimate file space usage
 
-> du                     // space usege of all file
+#+begin_example
+$ du                     // space usege of all file
 
-> du index.html         // space usage of index file
+$ du index.html         // space usage of index file
+#+end_example
 
 | Option | description    |
 |--------+----------------|
@@ -759,80 +785,102 @@ Estimate file space usage
 | -g     | GB             |
 | -h     | human readable |
 
-> du -h | sort -h        // space usage & sort in human readable
+#+begin_example
+$ du -h | sort -h        // space usage & sort in human readable
+#+end_example
 
 ** df
 report file system space usege or disk usage
 
-> df         // show all file
+#+begin_example
+$ df         // show all file
  
-> df Documents/    // show Documents file
+$ df Documents/    // show Documents file
+#+end_example
 
 
 ** history
 Show & manipulate command history.
 
-> history
+#+begin_example
+$ history
+#+end_example
 
 ** ps
 Report a snapshot of the current process
 
-> ps
+#+begin_example
+$ ps
 
-> ps ax            // all the process
+$ ps ax            // all the process
  
-> ps axww         // wrap around
+$ ps axww         // wrap around
+#+end_example
 
 ** top
 display linux process
 
-> top
+#+begin_example
+$ top
+#+end_example
 
 ** htop
 interative process viewer
 
-> htop
+#+begin_example
+$ htop
+#+end_example
 
 ** kill
 Terminate a process
 
-> kill -l          // list signal name
+#+begin_example
+$ kill -l          // list signal name
 
-> kill [pid]      // process id -> pid
+$ kill [pid]      // process id -> pid
 
-> kill -9 [pid]  
+$ kill -9 [pid]  
+#+end_example
 
 ** killall 
 kill process by name.
 
-> killall -9 node
+#+begin_example
+$ killall -9 node
 
-> killall [processname]
+$ killall [processname]
+#+end_example
 
 ** job, bg & fg
 jobs -> print currently running jobs.
 bg -> send file to background.
 fg -> bring jobs to foreground.
 
-> jobs
+#+begin_example
+$ jobs
 
-> fg 2
+$ fg 2
  
-> bg 1
+$ bg 1
+#+end_example
 
 where 2 & 1 are jobs number.
 
 ** sleep
 Delay for a specifield amount of time.
 
-> sleep 4         // 4 is in seconds
+#+begin_example
+$ sleep 4         // 4 is in seconds
+#+end_example
 
 ** gzip
 Compress files
 
-> gzip [filename]       // compress & replace the file, with .gz
+#+begin_example
+$ gzip [filename]       // compress & replace the file, with .gz
 
-> gzip -k profiet.txt  
+$ gzip -k profiet.txt  
+#+end_example
 
 | Option | Description                                         |
 |--------+-----------------------------------------------------|
@@ -843,7 +891,9 @@ Compress files
 ** gunzip
 expand file
 
-> gunzip project.txt.gz
+#+begin_example
+$ gunzip project.txt.gz
+#+end_example
 
 ** zip & unzip
 zip - package & compress(archive) files.
@@ -852,17 +902,19 @@ unzip - list, test & extract compressed file in a zip archive
 ** tar
 An archiving utility.
 
-> tar -cf archive.tar index.htm style.css
+#+begin_example
+$ tar -cf archive.tar index.htm style.css
 
-> tar -tf archive.tar     // to view content of file
+$ tar -tf archive.tar     // to view content of file
 
-> tar -xf archive.tar    // to extract the tar file
+$ tar -xf archive.tar    // to extract the tar file
 
-> tar -xf archive.tar  -c [directory]   // to extract in other location.
+$ tar -xf archive.tar  -c [directory]   // to extract in other location.
 
-> tar -czf archive.tar.gy file1 file2       // compressed archive
+$ tar -czf archive.tar.gy file1 file2       // compressed archive
 
-> tar -xf archive.tar.gz  
+$ tar -xf archive.tar.gz  
+#+end_example
 
 | Option | Description |
 |--------+-------------|
@@ -875,16 +927,22 @@ An archiving utility.
 Create a function.
 
 *** Syntax
-alias [name]=[defination]
+#+begin_example
+$ alias [name]=[defination]
+#+end_example
 
-> alias ll='ls -la'
+#+begin_example
+$ alias ll='ls -la'
+#+end_example
 
 ** xargs
 Buid & execute command line from standard input
 
-> cat deadPlayers.txt | xargs rm   // the o/p of cat command will be argument of rm
+#+begin_example
+$ cat deadPlayers.txt | xargs rm   // the o/p of cat command will be argument of rm
 
-> find . -size +1M | xargs ls -lh
+$ find . -size +1M | xargs ls -lh
+#+end_example
 
 ** ln
 Make a links between files
@@ -892,45 +950,63 @@ Make a links between files
 *** hard link
 A hard link *always points a filename to data on a storage device.*
 
-> ln original.txt hardlink.txt
+#+begin_example
+$ ln original.txt hardlink.txt
+#+end_example
 
 *** symbolic link
 A soft link *always points a filename to another filename, which then points to information on a storage device.*
 
-> ln -s original.txt symlink.txt
+#+begin_example
+$ ln -s original.txt symlink.txt
+#+end_example
 
 ** who
 displays the user logged in to the system.
 
-> who
+#+begin_example
+$ who
+#+end_example
 
 ** su
 Switch user
 
-> su [username]
+#+begin_example
+$ su [username]
+#+end_example
 
 ** passwd
 password
 
-> passwd
+#+begin_example
+$ passwd
+#+end_example
 
 ** chown
 Change file owner & group
 
 *** syntax
-chown [owner] [file]
+#+begin_example
+$ chown [owner] [file]
+#+end_example
 
-> sudo chown xander /project
+#+begin_example
+$ sudo chown xander /project
+#+end_example
 
 *** syntax
-chown [owner]:[group] [file]
+#+begin_example
+$ chown [owner]:[group] [file]
+#+end_example
 
 ** chmod
 Change file mode bits
 
-> chmod g+w file.txt
+#+begin_example
+$ chmod g+w file.txt
 
-> chmod a-w file.txt   // remove write permittion from all
+$ chmod a-w file.txt   // remove write permittion from all
+#+end_example
 
 | number | file mode |
 |--------+-----------|
@@ -943,76 +1019,103 @@ Change file mode bits
 |      6 | r w _     |
 |      7 | r w x     |
 
-> chmod 711 file.txt
+#+begin_example
+$ chmod 711 file.txt
 
-> chmod a=r file.txt  // it set all read only   
+$ chmod a=r file.txt  // it set all read only   
+#+end_example
 
 u - Owner , g - Group , o - Others , a - All(owner, groups, others)
 
 ** wget
 download the resource
 *** Syntax
-wget [option] [url]
+#+begin_example
+$ wget [option] [url]
+#+end_example
 
-save at specific location
-
-wget -p [path] [url]
+*** Example
++ save at specific location
+#+begin_example
+$ wget -p [path] [url]
+#+end_example
 
 ** curl
 Download the resources.
 *** syntax
-curl [option] [url]
+#+begin_example
+$ curl [option] [url]
+#+end_example
 
-to download the file to your local system
-
-> curl [url]>[local-file]
+*** Example
++ to download the file to your local system
+#+begin_example
+$ curl [url]>[local-file]
+#+end_example
 
 ** lf
 Terminal file manager.
 
-> lf
+#+begin_example
+$ lf
+#+end_example
 
 ** gdu
 disk usage
 
-> gdu
+#+begin_example
+$ gdu
+#+end_example
 
 ** neofetch
 
 System general information.
 
-> neofetch
+#+begin_example
+$ neofetch
+#+end_example
 
 ** lshw
 Fetch important hardware information, such as memory, cpu, disk, etc..
 
-> sudo lshw
+#+begin_example
+$ sudo lshw
+#+end_example
 
-short summary
-
-> lshw short
++ short summary
+#+begin_example
+$ lshw short
+#+end_example
 
 ** lscpu
 CPU information
 
-> lscpu
+#+begin_example
+$ lscpu
+#+end_example
 
 ** lsblk
 Block device information
 
-> lsblk
+#+begin_example
+$ lsblk
 
-> lsblk -a      // all information
+$ lsblk -a      // all information
+#+end_example
 
 ** lsusb
 USB device information
 
-> lsusb
+#+begin_example
+$ lsusb
+#+end_example
 
 ** ifconfig
 Information about all active network interface.
 
-> ifconfig
+#+begin_example
+$ ifconfig
+#+end_example
 
 | Optoin | Description             |
 |--------+-------------------------|
@@ -1022,112 +1125,150 @@ Information about all active network interface.
 
 ** free 
 View amount of memory available on system.
-
-> free
+#+begin_example
+$ free
+#+end_example
 
 ** lspci
  Check PCI device
 
-> lspci
+#+begin_example
+$ lspci
+#+end_example
 
 ** lsscsi
 Check SCSI device
 
-> lsscsi
+#+begin_example
+$ lsscsi
+#+end_example
 
 ** hdparm
 Check SATA devices
 
-> sudo hdparm /dev/sda1
+#+begin_example
+$ sudo hdparm /dev/sda1
+#+end_example
 
 ** fdisk
 File system information
 
-> sudo fdisk -l
+#+begin_example
+$ sudo fdisk -l
+#+end_example
 
 ** dmidecode
 Hardware components info
 
-> sudo dmidecode -t memory    // memory
+#+begin_example
+$ sudo dmidecode -t memory    // memory
 
-> sudo dmidecode -t system   // system
+$ sudo dmidecode -t system   // system
 
-> sudo dmidecode -t bios    // bios
+$ sudo dmidecode -t bios    // bios
 
-> sudo dmidecode -t processor  // processor
+$ sudo dmidecode -t processor  // processor
+#+end_example
 
 ** ip 
 show / manipulate routing, networking devices, interface and tunnels
 
 *** Syntax
-ip [Option] OBJECT {COMMAND | help}
+#+begin_example
+$ ip [Option] OBJECT {COMMAND | help}
+#+end_example
 
 *** example
-
-> ip a 
+#+begin_example
+$ ip a 
+#+end_example
 
 ** hostname
 display hostname
 
-> hostname
+#+begin_example
+$ hostname
+#+end_example
 
-to display ip address
-
-> hostname -I
++ to display ip address
+#+begin_example
+$ hostname -I
+#+end_example
 
 ** locate
 search for file & directories.
 
 *** Syntax
-locate [option] [pattern]
+#+begin_example
+$ locate [option] [pattern]
+#+end_example
 
-> locate .bashrc
+*** example
+#+begin_example
+$ locate .bashrc
+#+end_example
 
 ** bpytop
 Better interactive process view
 
-> bpytop
+#+begin_example
+$ bpytop
+#+end_example
 
 ** fzf
 find the file location
 
-> fzf
+#+begin_example
+$ fzf
+#+end_example
 
 ** ripgrep
 recursively searches for regex pattern
 
-> rg port /etc/ssh/sshd_config
+#+begin_example
+$ rg port /etc/ssh/sshd_config
 
-> rg hello
+$ rg hello
+#+end_example
 
 ** z oxide
 navigate to directories
 
-> z config
+#+begin_example
+$ z config
 
-> z etc ssh        // command get bact to /etc/ssh
+$ z etc ssh        // command get bact to /etc/ssh
 
-> zi ssh           // interactive searches with fzf
+$ zi ssh           // interactive searches with fzf
+#+end_example
 
 ** bat
 Rust alternative for cat command
 
-> bat
+#+begin_example
+$ bat
+#+end_example
 
 ** exa
 Rust alternative for ls command
 
-> exa
+#+begin_example
+$ exa
+#+end_example
 
 ** speedtest
 Test the internet speed up and down
 
-> speedtest
+#+begin_example
+$ speedtest
+#+end_example
 
 ** route
 The route command is the interface used to access the linux kernel's routing tables.
 
-> route [option]
+#+begin_example
+$ route [option]
+#+end_example
 
 | key | Description                          |
 |-----+--------------------------------------|
@@ -1139,9 +1280,13 @@ The route command is the interface used to access the linux kernel's routing tab
 ** uname
 uname prints the *kernel* name
 
-> uname [option1] [option2]
+#+begin_example
+$ uname [option1] [option2]
+#+end_example
 
-> uname
+#+begin_example
+$ uname
+#+end_example
 
 | Option | Desription                           |
 |--------+--------------------------------------|
@@ -1159,9 +1304,13 @@ uname prints the *kernel* name
 run a program with modified scheduling priority
 
 *** Syntax
-nice [OPTION] [COMMAND [ARG]...]
+#+begin_example
+$ nice [OPTION] [COMMAND [ARG]...]
+#+end_example
 
-> nice -n nice_value command
+#+begin_example
+$ nice -n nice_value command
+#+end_example
 
 ** renice
 alter priority of running processes
@@ -1169,7 +1318,9 @@ alter priority of running processes
 *** Syntax
 renice [--priority|--relative] priority [-g|-p|-u] identifier...
 
-> sudo renice -n nice_value -p process_id
+#+begin_example
+$ sudo renice -n nice_value -p process_id
+#+end_example
 
 ** tree
 List the content of the directories in a tree like format.
@@ -1283,10 +1434,156 @@ A wireless network monitor
 $ wavemon
 #+end_example
 
+** getfacl
+Get file access control lists
+#+begin_example
+$ getfacl <file_name>
+#+end_example
+
+** shred
+overwrite a file to hide its contents, and optionally delete it
+*** Syntax
+#+begin_example
+$ shred [OPTION] file
+#+end_example
+
+*** Example
++ shred the file
+#+begin_example
+$ shred <file_name>
+#+end_example
+
++ shred and remove the file
+#+begin_example
+$ shred --remove <file_name>
+#+end_example
+
+** file
+Determine file type
+#+begin_example
+$ file <file_name>
+#+end_example
+
+** netstat
+Print network connections, routing tables, interface statistics, masquerade connections, and multicast member-ships
+
+*** Syntax
+#+begin_example
+$ netstat [options]
+#+end_example
+
+| options | Description                                     |
+|---------+-------------------------------------------------|
+| a       | display all connections                         |
+| l       | display listening ports                         |
+| n       | active connections                              |
+| p       | display PID and program name for connections    |
+| s       | display network statistics                      |
+| r       | display routing table                           |
+| tulpn   | show listening sockets with process information |
+| 4       | display only IPv4 connections                   |
+| 6       | display only IPv6 connections                   |
+
+** sed
+Stream editor for filtering and transforming text
+
+*** Syntax
+#+begin_example
+$ sed [options] 'command' <file_name>
+#+end_example
+
+*** example
++ Search and replace
+#+begin_example
+$ sed 's/pattern/replacement/g' filename
+#+end_example
+
++ In-place editing (replace in the same file):
+#+begin_example
+$ sed -i 's/pattern/replacement/g' filename
+#+end_example
+
++ Print specific lines:
+#+begin_example
+$ sed -n '2,5p' filename
+#+end_example
+ 
++ delete line matching a pattern
+#+begin_example
+$ sed '/pattern/d' filename
+#+end_example
+
++ Insert text before or after a line:
+#+begin_example
+$ sed '/pattern/i\text_to_insert' filename
+$ sed '/pattern/a\text_to_insert' filename
+#+end_example
+
++ substitute using capture groups
+#+begin_example
+$ sed 's/\(pattern1\)\(pattern2\)/\2\1/g' filename
+#+end_example
+
++ printing line number
+#+begin_example
+$ sed -n '10,20p' filename
+#+end_example
+
++ Delete empty lines
+#+begin_example
+$ sed '/^$/d' filename
+#+end_example
+
+** ping
+Send ICMP ECHO_REQUEST to network hosts
+
+*** Syntax
+#+begin_example
+$ ping <host_name or IP_address>
+#+end_example
+
+*** Example
++ Specifying number of packets:
+#+begin_example
+$ ping -c <count> <host_name or IP_address>
+#+end_example
+
++ Setting time interval between packets
+#+begin_example
+$ ping -i <interval> <host_name or IP_address>
+#+end_example
+
++ Continuous ping
+#+begin_example
+$ ping -t <host_name or IP_address>
+#+end_example
+
++ IPv6 ping
+#+begin_example
+$ ping6 <host_name or IP_address>
+#+end_example
+
++ Timeout Setting
+#+begin_example
+$ ping -W <timeout> <hostname_or_IP_address>
+#+end_example
+
++ Numeric output
+#+begin_example
+$ ping -n <hostname_or_IP_address>
+#+end_example
+
++ Verbose output
+#+begin_example
+$ ping -v <hostname_or_IP_address>
+#+end_example
+
 * RANGER (File Manager)
 Terminal file manager
 
-> ranger
+#+begin_example
+$ ranger
+#+end_example
 
 | Keys    | Description                |
 |---------+----------------------------|
@@ -1306,11 +1603,15 @@ Terminal file manager
 * Changing default shell
 ** list the shell in system
 
-> chsh -l
+#+begin_example
+$ chsh -l
+#+end_example
 
 ** select the path from the option given
 
-> chsh -s /bin/fish
+#+begin_example
+$ chsh -s /bin/fish
+#+end_example
 
 
 * NETWORK MANAGER (to connect to wifi)
