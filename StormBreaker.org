@@ -1,0 +1,96 @@
+#+TITLE: STORM BREAKER NOTE
+#+DESCRIPTION: StormBreaker tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#features][Features]]
+- [[#software-installation][Software Installation]]
+  - [[#install-storm-breaker][Install Storm-Breaker]]
+  - [[#install-ngrok][Install ngrok]]
+- [[#start][Start]]
+  - [[#run-storm-breaker][run Storm-Breaker]]
+  - [[#to-run-ngrok][to run ngrok]]
+  - [[#open-the-ngrok-link][Open the ngrok link]]
+  - [[#other-links-and-main-contain][Other links and main contain]]
+
+* Features
++ Obtain device information without any permission!
++ Access Location [SMARTPHONE]
++ Access webcam
++ Access Microphone
+
+* Software Installation
+** Install Storm-Breaker
+1. Clone git repo
+#+begin_example
+$ cd /opt
+
+$ git clone https://github.com/ultrasecurity/Storm-Breaker.git
+#+end_example
+
+2. Move to Storm-Breaker directory
+#+begin_example
+$ cd Storm-Breaker/
+#+end_example
+
+3. Run the install.sh script
+#+begin_example
+$ bash install.sh
+#+end_example
+
+4. To run the Strom-Breaker
+#+begin_example
+$ python3 st.py
+#+end_example
+
+** Install ngrok
+1. Download ngrok 
+
+[[https://ngrok.com/download][ngrok-download]]
+
+2. extract the file using tar command
+#+begin_example
+$ sudo tar -xvzf ~/Downloads/ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
+#+end_example
+
+3. Create an account in ngrok site.
+
+4. after login, than connect you account using the token given in ngrok account website.
+#+begin_example
+$ ngrok config add-authtoken <token>
+#+end_example
+- run this command on the terminal.
+
+* Start
+** run Storm-Breaker
++ move to the Storm-Breaker file and run this command
+#+begin_example
+$ python3 st.py
+#+end_example
+
+[[./img/storm-breaker.png]]
+
+** to run ngrok
+#+begin_example
+$ ngrok http 2525
+#+end_example
+
+** Open the ngrok link
+ Open the link given in the *forwarding* session 
+
+*** login the site
+[[./img/storm-break-login.png]]
+
+*** Default username and password
++ =username= : =admin=
++ =password= : =admin=
+
+** Other links and main contain
+
+[[./img/storm-breaker-ngrok.png]]
+
++ All the link specified here can be shared to other user for specified target.
++ The contant will be visible in result box.
++ other option stop/start , download logs, and clear logs are avialable.
+

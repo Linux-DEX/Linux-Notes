@@ -118,6 +118,15 @@
   - [[#netstat][netstat]]
   - [[#sed][sed]]
   - [[#ping][ping]]
+  - [[#seq][seq]]
+  - [[#fold][fold]]
+  - [[#readlink][readlink]]
+  - [[#sum][sum]]
+  - [[#pr][pr]]
+  - [[#dircolors][dircolors]]
+  - [[#split][split]]
+  - [[#dirname][dirname]]
+  - [[#od][od]]
 - [[#ranger-file-manager][RANGER (File Manager)]]
 - [[#changing-default-shell][Changing default shell]]
   - [[#list-the-shell-in-system][list the shell in system]]
@@ -1577,6 +1586,199 @@ $ ping -n <hostname_or_IP_address>
 #+begin_example
 $ ping -v <hostname_or_IP_address>
 #+end_example
+
+** seq
+Print a sequence of numbers.
+
+*** Syntax
+#+begin_example
+$ seq [OPTION] last
+
+$ seq [OPTION] first last
+
+$ seq [OPTION] first increment last
+#+end_example
+
+*** Example
++ Generate number from 1 to 10
+#+begin_example
+$ seq 10
+#+end_example
+
++ Generate numbers from 5 to 15
+#+begin_example
+$ seq 5 15
+#+end_example
+
++ Generate even number from 2 to 20
+#+begin_example
+$ seq 2 2 20
+#+end_example
+
+** fold
+Wrap each input line to fit in specified width.
+
+*** Syntax
+#+begin_example
+$ fold [OPTION] [FILE]
+#+end_example
+
+*** Example
++ Wrap lines in a file to fit within a width of 80 columns.
+#+begin_example
+$ fold -w 80 file.txt
+#+end_example
+
++ Wrap lines in a file to fit within a width of 70 columns, breaking only at spaces.
+#+begin_example
+$ fold -w 70 -s file.txt
+#+end_example
+
+** readlink
+Print resolved symbolic links or canonical file names.
+
+*** Syntax
+#+begin_example
+$ readlink [OPTION] file
+#+end_example
+
+*** Example
++ Print the target of a symbolic link
+#+begin_example
+$ readlink <path_to_symlink>
+#+end_example
+
++ Print the canconicalized absolute pathname of a file
+#+begin_example
+$ readlink -f <path_to_file>
+#+end_example
+
++ Print the canconicalized absolute pathname of an existing file
+#+begin_example
+$ readlink -e <path-to-file>
+#+end_example
+
++ Print the target of a symbolic link quietly
+#+begin_example
+$ readlink -q <path-to-symlink>
+#+end_example
+
+** sum
+Checksum add count the blocks in a file
+
+*** Syntax
+#+begin_example
+$ sum [OPTION] [FILE]
+#+end_example
+
+*** Example
++ Calculate the checksum of a single file using the default system V sum algorithm
+#+begin_example
+$ sum filename
+#+end_example
+
++ Calculate the checksum of multiple files
+#+begin_example
+$ sum file1 file2 file3
+#+end_example
+
++ calculate the checksum of a file using a specific algorithm
+#+begin_example
+$ sum -a 256 filename
+#+end_example
+
++ Calculate the checksum of a file and suppress error messages about missing files
+#+begin_example
+$ sum -s filename
+#+end_example
+
+** pr
+Convert text files from printing.
+
+*** Syntax
+#+begin_example
+$ pr [OPTION] [FILE]
+#+end_example
+
+*** Example
++ Print the file with pagination
+#+begin_example
+$ pr filename
+#+end_example
+
++ Double-space the output of a file
+#+begin_example
+$ pr -d filename
+#+end_example
+
++ Set custom page length and width
+#+begin_example
+$ pr -l 50 -w 80 filename
+#+end_example
+
++ Add a custom header to the output
+#+begin_example
+$ pr -h "custom header" filename
+#+end_example
+
++ Use form feeds to separate pages
+#+begin_example
+$ pr -F filename
+#+end_example
+
+** dircolors
+Color setup for ls
+
+** split
+Split a file into pieces
+
+*** Syntax
+#+begin_example
+$ split [OPTION] [FILE [PREFIX]]
+#+end_example
+
+*** Example
++ Split a file into smaller file with a specified number of lines
+#+begin_example
+$ split -l 100 file.txt
+#+end_example
+
++ Split a file into smaller files with a specified number of bytes
+#+begin_example
+$ split -b 1M file.txt
+#+end_example
+
++ Split the file into smaller files with a custom prefix
+#+begin_example
+$ split -l 500 file.txt output_prefix
+#+end_example
+
+** dirname
+Strip last component from file name.
+
+*** Syntax
+#+begin_example
+$ dirname [OPTION] NAME
+#+end_example
+
+*** Example
++ Extract the directory portion of a file path
+#+begin_example
+$ dirname <path-to-file.txt>
+#+end_example
+
++ Extract the directory portion of multiple file paths
+#+begin_example
+$ dirname <path-to-file1.txt> <path-to-file2.txt>
+#+end_example
+
++ Extract the directory portion of a relative path
+#+begin_example
+$ dirname <directory-file.txt>
+#+end_example
+
+** od
+Dump files in octal and other formats
 
 * RANGER (File Manager)
 Terminal file manager

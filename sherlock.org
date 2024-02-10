@@ -1,0 +1,51 @@
+#+TITLE: SHERLOCK NOTE
+#+DESCRIPTION: Sherlock tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#start][Start]]
+  - [[#installation][Installation]]
+  - [[#using][Using]]
+
+* Introduction
++ OSINT based project
++ Hunt down social media account by username across social networks.
+
+* Start
+** Installation
++ Clone the repo
+#+begin_example
+$ git clone https://github.com/sherlock-project/sherlock.git
+#+end_example
+
++ Change the working directory to sherlock
+#+begin_example
+$ cd sherlock
+#+end_example
+
++ install the requirements
+#+begin_example
+$ python3 -m pip install -r requirements.txt
+#+end_example
+
+
+** Using
++ For help
+#+begin_example
+$ python3 sherlock --help
+#+end_example
+
++ To search for only one user
+#+begin_example
+$ python3 sherlock user123
+#+end_example
+
++ To search for more than one user
+#+begin_example
+$ python3 sherlock user1 user2 user3
+#+end_example
+
+NOTE: LINK OF GITHUB [[https://github.com/sherlock-project/sherlock][sherlock]]
+

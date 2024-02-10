@@ -1,0 +1,31 @@
+#+TITLE: DIRBUSTER NOTE
+#+DESCRIPTION: DirBuster tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#start][Start]]
+
+* Introduction
++ DirBuster is a tool used for brute-forcing directories and files on web servers. 
++ It is designed to discover hidden or non-indexed directories and files by systematically trying different combinations of directory and file names.
++ DirBuster works by sending HTTP requests to the target web server with various directory and file names, checking for valid responses.
++ It comes with a built-in wordlist containing common directory and file names, but it also allows users to specify custom wordlists.
+
+* Start
+
+[[./img/dirbuster1.png]]
+
+1. Target URL : Here you can se any URL for pentesting.
+2. work method: there are two option to choose from "get request" and "head and get".
+3. Number of threads: to allocate more threads to the process.
+4. file with list of dirs/files: here the select the wordlist file in "/usr/share/wordlist" directory
+5. start button: to start the pentesting.
+
+
+[[./img/dirbuster2.png]]
+
++ here in list view all the found dir and file will be listed
+
+
