@@ -1,0 +1,65 @@
+#+TITLE: ARP & ARP-SCAN NOTE
+#+DESCRIPTION: arp and arp-scan commands
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#arp-command][arp command]]
+- [[#arp-scan-command][arp-scan Command]]
+
+* Introduction
++ ARP - Address Resolution Protocol
++ ARP Scan tool is a very fast ARP packet scanner that show every active IPv4 device on your subnet.
++ Since ARP is non-routable, this type of scanner only work on the local LAN.
++ ARP Scan tool show all active device even if they have firewalls.
+
+* arp command
+1. *Display ARP Cache*:
+#+begin_example
+$ arp
+#+end_example
+
+2. *Display ARP Table of Specific Interface*:
+#+begin_example
+$ arp -i <interface>
+#+end_example
+
+3. *Flush ARP Cache*:
+#+begin_example
+$ sudo arp -d
+#+end_example
+
+4. *Flush ARP Cache for Specific Interface*:
+#+begin_example
+$ sudo arp -d -i <interface>
+#+end_example
+- Replace *<interface>* with the name of the network interface (e.g, eth0). This command flushes the ARP cache of the specific network interface.
+
+* arp-scan Command
+1. *Scan Local Network*:
+#+begin_example
+$ sudo arp-scan --localnet
+
+or
+
+$ sudo arp-scan -l
+#+end_example
+
+2. *Scan Specific Network Range*:
+#+begin_example
+$ sudo arp-scan <network-range>
+#+end_example
+
+3. *Scan Specific Interface*:
+#+begin_example
+$ sudo arp-scan --interface=<interface> <network-range>
+#+end_example
+
+4. *Specify Number of Packets to send*:
+#+begin_example
+$ sudo arp-scan --count=<count> <network_range>
+#+end_example
+
+
+

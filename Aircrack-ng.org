@@ -1,0 +1,10 @@
+#+TITLE: AIRCRACK-NG NOTE
+#+DESCRIPTION: Aircrack-ng and family tools
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+
+* Introduction
+Problem with network card it will update after some time.

@@ -1,0 +1,54 @@
+#+TITLE: NETWORK ADAPTOR NOTE
+#+DESCRIPTION: Changing network adapter mode
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#changing-adapter-to-monitor-mode][Changing adapter to monitor mode]]
+- [[#changing-adapter-to-managed][Changing adapter to managed]]
+- [[#using-iw-command][Using iw command]]
+
+* Changing adapter to monitor mode
+#+begin_example
+$ sudo ifconfig wlp3s0 down
+
+$ sudo iwconfig wlp3s0 mode monitor
+#+end_example
+
+* Changing adapter to managed
+#+begin_example
+$ sudo ifconfig wlp3s0 down
+
+$ sudo iwconfig wlp3s0 mode managed
+
+$ sudo systemctl restart NetworkManager
+#+end_example
+
+
+* Using iw command
+1. *Check Current Mode*:
+#+begin_example
+$ iw dev [interface_name] info
+#+end_example
+
+2. *Change interface Mode*:
+#+begin_example
+$ sudo iw dev [interface_name] set type [new_mode]
+#+end_example
+
+- example
+#+begin_example
+$ sudo iw dev wlp3s0 set type monitor
+#+end_example
+
+3. *Verify Mode Change*:
+#+begin_example
+$ iw dev wlp3s0 info
+#+end_example
+
++ *To up the interface*:
+#+begin_example
+$ sudo ifconfig wlp3s0 up 
+#+end_example
+
+

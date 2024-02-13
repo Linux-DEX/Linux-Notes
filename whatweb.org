@@ -10,7 +10,6 @@
   - [[#output-options][Output Options]]
   - [[#scanning-options][Scanning Options]]
   - [[#plugin-options][Plugin Options]]
-  - [[#output-format][Output Format]]
 - [[#example][Example]]
 
 * Introduction
@@ -25,58 +24,54 @@ $ whatweb [options] <URL>
 
 * Important Options
 ** Output Options
-+ *-v, --verbose* : Increase verbosity level.
-+ *-q, --quiet* : Suppress all output except errors.
-+ *-o, --log-file <FILE>* : Save output to a log file.
++ *-v, --verbose*                : Increase verbosity level.
++ *-q, --quiet*                  : Suppress all output except errors.
++ *-o, --log-file <FILE>*        : Save output to a log file.
 
 ** Scanning Options
-+ *-a, --user-agent <STRING>* : Specify a custom User-Agent header.
-+ *-t, --time-out <SECONDS>* : Set the request timeout.
-+ *-U, --user <USERNAME>* : Specify HTTP basic authentication username.
-+ *-P, --password <PASSWORD>* : Specify HTTP basic authentication password.
-+ *-x, --exclude <STRING>* : Exclude plugins matching the specified string.
++ *--aggression, -a=LEVEL*	     : Set the aggression level. Default: 1
++ *-t num, --max-threads num*    : Number of simultaneous threads.
++ *-U, --user <USERNAME>*        : Specify HTTP basic authentication username.
++ *-P, --password <PASSWORD>*    : Specify HTTP basic authentication password.
++ *-x, --exclude <STRING>*       : Exclude plugins matching the specified string.
 
 ** Plugin Options
-+ *-e, --enumerate <STRING>* : Enumerate plugins matching the specified string.
-+ *-l, --list-plugins* : List available plugins.
-+ *-p, --plugins <PLUGINS>* : Specify plugins to use (comma-separated list).
-
-** Output Format
-+ *-j, --json* : Output results in JSON format.
-+ *-x, --xml* : Output results in XML format.
++ *-e, --enumerate <STRING>*     : Enumerate plugins matching the specified string.
++ *-l, --list-plugins*           : List available plugins.
++ *-p, --plugins <PLUGINS>*      : Specify plugins to use (comma-separated list).
 
 * Example
-1. Scan a website
+1. *Scan a website*
 #+begin_example
 $ whatweb example.com
 #+end_example
 
-2. Scan a website and save output to a file
+2. *Scan a website and save output to a file*
 #+begin_example
 $ whatweb example.com -o output.txt
 #+end_example
 
-3. Scan a website using a custom User-Agent.
+3. *Set the aggression level*:
 #+begin_example
-$ whatweb example.com -a "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36"
+$ whatweb -a 3 example.com 
 #+end_example
 
-4. Scan a website using HTTP basic Authentication
+4. *Scan a website using HTTP basic Authentication*
 #+begin_example
 $ whatweb example.com -U username -P password
 #+end_example
 
-5. List available plugins
+5. *List available plugins*
 #+begin_example
 $ whatweb -l
 #+end_example
 
-6. Scan a website using specific plugin
+6. *Scan a website using specific plugin*
 #+begin_example
 $ whatweb example.com -p whois, WordPress
 #+end_example
 
-7. Scan a website and output results in JSON format.
+7. *Scan a website and output results in JSON format*
 #+begin_example
 $ whatweb example.com -j
 #+end_example

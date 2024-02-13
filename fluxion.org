@@ -1,0 +1,114 @@
+#+TITLE: FLUXION NOTE
+#+DESCRIPTION: Fluxion tools
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#installation][Installation]]
+- [[#start][Start]]
+- [[#configuration-for-handshake-capture][Configuration for handshake capture]]
+- [[#captive-portal-attack][Captive Portal Attack]]
+
+* Introduction
++ Fluxion is a tool that can be used to perform Penetration Testing or Security Auditing on wireless Access Points.
++ It uses social engineering to grab the authentication password from the users.
++ It tries to gather the WPA/WPA2 key from the target access point by performing a phishing attack.
+
+* Installation
+#+begin_example
+$ git clone https://github.com/FluxionNetwork/fluxion.git
+$ cd fluxion
+$ ls
+$ ./fluxion.sh -i
+#+end_example
+
+Or
+
+#+begin_example
+$ pacman -S fluxion
+$ sudo fluxion -i
+#+end_example
+
+* Start
+1. *To start fluxion*
+#+begin_example
+$ sudo Fluxion 
+#+end_example
+
+    [[./img/fluxion1.png]]
+
+2. *Language Selection Menu*
+
+    [[./img/fluxion2.png]]
+
+3. *Select wireless attack for access point*
+    + We require to capture the handshake between the network router and the genuine user.
+    + we will use that handshake to test and try to get credential required for gaining access to the access point. Hence, we will need to select teh handshake snooper.
+    + The handshake snooper attack attempts to retrieve WPA/WPA2 authentication hashes (the 4-way handshake), to be used later by the captive portal attack for key verification.
+
+    [[./img/fluxion3.png]]
+
+4. *Select wireless interface*
+    + select the wireless interface that we will use for searching target.
+
+    [[./img/fluxion4.png]]
+
+5. *Select channel to monitor*
+
+   [[./img/fluxion5.png]]
+   
+    + This will open a new window as shown, This will look for all the possible targets in the network reach and make sure to let the process run for some time and till you have your target visible in the window. Press ctrl + c on the xterm window after locating your target or after certain time is passed.
+
+    [[./img/fluxion5a.png]]
+
+* Configuration for handshake capture 
++ *Select the target*
+ 
+    [[./img/fluxion6.png]]
+
++ *Select wireless interface for target =tracking=*
+    - If you have another wireless interface that you want to use for performing target tracking then you can select it.
+    - For single interface for tracking as well, so we will select skip
+
+    [[./img/fluxion6a.png]]
+
++ *Select the method of handshake retrieval*
+    - the first method is the monitor or passive mode. A passive method of attack forces us to go completely silent, making the attack subtile or undetectable, and allowing for better listening.
+    - The other two method aireplay-ng and mdk4 both are aggressive. These use the deauthenticator. They send de-authentication packets to the user or device connected to the target access point client. 
+
+    [[./img/fluxion7.png]]
+
++ *Select method fo verification for the hash*
+    - required to choose the tool will be used to verify the hash on the captured valid handshake.
+    - We see that the aircrack-ng method is termed unreliable since it is not updated for some time.
+
+    [[./img/fluxion8a.png]]
+    
++ *Select the duration*
+    - choose the duration at which the fluxion should check for the handshake again, this depends on the environment you are working in.
+
+    [[./img/fluxion8b.png]]
+
++ *Select verification occurs*
+    - The Asynchronous option will initiate the verifier while the system is still in the process of capturing data. As this is multitasking at a higher level so requires more thread. If you are running your attacking OS such as Black Arch Linux directly on the system then you can use it but if you are running Black Arch Linux as a Virtual Machine like us, then it can cause issues since we have limited threads that are available to Black Arch.
+    - The Synchronous option will stop capturing data before it tries to check for the handshake. As this is not multitasking hence, this option will not cause an issue with low threads. However, there is a downside to choosing these methods as they will stop capturing data so you might lose some handshakes. But since we selected to check the verifier every 30 seconds realistically, we shouldn’t miss handshakes.
+
+    [[./img/fluxion9.png]]
+
+* Captive Portal Attack
++ The Fluxion will perform the de-authentication for all the users of the target access point. The user will disconnect
++ The sign in pop window for authentication will appear to the user
++ The user will enter the password and the password will be saved to =/root/fluxion/attacks/Captive Portal/netlog/= folder.
+
++ *To view the password*
+#+begin_example
+$ cd /root/fluxion/attacks/Captive Portal/netlog/
+$ ls
+$ cat raaj -18:##########.log
+#+end_example
+
+    [[./img/fluxion10.png]]
+
+    
+NOTE: [[https:www.hackingarticles.in/wireless-penetration-testing-fluxion/][Fluxion reference]]

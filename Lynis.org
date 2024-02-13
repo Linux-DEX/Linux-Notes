@@ -1,0 +1,70 @@
+#+TITLE: LYNIS NOTE
+#+DESCRIPTION: Lynis tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+  - [[#syntax][Syntax]]
+  - [[#command][Command:]]
+  - [[#options][Options:]]
+- [[#command-1][Command]]
+
+* Introduction
++ Lynis is an extensible security audit tool for computer systems running linux, FreeBSD, macOS, OpenBSD, Solaris, and other Unix derivatives.
++ It assists system administrators and security professionals with scanning a system and its security defenses, with the final goal being system hardening.
+
+** Syntax
+#+begin_example
+$ lynis command [options]
+#+end_example
+
+** Command:
+*** audit
++ *audit system*                : Perform local security scan.
++ *audit system remote <host>*  : Remote security scan.
++ *audit dockerfile <file>*     : Analyze Dockerfile.
+
+*** show
++ *show*            : show all commands
++ *show version*    : show lynis version.
++ *show help*       : show help.
+
+*** update
++ *update info*     : Show update details.
+  
+** Options:
+*** Alternative system audit modes
+--forensics                       : Perform forensics on a running or mounted system
+--pentest                         : Non-privileged, show points of interest for pentesting
+
+*** Layout options
+--no-colors                       : Don't use colors in output
+--quiet (-q)                      : No output
+--reverse-colors                  : Optimize color display for light backgrounds
+--reverse-colours                 : Optimize colour display for light backgrounds
+
+*** Misc options
+--debug                           : Debug logging to screen
+--no-log                          : Don't create a log file
+--profile <profile>               : Scan the system with the given profile file
+--view-manpage (--man)            : View man page
+--verbose                         : Show more details on screen
+--version (-V)                    : Display version number and quit
+--wait                            : Wait between a set of tests
+--slow-warning <seconds>          : Threshold for slow test warning in seconds (default 10)
+
+*** Enterprise options
+--plugindir <path>                : Define path of available plugins
+--upload                          : Upload data to central node
+
+* Command
++ *System audit*:
+#+begin_example
+$ sudo lynis audit system
+#+end_example
+
++ *Show update detail*
+#+begin_example
+$ sudo lynis update info
+#+end_example

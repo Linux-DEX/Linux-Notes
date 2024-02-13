@@ -21,36 +21,36 @@ $ gobuster [options] -u <URL> -w <wordlist>
 
 ** Commands
 
-+ *dir* : Perform directory brute-forcing.
-+ *dns* : Perform DNS subdomain brute-forcing.
-+ *vhost* : Perform virtual host brute-forcing.
-+ *crlf* : Check for CRLF injection vulnerabilities.
-+ *file* : Brute-force file names on web servers.
++ *dir*     : Perform directory brute-forcing.
++ *dns*     : Perform DNS subdomain brute-forcing.
++ *vhost*   : Perform virtual host brute-forcing.
++ *crlf*    : Check for CRLF injection vulnerabilities.
++ *file*    : Brute-force file names on web servers.
 
 ** Options
 
-+ *-u, --url* : Specify the target URL to scan.
-+ *-w, --wordlist* : Specify the path to the wordlist file containing potential directory and file names.
-+ *-t, --threads* : Set the number of concurrent threads (default is 10).
-+ *-k, --insecure* : Allow connections to SSL sites without certificates.
-+ *-l, --delay* : Delay between requests in milliseconds (default is 0).
-+ *-a, --useragent* : Set the User-agent header for requests.
-+ *-e, --expanded* : Expand the results to include full URLs.
-+ *-x, --extensions* : Specify file extensions to search for.
-+ *-s, --statuscodes* : Only show status codes in the output.
-+ *-c, --cookies* : Specify cookies to use in requests.
-+ *-H, --headers* : Specify custom headers in requests.
-+ *-q, --quiet* : Don't print the banner and other noise.
-+ *-o, --output* : Specify an output file to save the results.
++ *-u, --url*          : Specify the target URL to scan.
++ *-w, --wordlist*     : Specify the path to the wordlist file containing potential directory and file names.
++ *-t, --threads*      : Set the number of concurrent threads (default is 10).
++ *-k, --insecure*     : Allow connections to SSL sites without certificates.
++ *-l, --delay*        : Delay between requests in milliseconds (default is 0).
++ *-a, --useragent*    : Set the User-agent header for requests.
++ *-e, --expanded*     : Expand the results to include full URLs.
++ *-x, --extensions*   : Specify file extensions to search for.
++ *-s, --statuscodes*  : Only show status codes in the output.
++ *-c, --cookies*      : Specify cookies to use in requests.
++ *-H, --headers*      : Specify custom headers in requests.
++ *-q, --quiet*        : Don't print the banner and other noise.
++ *-o, --output*       : Specify an output file to save the results.
 
 ** Other Options 
 
-+ *--timeout* : Set the request timeout in seconds (default is 10).
-+ *--proxy* : Use a proxy server for requests (format: http://host:port).
-+ *--no-tlscheck* : Disable TLS certificate verification.
-+ *--random-agent* : Use a random User-Agent for requests.
-+ *--http-proxy* : Use an HTTP proxy server for requests.
-+ *--follow-redirect* : Follow HTTP redirects.
++ *--timeout*          : Set the request timeout in seconds (default is 10).
++ *--proxy*            : Use a proxy server for requests (format: http://host:port).
++ *--no-tlscheck*      : Disable TLS certificate verification.
++ *--random-agent*     : Use a random User-Agent for requests.
++ *--http-proxy*       : Use an HTTP proxy server for requests.
++ *--follow-redirect*  : Follow HTTP redirects.
 
 * Example Commands
 

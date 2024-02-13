@@ -1,0 +1,79 @@
+#+TITLE: NETDISCOVER NOTE
+#+DESCRIPTION: Netdiscover tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+  - [[#basic-syntax][Basic Syntax]]
+  - [[#important-options][Important Options]]
+- [[#example][Example]]
+
+* Introduction
++ Netdiscover is a network scanning tool used to discover active hosts on a network.
++ It works by sending ARP(Address Resolution Protocol) requests and analyzing the responses to map out the devices present on the local network.
+
+** Basic Syntax
+#+begin_example
+$ netdiscover [options]
+#+end_example
+
+** Important Options
+*** General Options:
++ *-i <interface>*   : Specify the network interface to use for scanning.
++ *-r <IP range>*    : Specify the IP range to scan (CIDR notation).
++ *-p*               : Passive mode. Do not send ARP packets; only listen for ARP requests.
++ *-S*               : Enable silent mode. Do not display any output to the console.
++ *-L*               : Enable logging. Write results to a log file.
+
+*** Output Options:
++ *-o <output-file>*    : Save results to a file.
++ *-c <count>*          : Limit the number of packets sent.
++ *-F*                  : Enable fast mode. Do not resolve MAC addresses to vendor names during scanning.
++ *-n node*             : last source IP octent used for scanning(from 2 to 253).
+
+*** Scanning Options:
++ *-r <ip-range>*                    : Specify the IP range to scan(CIDR notation).
++ *-r <ip-range1, ip range2, ...>*   : Specify multiple IP ranges to scan.
++ *-i <interface>*                   : Specify the network interface to use for scanning.
+
+* Example
++ *Scan the Local Network*:
+#+begin_example
+$ netdiscover
+#+end_example
+
++ *Scan a Specific Interface*:
+#+begin_example
+$ netdiscover -i eth0
+#+end_example
+
++ *Scan a Specific IP Range*:
+#+begin_example
+$ netdiscover -r 192.168.1.0/24
+#+end_example
+
++ *Save Results to a File*:
+#+begin_example
+$ netdiscover -o output.txt
+#+end_example
+
++ *Passive Mode(Listen Only)*:
+#+begin_example
+$ netdiscover -p
+#+end_example
+
++ *Limit Number of Packets Sent*:
+#+begin_example
+$ netdiscover -c 50
+#+end_example
+
++ *Last source IP octent*:
+#+begin_example
+$ netdiscover -n 100
+#+end_example
+
++ *Fast Mode(No MAC Address Resolution)*:
+#+begin_example
+$ netdiscover -F
+#+end_example
