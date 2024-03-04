@@ -1,0 +1,30 @@
+#+TITLE: METASPLOIT NOTE
+#+DESCRIPTION: Metasploit tool
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#metasploit-modules][Metasploit modules]]
+
+* Introduction
+Metasploit is primarily used from the command line interface(CLI), which provides extensive functionality for exploting vulnerabilities, conducting penetration tests, and managing security assessments. However, Metasploit also includes a web-based graphical user interface(GUI) called Armitage, which provides a more user-friendly interface for performing similar tasks.
+
+* Metasploit modules
+Metasploit provides you with many module some are
+
+1. *Exploit* : Exploit modules are used to leverage vulnerabilities in target systems to gain unauthorized access or perform specific actions. These modules typically include payloads that are executed once the exploit is successful.
+2. *Payload* : Payload modules define the actions to be performed after successful exploitation, such as executing shell commands, adding user accounts, or establishing remote access to the target system.
+3. *Auxiliary* : Auxiliary modules perform various tasks that support penetration testing and security assessments, such as scanning, fingerprinting, brute-forcing credentials, and information gathering.
+4. *Post-Exploitation* : Post-exploitation modules are used to perform tasks after gaining access to a target system, such as privilege escalation, lateral movement, data exfiltration, and maintaining access.
+5. *Encoder* : Encoder modules are used to obfuscate payloads to bypass antivirus detection or evade intrusion detection systems (IDS). These modules encode payloads to make them more difficult to detect by security mechanisms. 
+6. *Nop* : Nop modules generate sequences of no-operation (NOP) instructions, which are often used in exploit development for payload alignment or buffer overflow exploitation.
+7. *Evasion* : Evasion modules are used to bypass security controls and evade detection by antivirus software, intrusion detection/prevention systems (IDS/IPS), and other security mechanisms.
+8. *Scanner* : Scanner modules are used to identify vulnerabilities and misconfigurations in target systems or networks through scanning techniques such as port scanning, service enumeration, and vulnerability detection.
+9. *Stager* : tager modules provide initial code execution on the target system, typically used as part of multi-stage exploits or payload delivery techniques.
+10. *Post* : Post modules automate post-exploitation tasks, such as gathering information, pivoting to other systems, or cleaning up after an attack.
+
+
+
+
+

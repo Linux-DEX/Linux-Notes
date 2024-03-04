@@ -1,0 +1,64 @@
+#+TITLE: ORG-MODE NOTE
+#+DESCRIPTION: Org Mode Cheat Sheet
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#emacs][Emacs]]
+  - [[#heading][Heading]]
+  - [[#lists][Lists]]
+  - [[#inline-style][Inline Style]]
+  - [[#attach-file-and-image][Attach file and image]]
+
+* Emacs
+Org mode is for keeping hierarchal notes (and more) in Emacs.
+
+** Heading 
+#+begin_example
+ *             heading1
+ **            heading2
+ ***           heading3
+ ****          heading4
+ *****         heading5
+ ******        heading6
+#+end_example
+
+** Lists
+#+begin_example
+    1. 
+    2. 
+
+    -  
+    - 
+
+    + 
+    + 
+#+end_example
+
+** Inline Style
+#+begin_example
+    *bold*
+    /italic/
+    _underline_
+    =verbatim=
+    ~code~
+    +strike-through+
+#+end_example
+
+** Attach file and image
++ Inline image
+#+begin_example text
+ [[/path/to/image]]
+#+end_example
+
++ Add link
+#+begin_example text
+ [[link/to/webpage][text]]
+#+end_example
+
++ link file
+#+begin_example text
+ [[file:/media/xander/Backup/Hacker/Linux/Linux.org][Linux Notes]]
+#+end_example
+
+
