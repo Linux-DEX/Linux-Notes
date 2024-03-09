@@ -1,0 +1,88 @@
+#+TITLE: STEGHIDE NOTE
+#+DESCRIPTION: Steghide hide date in image
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:4
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#steghide][Steghide]]
+  - [[#first-argument-must-be-one-of-the-following][first argument must be one of the following:]]
+  - [[#embedding-options][embedding options:]]
+  - [[#extracting-options][extracting options:]]
+  - [[#options-for-the-info-command][options for the info command:]]
+- [[#commands][Commands]]
+  - [[#how-to-hide-text-using-steghide][How to hide text using steghide]]
+  - [[#how-to-extract-hidden-text-using-steghide][How to extract hidden text using steghide]]
+
+* Introduction
+Steghide is a command line utility available on Linux like platform. It allows us to hide textual contents inside supported image file.
+
+* Steghide
+** first argument must be one of the following:
+ + embed, --embed          embed data
+ + extract, --extract      extract data
+ + info, --info            display information about a cover- or stego-file
+    info <filename>        display information about <filename>
+ + encinfo, --encinfo      display a list of supported encryption algorithms
+ + version, --version      display version information
+ + license, --license      display steghide's license
+ + help, --help            display this usage information
+
+** embedding options:
+ + -ef, --embedfile        select file to be embedded
+    -ef <filename>         embed the file <filename>
+ + -cf, --coverfile        select cover-file
+    -cf <filename>         embed into the file <filename>
+ + -p, --passphrase        specify passphrase
+    -p <passphrase>        use <passphrase> to embed data
+ + -sf, --stegofile        select stego file
+    -sf <filename>         write result to <filename> instead of cover-file
+ + -e, --encryption        select encryption parameters
+    -e <a>[<m>]|<m>[<a>]   specify an encryption algorithm and/or mode
+    -e none                do not encrypt data before embedding
+ + -z, --compress          compress data before embedding (default)
+    -z <l>                 using level <l> (1 best speed...9 best compression)
+ + -Z, --dontcompress      do not compress data before embedding
+ + -K, --nochecksum        do not embed crc32 checksum of embedded data
+ + -N, --dontembedname     do not embed the name of the original file
+ + -f, --force             overwrite existing files
+ + -q, --quiet             suppress information messages
+ + -v, --verbose           display detailed information
+
+** extracting options:
+ + -sf, --stegofile        select stego file
+    -sf <filename>         extract data from <filename>
+ + -p, --passphrase        specify passphrase
+    -p <passphrase>        use <passphrase> to extract data
+ + -xf, --extractfile      select file name for extracted data
+    -xf <filename>         write the extracted data to <filename>
+ + -f, --force             overwrite existing files
+ + -q, --quiet             suppress information messages
+ + -v, --verbose           display detailed information
+
+** options for the info command:
+ + -p, --passphrase        specify passphrase
+    -p <passphrase>        use <passphrase> to get info about embedded data
+    
+
+* Commands
+** How to hide text using steghide
+1. Create a text file with the message in it.
+2. Download the image from internet.
+3. Run this command below to encrypt and append the data. You will asked to type a password twice.
+#+begin_example
+$ steghide embed -cf <image_file> -ef <file_with_confidential_text>
+#+end_example
+    - -cf   :  --coverfile 
+    - -ef   :  --embedfile
+      
+** How to extract hidden text using steghide
++ Run the below command
+#+begin_example
+$ steghide extract -sf <image_file>
+#+end_example
+    - -sf   :  --stegfile
++ Enter the password you enter during encryption.
++ Then it will successfully extract the information from the image.
+  
+

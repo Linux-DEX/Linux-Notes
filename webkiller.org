@@ -1,0 +1,61 @@
+#+TITLE: HACKING TOOLS
+#+DESCRIPTION: webkiller Tool github 
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:3
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#installation][Installation]]
+- [[#command][Command]]
+  - [[#usage][Usage]]
+
+* Introduction
++ *Webkiller* is *Github-based free* and *open-source* tool. 
++ Webkiller is a tool for aquiring information. 
++ It is a tool that scans webpage for data collection and vulnerabilities in *website* and *webapps*. 
++ *Geoip lookup, Banner grabbing, DNS lookup, sub-domain information, port scanning, reverse IP, and MX records* lookup are all included in the whois data gathering.
+
+* Installation
+1. Install from github
+#+begin_example
+$ git clone https://github.com/ultrasecurity/webkiller.git
+$ cd webkiller
+$ pip3 install -r requirements.txt
+$ python3 webkiller.py 
+#+end_example
+
+Or
+
+2. Install pacman or blackman package manager
+#+begin_example
+$ pacman -S webkiller
+Or
+$ blackman -i webkiller
+#+end_example   
+
+* Command
++ To start the webkiller
+#+begin_example
+$ webkiller
+#+end_example
+
+[[./img/webkiller01.png]]
+
+** Usage
+*** Example 1
+    - We can use the Webkiller tool to show the *HTTP Header*.
+    - In order to find HTTP header, first, we have to choose =option 1= which is =information gathering=.
+
+[[./img/webkiller02.png]]
+
++ We need to choose the =option 7= in order to find the HTTP Header of a domain.
+
+[[./img/webkiller03.png]]
+
+*** Example 2
+    - We can use the webkiller tool in order to find the *admin page of a domain*.
+    - We need to choose the =option= 12 in order to find the =admin page of a domain=.
+
+    - *Give a domain address to the tool*
+
+[[./img/webkiller04.png]]

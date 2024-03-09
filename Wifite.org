@@ -14,6 +14,7 @@
   - [[#commands][COMMANDS:]]
 - [[#commands-1][Commands]]
   - [[#automatically-scan-or-start-the-program][Automatically scan or Start the program]]
+- [[#full-command-will-be-updated-in-feature][Full command will be updated in feature....]]
 
 * Introduction
 Wifite is a wireless auditing tool designed to automate attacks against Wi-Fi networks. It's a Python script that utilizes various well-known tool like Aircrak-ng, Reaver, PixieWPS, and others to perform different tasks such as capturing handshakes, cracking WEP and WPA/WPA2 keys.
@@ -82,9 +83,7 @@ $ sudo wifite
 
 
 
-
-
-
+* Full command will be updated in feature....
 
 
 

