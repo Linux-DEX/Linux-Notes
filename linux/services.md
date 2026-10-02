@@ -96,6 +96,8 @@ $ sudo sshd -t
 $ sudo systemctl reload sshd
 ```
 
+`ssh-audit` grades this config. `fail2ban` bans addresses that keep failing login. Both notes are under `security/auditing/`.
+
 The client side, keys and `~/.ssh/config`, is the next section.
 
 

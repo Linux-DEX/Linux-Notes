@@ -73,7 +73,16 @@ The end of the scan prints a hardening index from 0 to 100, then two lists:
 + **Warnings** are misconfigurations Lynis treats as higher priority.
 + **Suggestions** are hardening steps. Each line has a test id in brackets. Search the log for that id to see the finding.
 
-`--quick` skips the pauses between tests. It does not skip the tests. 
+`--quick` skips the pauses between tests. It does not skip the tests.
+
+## Again, without sitting in front of it
+
+```bash
+$ sudo lynis audit system --cronjob
+$ grep -E 'warning\[\]|suggestion\[\]|hardening_index' /var/log/lynis-report.dat
+```
+
+`--cronjob` is quiet and does not wait between tests. The report file is still written. A timer that runs that command is an ordinary systemd timer, covered in `linux/systemd.md`. 
 
 
 
