@@ -35,6 +35,14 @@ Arch-focused notes. Linux administration is under `linux/`. Tool notes are under
 | [iotop](linux/iotop.md) | disk I/O by process |
 | [Syncthing](linux/syncthing.md) | folder sync between your machines |
 | [Git](linux/git.md) | status, commit, branch, push |
+| [lazygit](linux/lazygit.md) | terminal UI for a Git repo |
+| [GitHub CLI](linux/gh.md) | `gh` login, pull requests, issues |
+| [tldr](linux/tldr.md) | short example pages for commands |
+| [ShellCheck](linux/shellcheck.md) | find bugs in a shell script |
+| [HTTPie](linux/httpie.md) | HTTP requests from the terminal |
+| [ImageMagick](linux/imagemagick.md) | identify, resize, convert images |
+| [strace](linux/strace.md) | system calls of a process |
+| [fwupd](linux/fwupd.md) | device firmware updates |
 | [keyd](linux/keyd.md) | Wayland key remapping |
 | [Password manager](linux/password-manager.md) | GnuPG and `pass` |
 
@@ -46,14 +54,14 @@ Original command notes, sorted by what the tool is for.
 | ---- | ----- |
 | Auditing | [Lynis](security/auditing/lynis.md), [arch-audit](security/auditing/arch-audit.md), [ssh-audit](security/auditing/ssh-audit.md), [sslscan](security/auditing/sslscan.md), [openssl](security/auditing/openssl.md), [ClamAV](security/auditing/clamav.md), [fail2ban](security/auditing/fail2ban.md), [firejail](security/auditing/firejail.md), [systemd-analyze](security/auditing/systemd-analyze.md), [AIDE](security/auditing/aide.md), [auditd](security/auditing/auditd.md), [rkhunter](security/auditing/rkhunter.md), [unhide](security/auditing/unhide.md), [USBGuard](security/auditing/usbguard.md), [OpenSnitch](security/auditing/opensnitch.md), [osquery](security/auditing/osquery.md), [checksec](security/auditing/checksec.md), [Trivy](security/auditing/trivy.md), [syft](security/auditing/syft.md), [gitleaks](security/auditing/gitleaks.md), [cosign](security/auditing/cosign.md) |
 | Distro | [BlackArch](security/distros/blackarch.md) |
-| Network | [nmap](security/network/nmap.md), [tcpdump](security/network/tcpdump.md), [Wireshark](security/network/wireshark.md), [nethogs](security/network/nethogs.md), [mtr](security/network/mtr.md), [netcat](security/network/netcat.md), [arp](security/network/arp.md), [netdiscover](security/network/netdiscover.md), [adapter mode](security/network/network-adapter.md) |
+| Network | [nmap](security/network/nmap.md), [tcpdump](security/network/tcpdump.md), [Wireshark](security/network/wireshark.md), [nethogs](security/network/nethogs.md), [mtr](security/network/mtr.md), [whois](security/network/whois.md), [netcat](security/network/netcat.md), [arp](security/network/arp.md), [netdiscover](security/network/netdiscover.md), [adapter mode](security/network/network-adapter.md) |
 | Web | [Nikto](security/web/nikto.md), [WhatWeb](security/web/whatweb.md), [gobuster](security/web/gobuster.md), [DirBuster](security/web/dirbuster.md), [Skipfish](security/web/skipfish.md), [WebKiller](security/web/webkiller.md) |
 | Wireless | [Aircrack-ng](security/wireless/aircrack-ng.md), [Wifite](security/wireless/wifite.md), [Fluxion](security/wireless/fluxion.md) |
-| Passwords | [John the Ripper](security/passwords/john-the-ripper.md), [Hydra](security/passwords/hydra.md) |
+| Passwords | [KeePassXC](security/passwords/keepassxc.md), [pwgen](security/passwords/pwgen.md), [John the Ripper](security/passwords/john-the-ripper.md), [Hydra](security/passwords/hydra.md) |
 | Frameworks | [Metasploit](security/frameworks/metasploit.md) |
 | OSINT | [Sherlock](security/osint/sherlock.md) |
 | Social engineering | [Seeker](security/social-engineering/seeker.md), [Storm-Breaker](security/social-engineering/storm-breaker.md) |
-| Privacy | [Tor](security/privacy/tor.md), [WireGuard](security/privacy/wireguard.md), [mat2](security/privacy/mat2.md), [age](security/privacy/age.md) |
+| Privacy | [Tor](security/privacy/tor.md), [dnscrypt-proxy](security/privacy/dnscrypt-proxy.md), [WireGuard](security/privacy/wireguard.md), [uBlock Origin](security/privacy/ublock-origin.md), [BleachBit](security/privacy/bleachbit.md), [mat2](security/privacy/mat2.md), [age](security/privacy/age.md), [GnuPG](security/privacy/gpg.md) |
 | Steganography | [steghide](security/steganography/steghide.md) |
 
 ## Reference
