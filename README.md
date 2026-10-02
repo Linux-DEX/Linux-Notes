@@ -36,16 +36,16 @@ Original command notes, sorted by what the tool is for.
 
 | Area | Notes |
 | ---- | ----- |
-| Auditing | [Lynis](security/auditing/lynis.md), [arch-audit](security/auditing/arch-audit.md), [ssh-audit](security/auditing/ssh-audit.md), [ClamAV](security/auditing/clamav.md), [fail2ban](security/auditing/fail2ban.md), [firejail](security/auditing/firejail.md) |
+| Auditing | [Lynis](security/auditing/lynis.md), [arch-audit](security/auditing/arch-audit.md), [ssh-audit](security/auditing/ssh-audit.md), [ClamAV](security/auditing/clamav.md), [fail2ban](security/auditing/fail2ban.md), [firejail](security/auditing/firejail.md), [systemd-analyze](security/auditing/systemd-analyze.md), [AIDE](security/auditing/aide.md), [auditd](security/auditing/auditd.md), [USBGuard](security/auditing/usbguard.md), [OpenSnitch](security/auditing/opensnitch.md) |
 | Distro | [BlackArch](security/distros/blackarch.md) |
-| Network | [nmap](security/network/nmap.md), [tcpdump](security/network/tcpdump.md), [netcat](security/network/netcat.md), [arp](security/network/arp.md), [netdiscover](security/network/netdiscover.md), [adapter mode](security/network/network-adapter.md) |
+| Network | [nmap](security/network/nmap.md), [tcpdump](security/network/tcpdump.md), [Wireshark](security/network/wireshark.md), [nethogs](security/network/nethogs.md), [netcat](security/network/netcat.md), [arp](security/network/arp.md), [netdiscover](security/network/netdiscover.md), [adapter mode](security/network/network-adapter.md) |
 | Web | [Nikto](security/web/nikto.md), [WhatWeb](security/web/whatweb.md), [gobuster](security/web/gobuster.md), [DirBuster](security/web/dirbuster.md), [Skipfish](security/web/skipfish.md), [WebKiller](security/web/webkiller.md) |
 | Wireless | [Aircrack-ng](security/wireless/aircrack-ng.md), [Wifite](security/wireless/wifite.md), [Fluxion](security/wireless/fluxion.md) |
 | Passwords | [John the Ripper](security/passwords/john-the-ripper.md), [Hydra](security/passwords/hydra.md) |
 | Frameworks | [Metasploit](security/frameworks/metasploit.md) |
 | OSINT | [Sherlock](security/osint/sherlock.md) |
 | Social engineering | [Seeker](security/social-engineering/seeker.md), [Storm-Breaker](security/social-engineering/storm-breaker.md) |
-| Privacy | [Tor](security/privacy/tor.md) |
+| Privacy | [Tor](security/privacy/tor.md), [WireGuard](security/privacy/wireguard.md), [mat2](security/privacy/mat2.md) |
 | Steganography | [steghide](security/steganography/steghide.md) |
 
 ## Reference
