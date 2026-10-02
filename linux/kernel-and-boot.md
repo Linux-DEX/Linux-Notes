@@ -91,6 +91,8 @@ $ sudo pacman -S linux-hardened
 $ sudo pacman -S linux-zen
 ```
 
+The kernel package builds the matching initramfs under `/boot` as it installs. What that image is, and when you have to rebuild it yourself, is `linux/mkinitcpio.md`.
+
 ### Step 2: Tweak the grub configuration file to add more kernel options
 Follow this two steps
 + Disable grub submenu so that all the available kernel versions are shown on the main screen.

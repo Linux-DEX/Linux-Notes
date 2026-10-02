@@ -74,6 +74,30 @@ $ sudo systemctl enable sshd
 $ sudo systemctl status sshd
 ```
 
+# SSH server
+
+The block above only starts `sshd`. These settings are `/etc/ssh/sshd_config`.
+
+Confirm key login in a second terminal before you turn passwords off. A mistake here drops the session you are using to fix it.
+
+```text
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+```
+
+`PasswordAuthentication` alone is not enough. Keyboard-interactive still accepts a password unless `KbdInteractiveAuthentication` is off too.
+
+Check the file, then reload. `sshd -t` prints nothing when the config is valid.
+
+```bash
+$ sudo sshd -t
+$ sudo systemctl reload sshd
+```
+
+The client side, keys and `~/.ssh/config`, is the next section.
+
 
 # SSH client
 The section above only starts the server. These commands are for connecting out.

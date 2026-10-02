@@ -15,6 +15,8 @@ $ sudo pacman -Syu
 
 + -u    : Upgrade all installed package to their latest version.
 
+A config you have edited is not overwritten. Pacman leaves a `.pacnew` beside it. Merging those files is `linux/pacnew.md`.
+
 ## Install a package:
 ```bash
 $ sudo pacman -S <package-name>

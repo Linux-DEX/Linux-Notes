@@ -11,14 +11,22 @@ Arch-focused notes. Linux administration is under `linux/`. Tool notes are under
 | [systemd](linux/systemd.md) | Units, systemctl, the journal, timers |
 | [Users and groups](linux/users-and-groups.md) | Accounts, sudo, wheel, umask |
 | [Packages](linux/packages.md) | pacman, pactree, paru, yay |
+| [pacnew](linux/pacnew.md) | `.pacnew`, `.pacsave`, `pacdiff` |
+| [Mirrors](linux/mirrors.md) | reflector |
+| [mkinitcpio](linux/mkinitcpio.md) | initramfs, presets, rebuild |
+| [LUKS](linux/luks.md) | unlock a data disk, crypttab |
+| [SMART](linux/smart.md) | `smartctl`, `smartd` |
+| [Backups](linux/backups.md) | restic on `/media/Backup` |
+| [Troubleshooting](linux/troubleshooting.md) | full disk, emergency shell, previous boot |
 | [Services](linux/services.md) | httpd, sshd, SSH client, scp, rsync |
 | [Firewall](linux/firewall.md) | nftables, ufw |
-| [Networking](linux/networking.md) | NetworkManager, Bluetooth |
+| [Networking](linux/networking.md) | NetworkManager, Bluetooth, address, DNS |
 | [Display](linux/display.md) | X11, Wayland, xrandr |
 | [Commands](linux/commands.md) | Command reference |
 | [Vim](linux/vim.md) | Vim and Neovim keys |
 | [File managers](linux/file-managers.md) | ranger |
-| [Shell](linux/shell.md) | `chsh` |
+| [Shell](linux/shell.md) | `chsh`, bash, fish |
+| [Git](linux/git.md) | status, commit, branch, push |
 | [keyd](linux/keyd.md) | Wayland key remapping |
 | [Password manager](linux/password-manager.md) | GnuPG and `pass` |
 

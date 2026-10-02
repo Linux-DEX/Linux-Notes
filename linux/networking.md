@@ -40,6 +40,51 @@ $ nmcli r wifi off
 $ nmcli device wifi show-password
 ```
 
+# Address and DNS
+
+`nmcli con` prints the connection name. The commands below use that name, which is often the SSID.
+
+## What you have now
+
+```bash
+$ ip route
+$ nmcli -f IP4 con show "<name>"
+$ cat /etc/resolv.conf
+```
+
+`ip route` shows the default gateway. The `IP4.DNS` line is what NetworkManager was given. `/etc/resolv.conf` is what processes actually read. On Arch, NetworkManager writes that file unless `systemd-resolved` is enabled.
+
+## Static address
+
+```bash
+$ nmcli con mod "<name>" ipv4.method manual \
+    ipv4.addresses <address>/<prefix> \
+    ipv4.gateway <gateway> \
+    ipv4.dns "<dns>"
+$ nmcli con up "<name>"
+```
+
+`ipv4.method manual` stops DHCP. `<prefix>` is the mask length, `24` for `255.255.255.0`. Bring the connection up or the change sits in the file unused.
+
+DHCP again:
+
+```bash
+$ nmcli con mod "<name>" ipv4.method auto
+$ nmcli con mod "<name>" ipv4.addresses "" ipv4.gateway ""
+$ nmcli con up "<name>"
+```
+
+## DNS only
+
+Keep DHCP addresses, replace the DNS servers:
+
+```bash
+$ nmcli con mod "<name>" ipv4.ignore-auto-dns yes ipv4.dns "<dns>"
+$ nmcli con up "<name>"
+```
+
+`ipv4.ignore-auto-dns yes` drops the DNS servers from DHCP. Without it, NetworkManager merges them with yours.
+
 # BLUETOOTH MANAGER
 ## Check bluetooth status
 ```bash

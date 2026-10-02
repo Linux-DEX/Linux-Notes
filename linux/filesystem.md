@@ -147,7 +147,7 @@ UUID=<uuid>  /media/Backup  ext4  defaults,nofail  0  2
 | 5 | Dump flag. `0` skips dump. Almost always `0`. |
 | 6 | fsck order. `1` for root, `2` for other local filesystems, `0` to skip. |
 
-After editing fstab, `sudo mount -a` mounts everything in the file. If that command errors, fix the line before rebooting.
+After editing fstab, `sudo mount -a` mounts everything in the file. If that command errors, fix the line before rebooting. A line that fails during boot drops you to an emergency shell. Getting out of that shell is `linux/troubleshooting.md`. An encrypted disk is `linux/luks.md`.
 
 
 # Auto Mount Drives in Linux on Boot
