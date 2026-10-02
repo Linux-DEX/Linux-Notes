@@ -7,7 +7,7 @@
 
 # Start
 
-![dirbuster one](./img/dirbuster1.png)
+![dirbuster one](../../assets/images/dirbuster1.png)
 
 1. Target URL : Here you can se any URL for pentesting.
 2. work method: there are two option to choose from "get request" and "head and get".
@@ -15,6 +15,6 @@
 4. file with list of dirs/files: here the select the wordlist file in **/usr/share/wordlist** directory
 5. start button: to start the pentesting.
 
-![dirbuster two](./img/dirbuster2.png)
+![dirbuster two](../../assets/images/dirbuster2.png)
 
 + here in list view all the found dir and file will be listed

@@ -33,7 +33,7 @@ stealth:d776dd32d662b8efbdf853837269bd725203c579
 $ john --single --format=raw-sha1 crack.txt
 ```
 
-![single crack mode](./img/singlecrackmode.png)
+![single crack mode](../../assets/images/singlecrackmode.png)
 
 # Dictionary Mode
 + In dictionary mode, we will provide john with a list of passwords. John will generate hashes for these on the fly and compare them with our password hash.

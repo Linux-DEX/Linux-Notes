@@ -1,5 +1,5 @@
-# Introduction
-Steghide is a command line utility available on Linux like platform. It allows us to hide textual contents inside supported image file.
+# Steghide
+Steghide hides a file inside a cover image or audio file, and extracts it again with a passphrase. This note used to be saved as `SQLmap.md`. The contents are steghide, not sqlmap.
 
 # Steghide
 ## first argument must be one of the following:

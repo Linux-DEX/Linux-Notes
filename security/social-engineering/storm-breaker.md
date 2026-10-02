@@ -53,7 +53,7 @@ $ ngrok config add-authtoken <token>
 $ python3 st.py
 ```
 
-![storm-breaker](./img/storm-breaker.png)
+![storm-breaker](../../assets/images/storm-breaker.png)
 
 ## to run ngrok
 ```bash
@@ -64,7 +64,7 @@ $ ngrok http 2525
  Open the link given in the **forwarding** session 
 
 ### login the site
-![storm break login](./img/storm-break-login.png)
+![storm break login](../../assets/images/storm-break-login.png)
 
 ### Default username and password
 + `username` : `admin`
@@ -72,7 +72,7 @@ $ ngrok http 2525
 
 ## Other links and main contain
 
-![storm breaker ngrok](./img/storm-breaker-ngrok.png)
+![storm breaker ngrok](../../assets/images/storm-breaker-ngrok.png)
 
 + All the link specified here can be shared to other user for specified target.
 + The contant will be visible in result box.

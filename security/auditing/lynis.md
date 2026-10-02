@@ -58,7 +58,22 @@ $ lynis command [options]
 ### Enterprise options
 | Options     | Description                      |
 | ----------- | -------------------------------- |
-| --plugindir | Define path of available plugins | 
+| --plugindir | Define path of available plugins |
+
+# Install and read a scan
+```bash
+$ sudo pacman -S lynis
+$ sudo lynis audit system
+```
+
+A root scan writes `/var/log/lynis.log` and `/var/log/lynis-report.dat`. Run as a normal user and those two files land in the current directory instead.
+
+The end of the scan prints a hardening index from 0 to 100, then two lists:
+
++ **Warnings** are misconfigurations Lynis treats as higher priority.
++ **Suggestions** are hardening steps. Each line has a test id in brackets. Search the log for that id to see the finding.
+
+`--quick` skips the pauses between tests. It does not skip the tests. 
 
 
 

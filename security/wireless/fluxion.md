@@ -24,64 +24,64 @@ $ sudo fluxion -i
 $ sudo Fluxion
 ```
 
-![fluxion 1](./img/fluxion1.png)
+![fluxion 1](../../assets/images/fluxion1.png)
 
 2. **Language Selection Menu**
-![fluxion 2](./img/fluxion2.png)
+![fluxion 2](../../assets/images/fluxion2.png)
 
 3. **Select wireless attack for access point**
    + We require to capture the handshake between the network router and the genuine user.
    + we will use that handshake to test and try to get credential required for gaining access to the access point. Hence, we will need to select teh handshake snooper.
    + The handshake snooper attack attempts to retrieve WPA/WPA2 authentication hashes (the 4-way handshake), to be used later by the captive portal attack for key verification.
 
-![fluxion 3](./img/fluxion3.png)
+![fluxion 3](../../assets/images/fluxion3.png)
 
 4. **Select wireless interface**
 + Select the wireless interface that we will use for searching target.
 
-![fluxion 4](./img/fluxion4.png)
+![fluxion 4](../../assets/images/fluxion4.png)
 
 5. **Select channel to monitor**
 
-![fluxion 5](./img/fluxion5.png)
+![fluxion 5](../../assets/images/fluxion5.png)
 
 + This will open a new window as shown, This will look for all the possible targets in the network reach and make sure to let the process run for some time and till you have your target visible in the window. Press ctrl + c on the xterm window after locating your target or after certain time is passed.
 
-![fluxion 5a](./img/fluxion5a.png)
+![fluxion 5a](../../assets/images/fluxion5a.png)
 
 # Configuration for handshake capture
 + **Select the target**
 
-![fluxion 6](./img/fluxion6.png)
+![fluxion 6](../../assets/images/fluxion6.png)
 
 + **Select wireless interface for target =tracking=**
    - If you have another wireless interface that you want to use for performing target tracking then you can select it.
    - For single interface for tracking as well, so we will select skip
 
-![fluxion 6a](./img/fluxion6a.png)
+![fluxion 6a](../../assets/images/fluxion6a.png)
 
 + **Select the method of handshake retrieval**
    - the first method is the monitor or passive mode. A passive method of attack forces us to go completely silent, making the attack subtile or undetectable, and allowing for better listening.
    - The other two method aireplay-ng and mdk4 both are aggressive. These use the deauthenticator. They send de-authentication packets to the user or device connected to the target access point client. 
 
-![fluxion 7](./img/fluxion7.png)
+![fluxion 7](../../assets/images/fluxion7.png)
 
 + **Select method of verification for the hash**
    - required to choose the tool will be used to verify the hash on the captured valid handshake.
    - We see that the aircrack-ng method is termed unreliable since it is not updated for some time.
 
-![fluxion 8](./img/fluxion8a.png)
+![fluxion 8](../../assets/images/fluxion8a.png)
 
 + **Select the duration**
    - choose the duration at which the fluxion should check for the handshake again, this depends on the environment you are working in.
 
-![fluxion 8b](./img/fluxion8b.png)
+![fluxion 8b](../../assets/images/fluxion8b.png)
 
 + **Select verification occurs**
    - The Asynchronous option will initiate the verifier while the system is still in the process of capturing data. As this is multitasking at a higher level so requires more thread. If you are running your attacking OS such as Black Arch Linux directly on the system then you can use it but if you are running Black Arch Linux as a Virtual Machine like us, then it can cause issues since we have limited threads that are available to Black Arch.
    - The Synchronous option will stop capturing data before it tries to check for the handshake. As this is not multitasking hence, this option will not cause an issue with low threads. However, there is a downside to choosing these methods as they will stop capturing data so you might lose some handshakes. But since we selected to check the verifier every 30 seconds realistically, we shouldn’t miss handshakes.
 
-![fluxion 9](fluxion9.png)
+![fluxion 9](../../assets/images/fluxion9.png)
 
 # Captive Portal Attack
 + The Fluxion will perform the de-authentication for all the users of the target access point. The user will disconnect
@@ -95,7 +95,7 @@ $ ls
 $ cat raaj -18:##########.log
 ```
 
-![fluxion 10](./img/fluxion10.png)
+![fluxion 10](../../assets/images/fluxion10.png)
 
 > [!NOTE]
 > reference link: [Fluxion reference](https:www.hackingarticles.in/wireless-penetration-testing-fluxion/)

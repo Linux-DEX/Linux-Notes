@@ -105,10 +105,10 @@ $ pass -c <path/to/password>
 ```
 
 ## Generate and copy a password
-Generate and copies a new password to the clipboard.
+`-c` copies the new password to the clipboard. `-n` skips symbols. The length is required.
 
 ```bash
-$ pass -c -n <path/to/password>
+$ pass generate -c -n <path/to/password> <length>
 ```
 
 ## Find Password
@@ -138,12 +138,20 @@ Pushes changes to the remote Git repository
 $ pass git push
 ```
 
-## Insert a File as an Attachment
-Inserts a file as an attachment to a password entry.
+## Multiline entry
+`pass insert -m` reads more than one line (a password, then a username or URL) until Ctrl-D. It does not attach a file.
 
 ```bash
-$ pass insert -m <path/to/password> <file>
+$ pass insert -m email/gmail
 ```
+
+## Move or copy an entry
+```bash
+$ pass mv <old-path> <new-path>
+$ pass cp <old-path> <new-path>
+```
+
+The store is a directory of `.gpg` files at `~/.password-store`. `pass init` records the GPG key id in `~/.password-store/.gpg-id`.
 
 ## Backup Password Store
 Pushes changes to a remote Git repository

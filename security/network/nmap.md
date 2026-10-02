@@ -439,11 +439,12 @@ $ nmap --defeat-rst-ratelimit [target]
 
 # Output Options
  
-| Nmap Switch | Description                                  |
-| ----------- | -------------------------------------------- |
-| =-oN=       | Normal output                                |
-| =-oX=       | XML output                                   |
-| =-oA=       | Normal, XML, and Grepable format all at once |
+| Nmap Switch | Description                                      |
+| ----------- | ------------------------------------------------ |
+| -oN         | Normal output                                    |
+| -oX         | XML output                                       |
+| -oG         | Grepable output                                  |
+| -oA         | Write normal, XML, and grepable files together   |
 
 ## Save Output to a Text File
 ```bash

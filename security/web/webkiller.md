@@ -28,18 +28,18 @@ $ blackman -i webkiller
 $ webkiller
 ```
 
-![web killer 1](./img/webkiller01.png)
+![web killer 1](../../assets/images/webkiller01.png)
 
 ## Usage
 ### Example 1
    - We can use the Webkiller tool to show the **HTTP Header**.
    - In order to find HTTP header, first, we have to choose `option 1` which is `information gathering`.
 
-![web killer 2](./img/webkiller02.png)
+![web killer 2](../../assets/images/webkiller02.png)
 
 + We need to choose the `option 7` in order to find the HTTP Header of a domain.
 
-![web killer 3](./img/webkiller03.png)
+![web killer 3](../../assets/images/webkiller03.png)
 
 ### Example 2
    - We can use the webkiller tool in order to find the **admin page of a domain**.
@@ -47,4 +47,4 @@ $ webkiller
 
    - **Give a domain address to the tool**
 
-![web killer 4](./img/webkiller04.png)
+![web killer 4](../../assets/images/webkiller04.png)
